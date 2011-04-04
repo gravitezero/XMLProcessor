@@ -1,0 +1,47 @@
+digraph G {
+
+## Liste des tâches :
+
+subgraph cluster01
+{ label="Analyse syntaxique"
+
+    step11 [label="3.1.1 Compilation des sources fournies"]
+
+    step12 [label="3.1.2 Completer la grammaire des DTD"]
+
+    step13 [label="3.1.3 Réalisation d'un analyseur de XML"]
+    
+    step11 -> step12 -> step13
+    
+}
+    
+subgraph cluster02
+{ label="Construction des structures de données"
+
+    step21 [label="3.2.1 Définir la structure des arbres XML et de la DTD"]
+
+    step22 [label="3.2.1 Definir les actions de construction de ces arbres"]
+
+    step23 [label="3.2.1 Utiliser ces actions dans les règles d'analyse"]
+    
+    result21 [ shape=box label="structure interne representant le document XML" ]
+    
+    result22 [ shape=box label="structure interne representant la DTD" ]
+    
+    step21 -> step22 -> step23 -> result21
+    step23 -> result22
+
+}
+
+subgraph cluster03
+{
+
+    label="Vérification des conditions de validité"
+
+}
+
+
+
+
+
+}
