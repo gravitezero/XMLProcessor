@@ -1,0 +1,599 @@
+Terminaux qui ne sont utilisés
+
+   EMPTY
+   ANY
+
+
+Grammaire
+
+    0 $accept: main $end
+
+    1 main: main dtd
+    2     | main element
+    3     | /* vide */
+
+    4 dtd: ATTLIST NAME att_definition CLOSE
+
+    5 element: ELEMENT NAME choice_or_sequence cardinality CLOSE
+
+    6 choice_or_sequence: choice
+    7                   | sequence
+
+    8 sequence: OPENPAR list_sequence CLOSEPAR
+
+    9 choice: OPENPAR list_choice_plus CLOSEPAR
+
+   10 list_choice_plus: list_choice PIPE item
+
+   11 list_choice: item
+   12            | list_choice PIPE item
+
+   13 list_sequence: item
+   14              | list_sequence COMMA item
+
+   15 item: NAME cardinality
+   16     | PCDATA
+   17     | choice_or_sequence cardinality
+
+   18 cardinality: AST
+   19            | QMARK
+   20            | PLUS
+   21            | /* vide */
+
+   22 att_definition: att_definition attribut
+   23               | /* vide */
+
+   24 attribut: NAME att_type defaut_declaration
+
+   25 att_type: CDATA
+   26         | TOKENTYPE
+   27         | type_enumere
+
+   28 type_enumere: OPENPAR liste_enum_plus CLOSEPAR
+
+   29 liste_enum_plus: liste_enum PIPE item_enum
+
+   30 liste_enum: item_enum
+   31           | liste_enum PIPE item_enum
+
+   32 item_enum: NAME
+
+   33 defaut_declaration: DECLARATION
+   34                   | STRING
+   35                   | FIXED STRING
+
+
+Terminaux, suivis des règles où ils apparaissent
+
+$end (0) 0
+error (256)
+ELEMENT (258) 5
+ATTLIST (259) 4
+CLOSE (260) 4 5
+OPENPAR (261) 8 9 28
+CLOSEPAR (262) 8 9 28
+COMMA (263) 14
+PIPE (264) 10 12 29 31
+FIXED (265) 35
+EMPTY (266)
+ANY (267)
+PCDATA (268) 16
+AST (269) 18
+QMARK (270) 19
+PLUS (271) 20
+CDATA (272) 25
+NAME (273) 4 5 15 24 32
+TOKENTYPE (274) 26
+DECLARATION (275) 33
+STRING (276) 34 35
+
+
+Non-terminaux, suivis des règles où ils apparaissent
+
+$accept (22)
+    à gauche: 0
+main (23)
+    à gauche: 1 2 3, à droite: 0 1 2
+dtd (24)
+    à gauche: 4, à droite: 1
+element (25)
+    à gauche: 5, à droite: 2
+choice_or_sequence (26)
+    à gauche: 6 7, à droite: 5 17
+sequence (27)
+    à gauche: 8, à droite: 7
+choice (28)
+    à gauche: 9, à droite: 6
+list_choice_plus (29)
+    à gauche: 10, à droite: 9
+list_choice (30)
+    à gauche: 11 12, à droite: 10 12
+list_sequence (31)
+    à gauche: 13 14, à droite: 8 14
+item (32)
+    à gauche: 15 16 17, à droite: 10 11 12 13 14
+cardinality (33)
+    à gauche: 18 19 20 21, à droite: 5 15 17
+att_definition (34)
+    à gauche: 22 23, à droite: 4 22
+attribut (35)
+    à gauche: 24, à droite: 22
+att_type (36)
+    à gauche: 25 26 27, à droite: 24
+type_enumere (37)
+    à gauche: 28, à droite: 27
+liste_enum_plus (38)
+    à gauche: 29, à droite: 28
+liste_enum (39)
+    à gauche: 30 31, à droite: 29 31
+item_enum (40)
+    à gauche: 32, à droite: 29 30 31
+defaut_declaration (41)
+    à gauche: 33 34 35, à droite: 24
+
+
+état 0
+
+    0 $accept: . main $end
+
+    $défaut  réduction par utilisation de la règle 3 (main)
+
+    main  aller à l'état 1
+
+
+état 1
+
+    0 $accept: main . $end
+    1 main: main . dtd
+    2     | main . element
+
+    $end     décalage et aller à l'état 2
+    ELEMENT  décalage et aller à l'état 3
+    ATTLIST  décalage et aller à l'état 4
+
+    dtd      aller à l'état 5
+    element  aller à l'état 6
+
+
+état 2
+
+    0 $accept: main $end .
+
+    $défaut  accepter
+
+
+état 3
+
+    5 element: ELEMENT . NAME choice_or_sequence cardinality CLOSE
+
+    NAME  décalage et aller à l'état 7
+
+
+état 4
+
+    4 dtd: ATTLIST . NAME att_definition CLOSE
+
+    NAME  décalage et aller à l'état 8
+
+
+état 5
+
+    1 main: main dtd .
+
+    $défaut  réduction par utilisation de la règle 1 (main)
+
+
+état 6
+
+    2 main: main element .
+
+    $défaut  réduction par utilisation de la règle 2 (main)
+
+
+état 7
+
+    5 element: ELEMENT NAME . choice_or_sequence cardinality CLOSE
+
+    OPENPAR  décalage et aller à l'état 9
+
+    choice_or_sequence  aller à l'état 10
+    sequence            aller à l'état 11
+    choice              aller à l'état 12
+
+
+état 8
+
+    4 dtd: ATTLIST NAME . att_definition CLOSE
+
+    $défaut  réduction par utilisation de la règle 23 (att_definition)
+
+    att_definition  aller à l'état 13
+
+
+état 9
+
+    8 sequence: OPENPAR . list_sequence CLOSEPAR
+    9 choice: OPENPAR . list_choice_plus CLOSEPAR
+
+    OPENPAR  décalage et aller à l'état 9
+    PCDATA   décalage et aller à l'état 14
+    NAME     décalage et aller à l'état 15
+
+    choice_or_sequence  aller à l'état 16
+    sequence            aller à l'état 11
+    choice              aller à l'état 12
+    list_choice_plus    aller à l'état 17
+    list_choice         aller à l'état 18
+    list_sequence       aller à l'état 19
+    item                aller à l'état 20
+
+
+état 10
+
+    5 element: ELEMENT NAME choice_or_sequence . cardinality CLOSE
+
+    AST    décalage et aller à l'état 21
+    QMARK  décalage et aller à l'état 22
+    PLUS   décalage et aller à l'état 23
+
+    $défaut  réduction par utilisation de la règle 21 (cardinality)
+
+    cardinality  aller à l'état 24
+
+
+état 11
+
+    7 choice_or_sequence: sequence .
+
+    $défaut  réduction par utilisation de la règle 7 (choice_or_sequence)
+
+
+état 12
+
+    6 choice_or_sequence: choice .
+
+    $défaut  réduction par utilisation de la règle 6 (choice_or_sequence)
+
+
+état 13
+
+    4 dtd: ATTLIST NAME att_definition . CLOSE
+   22 att_definition: att_definition . attribut
+
+    CLOSE  décalage et aller à l'état 25
+    NAME   décalage et aller à l'état 26
+
+    attribut  aller à l'état 27
+
+
+état 14
+
+   16 item: PCDATA .
+
+    $défaut  réduction par utilisation de la règle 16 (item)
+
+
+état 15
+
+   15 item: NAME . cardinality
+
+    AST    décalage et aller à l'état 21
+    QMARK  décalage et aller à l'état 22
+    PLUS   décalage et aller à l'état 23
+
+    $défaut  réduction par utilisation de la règle 21 (cardinality)
+
+    cardinality  aller à l'état 28
+
+
+état 16
+
+   17 item: choice_or_sequence . cardinality
+
+    AST    décalage et aller à l'état 21
+    QMARK  décalage et aller à l'état 22
+    PLUS   décalage et aller à l'état 23
+
+    $défaut  réduction par utilisation de la règle 21 (cardinality)
+
+    cardinality  aller à l'état 29
+
+
+état 17
+
+    9 choice: OPENPAR list_choice_plus . CLOSEPAR
+
+    CLOSEPAR  décalage et aller à l'état 30
+
+
+état 18
+
+   10 list_choice_plus: list_choice . PIPE item
+   12 list_choice: list_choice . PIPE item
+
+    PIPE  décalage et aller à l'état 31
+
+
+état 19
+
+    8 sequence: OPENPAR list_sequence . CLOSEPAR
+   14 list_sequence: list_sequence . COMMA item
+
+    CLOSEPAR  décalage et aller à l'état 32
+    COMMA     décalage et aller à l'état 33
+
+
+état 20
+
+   11 list_choice: item .
+   13 list_sequence: item .
+
+    PIPE      réduction par utilisation de la règle 11 (list_choice)
+    $défaut  réduction par utilisation de la règle 13 (list_sequence)
+
+
+état 21
+
+   18 cardinality: AST .
+
+    $défaut  réduction par utilisation de la règle 18 (cardinality)
+
+
+état 22
+
+   19 cardinality: QMARK .
+
+    $défaut  réduction par utilisation de la règle 19 (cardinality)
+
+
+état 23
+
+   20 cardinality: PLUS .
+
+    $défaut  réduction par utilisation de la règle 20 (cardinality)
+
+
+état 24
+
+    5 element: ELEMENT NAME choice_or_sequence cardinality . CLOSE
+
+    CLOSE  décalage et aller à l'état 34
+
+
+état 25
+
+    4 dtd: ATTLIST NAME att_definition CLOSE .
+
+    $défaut  réduction par utilisation de la règle 4 (dtd)
+
+
+état 26
+
+   24 attribut: NAME . att_type defaut_declaration
+
+    OPENPAR    décalage et aller à l'état 35
+    CDATA      décalage et aller à l'état 36
+    TOKENTYPE  décalage et aller à l'état 37
+
+    att_type      aller à l'état 38
+    type_enumere  aller à l'état 39
+
+
+état 27
+
+   22 att_definition: att_definition attribut .
+
+    $défaut  réduction par utilisation de la règle 22 (att_definition)
+
+
+état 28
+
+   15 item: NAME cardinality .
+
+    $défaut  réduction par utilisation de la règle 15 (item)
+
+
+état 29
+
+   17 item: choice_or_sequence cardinality .
+
+    $défaut  réduction par utilisation de la règle 17 (item)
+
+
+état 30
+
+    9 choice: OPENPAR list_choice_plus CLOSEPAR .
+
+    $défaut  réduction par utilisation de la règle 9 (choice)
+
+
+état 31
+
+   10 list_choice_plus: list_choice PIPE . item
+   12 list_choice: list_choice PIPE . item
+
+    OPENPAR  décalage et aller à l'état 9
+    PCDATA   décalage et aller à l'état 14
+    NAME     décalage et aller à l'état 15
+
+    choice_or_sequence  aller à l'état 16
+    sequence            aller à l'état 11
+    choice              aller à l'état 12
+    item                aller à l'état 40
+
+
+état 32
+
+    8 sequence: OPENPAR list_sequence CLOSEPAR .
+
+    $défaut  réduction par utilisation de la règle 8 (sequence)
+
+
+état 33
+
+   14 list_sequence: list_sequence COMMA . item
+
+    OPENPAR  décalage et aller à l'état 9
+    PCDATA   décalage et aller à l'état 14
+    NAME     décalage et aller à l'état 15
+
+    choice_or_sequence  aller à l'état 16
+    sequence            aller à l'état 11
+    choice              aller à l'état 12
+    item                aller à l'état 41
+
+
+état 34
+
+    5 element: ELEMENT NAME choice_or_sequence cardinality CLOSE .
+
+    $défaut  réduction par utilisation de la règle 5 (element)
+
+
+état 35
+
+   28 type_enumere: OPENPAR . liste_enum_plus CLOSEPAR
+
+    NAME  décalage et aller à l'état 42
+
+    liste_enum_plus  aller à l'état 43
+    liste_enum       aller à l'état 44
+    item_enum        aller à l'état 45
+
+
+état 36
+
+   25 att_type: CDATA .
+
+    $défaut  réduction par utilisation de la règle 25 (att_type)
+
+
+état 37
+
+   26 att_type: TOKENTYPE .
+
+    $défaut  réduction par utilisation de la règle 26 (att_type)
+
+
+état 38
+
+   24 attribut: NAME att_type . defaut_declaration
+
+    FIXED        décalage et aller à l'état 46
+    DECLARATION  décalage et aller à l'état 47
+    STRING       décalage et aller à l'état 48
+
+    defaut_declaration  aller à l'état 49
+
+
+état 39
+
+   27 att_type: type_enumere .
+
+    $défaut  réduction par utilisation de la règle 27 (att_type)
+
+
+état 40
+
+   10 list_choice_plus: list_choice PIPE item .
+   12 list_choice: list_choice PIPE item .
+
+    PIPE      réduction par utilisation de la règle 12 (list_choice)
+    $défaut  réduction par utilisation de la règle 10 (list_choice_plus)
+
+
+état 41
+
+   14 list_sequence: list_sequence COMMA item .
+
+    $défaut  réduction par utilisation de la règle 14 (list_sequence)
+
+
+état 42
+
+   32 item_enum: NAME .
+
+    $défaut  réduction par utilisation de la règle 32 (item_enum)
+
+
+état 43
+
+   28 type_enumere: OPENPAR liste_enum_plus . CLOSEPAR
+
+    CLOSEPAR  décalage et aller à l'état 50
+
+
+état 44
+
+   29 liste_enum_plus: liste_enum . PIPE item_enum
+   31 liste_enum: liste_enum . PIPE item_enum
+
+    PIPE  décalage et aller à l'état 51
+
+
+état 45
+
+   30 liste_enum: item_enum .
+
+    $défaut  réduction par utilisation de la règle 30 (liste_enum)
+
+
+état 46
+
+   35 defaut_declaration: FIXED . STRING
+
+    STRING  décalage et aller à l'état 52
+
+
+état 47
+
+   33 defaut_declaration: DECLARATION .
+
+    $défaut  réduction par utilisation de la règle 33 (defaut_declaration)
+
+
+état 48
+
+   34 defaut_declaration: STRING .
+
+    $défaut  réduction par utilisation de la règle 34 (defaut_declaration)
+
+
+état 49
+
+   24 attribut: NAME att_type defaut_declaration .
+
+    $défaut  réduction par utilisation de la règle 24 (attribut)
+
+
+état 50
+
+   28 type_enumere: OPENPAR liste_enum_plus CLOSEPAR .
+
+    $défaut  réduction par utilisation de la règle 28 (type_enumere)
+
+
+état 51
+
+   29 liste_enum_plus: liste_enum PIPE . item_enum
+   31 liste_enum: liste_enum PIPE . item_enum
+
+    NAME  décalage et aller à l'état 42
+
+    item_enum  aller à l'état 53
+
+
+état 52
+
+   35 defaut_declaration: FIXED STRING .
+
+    $défaut  réduction par utilisation de la règle 35 (defaut_declaration)
+
+
+état 53
+
+   29 liste_enum_plus: liste_enum PIPE item_enum .
+   31 liste_enum: liste_enum PIPE item_enum .
+
+    PIPE      réduction par utilisation de la règle 31 (liste_enum)
+    $défaut  réduction par utilisation de la règle 29 (liste_enum_plus)
