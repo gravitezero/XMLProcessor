@@ -20,16 +20,16 @@ int yylex(void);
 %token <s> NAME TOKENTYPE DECLARATION STRING
 %%
 
-main: main dtd
-    | main element
-    |/* empty */
+main: dtd element                           
     ;
 
-dtd: ATTLIST NAME 
-     att_definition CLOSE;
+dtd: dtd ATTLIST NAME 
+     att_definition CLOSE            
+   | /* empty */                     
+   ;
 
-
-element: ELEMENT NAME choice_or_sequence cardinality CLOSE;
+element: element ELEMENT NAME choice_or_sequence cardinality CLOSE
+	|/*vide*/;
 
 choice_or_sequence: choice | sequence;
 
