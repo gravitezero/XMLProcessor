@@ -6,11 +6,11 @@ using namespace std;
 #include <cstdio>
 #include <cstdlib>
 #include "commun.h"
-#include "yy.tab.h"
+#include "xml.tab.h"
 
-int yywrap(void);
-void yyerror(char *msg);
-int yylex(void);
+int xmlwrap(void);
+void xmlerror(char *msg);
+int xmllex(void);
 
 %}
 
@@ -47,20 +47,21 @@ declaration
 
 element
  : start          
-   empty_or_content {$$ = new Element($1,$2);} //on construit un element à partir de son nom $1 et de ses fils $2
+   empty_or_content 
  ;
 start
- : START {$$ = $1;}		
- | NSSTART {$$ = $1;}	
+ : START		
+ | NSSTART	
  ;
 empty_or_content
- : SLASH CLOSE	{$$ = NULL;}
- | close_content_and_end name_or_nsname_opt CLOSE 
+ : SLASH CLOSE	
+ | close_content_and_end 
+   name_or_nsname_opt CLOSE 
  ;
 
 attributs
- : attributs NAME EQ VALUE {$$ = $1; $$->push.back(make_pair($2,$4));}
- | /* empty */ {$$ = new_list<Attribut>();}
+ : attributs NAME EQ VALUE
+ | /* empty */
  ;
 
 name_or_nsname_opt 
@@ -69,7 +70,10 @@ name_or_nsname_opt
  | /* empty */
  ;
 close_content_and_end
- : attributs CLOSE content END ;
+ : attributs CLOSE			
+   content 
+   END 
+ ;
 content 
  : content DATA		
  | content misc        
@@ -77,22 +81,23 @@ content
  | /*empty*/         
  ;
 %%
-
+/*
 int main(int argc, char **argv)
 {
   int err;
 
-  err = yyparse();
+  err = xmlparse();
   if (err != 0) printf("Parse ended with %d error(s)\n", err);
   	else  printf("Parse ended with sucess\n", err);
   return 0;
 }
-int yywrap(void)
+*/
+int xmlwrap(void)
 {
   return 1;
 }
 
-void yyerror(char *msg)
+void xmlerror(char *msg)
 {
   fprintf(stderr, "%s\n", msg);
 }
