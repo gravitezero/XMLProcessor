@@ -1,21 +1,29 @@
 digraph G {
 
-node [  color = white,
-		style = filled,
-		fontname = "Helvetica-Outline" ];
+####################################
 
 ## HOW TO DO
 
-## Quand vous avez fini une tâche : placer color = green dans cette tâche
+## Placer les bonnes légendes lorsqu'une tâche change de status.
+
+####################################
+
+subgraph cluster99
+{label="Légende"
+
+    pascommence [label="pas commençé"]
+    encours [label="en cours de réalisation" color=orange]
+    fini [label="finie" color=green]
+}
 
 subgraph cluster01
 { label="Analyse syntaxique"
 
-    step11 [label="3.1.1 Compilation des sources fournies"]
+    step11 [label="3.1.1 Compilation des sources fournies" color=green]
 
-    step12 [label="3.1.2 Completer la grammaire des DTD"]
+    step12 [label="3.1.2 Completer la grammaire des DTD" color=green]
 
-    step13 [label="3.1.3 Réalisation d'un analyseur de XML"]
+    step13 [label="3.1.3 Réalisation d'un analyseur de XML" color=orange]
     
     step11 -> step12 -> step13
     
@@ -24,19 +32,19 @@ subgraph cluster01
 subgraph cluster02
 { label="Construction des structures de données"
 
-    step21 [label="3.2.1 Définir la structure\ndes arbres XML et de la DTD"]
+    step21 [label="3.2.1 Définir la structure\ndes arbres XML et de la DTD" color=green]
 
     step22 [label="3.2.1 Definir les actions\nde construction de ces arbres"]
 
     step23 [label="3.2.1 Utiliser ces actions\ndans les règles d'analyse"]
     
-    result21 [ shape=box label="structure interne\nrepresentant le document XML" ]
+    result21 [ shape=box label="structure interne\nrepresentant le document XML" color=green]
     
-    result22 [ shape=box label="structure interne\nrepresentant la DTD" ]
+    result22 [ shape=box label="structure interne\nrepresentant la DTD" color=green]
     
-    step24 [label="Coder classe du document XML"]
+    step24 [label="Coder classe du document XML" color=orange]
     
-    step25 [label="Coder classe de la DTD"]
+    step25 [label="Coder classe de la DTD" color=orange]
     
     step21 -> step22 -> step23 -> result21 -> step24
     step23 -> result22 -> step25
