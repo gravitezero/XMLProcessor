@@ -47,21 +47,20 @@ declaration
 
 element
  : start          
-   empty_or_content 
+   empty_or_content {$$ = new Element($1,$2);} //on construit un element à partir de son nom $1 et de ses fils $2
  ;
 start
- : START		
- | NSSTART	
+ : START {$$ = $1;}		
+ | NSSTART {$$ = $1;}	
  ;
 empty_or_content
- : SLASH CLOSE	
- | close_content_and_end 
-   name_or_nsname_opt CLOSE 
+ : SLASH CLOSE	{$$ = NULL;}
+ | close_content_and_end name_or_nsname_opt CLOSE 
  ;
 
 attributs
- : attributs NAME EQ VALUE
- | /* empty */
+ : attributs NAME EQ VALUE {$$ = $1; $$->push.back(make_pair($2,$4));}
+ | /* empty */ {$$ = new_list<Attribut>();}
  ;
 
 name_or_nsname_opt 
@@ -70,10 +69,7 @@ name_or_nsname_opt
  | /* empty */
  ;
 close_content_and_end
- : attributs CLOSE			
-   content 
-   END 
- ;
+ : attributs CLOSE content END ;
 content 
  : content DATA		
  | content misc        

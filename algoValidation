@@ -1,0 +1,25 @@
+xmlValidator(Element element)
+{
+	si validateElement (element) est faux
+		retourner XML_NON_CONFORME_DTD
+	sinon
+		pour chaque fils elementFils d' element
+			xmlValidator(elementFils)
+	fin si
+
+	retourner XML_CONFORME_DTD
+}
+
+
+
+validateElement(Element element)
+{
+	ElementDef eleDef = dtd.chercher(element) //chercher la definition
+	SI eleDef est null //n'existe pas
+		retourner DEF_ELEMENT_NON_EXISTANT
+
+	SI validateAttributElement(element,eledef) est faux//validation attributs	
+		retourner 
+	//validation structure (fils, cardinalité...)
+				
+}
