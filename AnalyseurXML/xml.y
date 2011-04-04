@@ -58,13 +58,19 @@ empty_or_content
  | close_content_and_end 
    name_or_nsname_opt CLOSE 
  ;
+
+attributs
+ : attributs NAME EQ VALUE
+ | /* empty */
+ ;
+
 name_or_nsname_opt 
  : NAME     
  | NSNAME  
  | /* empty */
  ;
 close_content_and_end
- : CLOSE			
+ : attributs CLOSE			
    content 
    END 
  ;
