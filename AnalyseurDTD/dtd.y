@@ -20,76 +20,105 @@ int yylex(void);
 %token <s> NAME TOKENTYPE DECLARATION STRING
 %%
 
-main: main dtd
-    | main element
-    |/* empty */
-    ;
+main
+ : main attlist { $1->addAtt($2); $$ = $1;}
+ | main element { $1->addElt($2); $$ = $1;}
+ |/* empty */ { $$ = new DTD();}
+ ;
 
-dtd: ATTLIST NAME 
-     att_definition CLOSE;
+attlist
+ : ATTLIST NAME att_definition CLOSE {$$ = new DeclarationAtt($2,$3);}
+ ;
 
 
-element: ELEMENT NAME choice_or_sequence cardinality CLOSE;
+element
+ : ELEMENT NAME choice_or_sequence CLOSE {$$ = new DeclarationElt($2,$3);}
+ ;
 
-choice_or_sequence: choice | sequence;
+choice_or_sequence
+ : choice cardinality 
+ | sequence cardinality
+ ;
 
-sequence: OPENPAR list_sequence CLOSEPAR;
+sequence
+ : OPENPAR list_sequence CLOSEPAR {$$ = $2;}
+ ;
 
-choice: OPENPAR list_choice_plus CLOSEPAR;
+choice
+ : OPENPAR list_choice_plus CLOSEPAR {$$ = $2;}
+ ;
 
-list_choice_plus: list_choice PIPE item;
+list_choice_plus
+ : list_choice PIPE item {$$ -> $1; $$->push_back($3);}
+ ;
 
-list_choice: item
-	| list_choice PIPE item;
+list_choice
+ : item  // si list_sequence est une liste alors push_back, sinon créer une liste ???
+ | list_choice PIPE item {$$ -> $1; $$->push_back($3);}
+ ;
 
-list_sequence: item
-	| list_sequence COMMA item;
+list_sequence
+ : item  // si list_sequence est une liste alors push_back, sinon créer une liste ???
+ | list_sequence COMMA item {$$ -> $1; $$->push_back($3);}
+ ;
 
-item: NAME cardinality
-    | PCDATA
-    | choice_or_sequence cardinality;
+item
+ : NAME cardinality
+ | PCDATA
+ | choice_or_sequence cardinality
+ ;
 
-cardinality: AST|QMARK|PLUS|/*empty*/;
+cardinality
+ : AST
+ | QMARK
+ | PLUS
+ | /*empty*/
+ ;
 
 
 
 att_definition
-: att_definition attribut
-| /* empty */
-;
+ : att_definition attribut {$$ = $1; $$->push_back($2);}
+ | /* empty */ {new list<Attribut>();}
+ ;
 
 attribut
-: NAME att_type defaut_declaration
-;
+ : NAME att_type defaut_declaration {$$ = new Attribut($1,$2,$3);}
+ ;
 
 att_type
-: CDATA    
-| TOKENTYPE
-| type_enumere
-;
+ : CDATA {$$ = $1;}
+ | TOKENTYPE
+ | type_enumere
+ ;
+
+// OLD
 
 type_enumere
-: OPENPAR liste_enum_plus CLOSEPAR
-;
+ : OPENPAR liste_enum_plus CLOSEPAR
+ ;
 
 liste_enum_plus
-: liste_enum PIPE item_enum
-;
+ : liste_enum PIPE item_enum
+ ;
 
 liste_enum
-: item_enum               
-| liste_enum PIPE item_enum
-;
+ : item_enum 
+ | liste_enum PIPE item_enum
+ ;
 
 item_enum
-: NAME
-;
+ : NAME
+ ;
+
+// \OLD
 
 defaut_declaration
-: DECLARATION 
-| STRING     
-| FIXED STRING 
-;
+ : DECLARATION 
+ | STRING     
+ | FIXED STRING 
+ ;
+
 %%
 int main(int argc, char **argv)
 {
