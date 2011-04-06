@@ -40,6 +40,7 @@ DTD() * doc;
 %type <s> cardinality att_type type_enumere liste_enum_plus liste_enum item_enum;
 %type <s> defaut_declaration;
 
+
 main
  : main attlist { $1->addAtt($2); $$ = $1;}
  | main element { $1->addElt($2); $$ = $1;}
@@ -159,5 +160,3 @@ void yyerror(char *msg)
 {
   fprintf(stderr, "%s\n", msg);
 }
-
-
