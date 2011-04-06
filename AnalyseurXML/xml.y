@@ -20,6 +20,7 @@ XMLDocument *doc;
    char * s;
    ElementName * en;  /* le nom d'un element avec son namespace */
    list<pair<string,string>> *la;
+   list<Declaration> *ld;
 
 }
 
@@ -29,6 +30,7 @@ XMLDocument *doc;
 %token <en> NSSTART START STARTSPECIAL
 
 %type <la> attributs
+%type <ld> declarations
 
 %%
 
