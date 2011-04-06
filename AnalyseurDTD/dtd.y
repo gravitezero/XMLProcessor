@@ -26,19 +26,20 @@ DTD() * doc;
    Attribut *Att;
    }
 
-%token ELEMENT ATTLIST CLOSE OPENPAR CLOSEPAR COMMA PIPE FIXED EMPTY ANY PCDATA AST QMARK PLUS CDATA
+%token <s> ELEMENT ATTLIST CLOSE OPENPAR CLOSEPAR COMMA PIPE FIXED EMPTY ANY PCDATA AST QMARK PLUS CDATA
 %token <s> NAME TOKENTYPE DECLARATION STRING
 %%
 
-%type <lc> list_choice list_choice_plus list_sequence
-%type <dtd> main
-%type <dAtt> attlist
-%type <dElt> element
-%type <content> choice sequence choice_or_sequence item
-%type <lAtt> att_definition
-%type <Att> attribut
-%type cardinality att_type type_enumere liste_enum_plus liste_enum item_enum
-%type <s> defaut_declaration
+%type <lc> list_choice list_choice_plus list_sequence;
+%type <dtd> main;
+%type <dAtt> attlist;
+%type <dElt> element;
+%type <content> choice sequence choice_or_sequence item;
+%type <lAtt> att_definition;
+%type <Att> attribut;
+%type <s> cardinality att_type type_enumere liste_enum_plus liste_enum item_enum;
+%type <s> defaut_declaration;
+
 
 main
  : main attlist { $1->addAtt($2); $$ = $1;}
@@ -92,7 +93,7 @@ cardinality
  : AST {$$ = $1;}
  | QMARK {$$ = $1;}
  | PLUS {$$ = $1;}
- | /*empty*/ {$$ = ""};
+ | /*empty*/ {$$ = "";}
  ;
 
 
