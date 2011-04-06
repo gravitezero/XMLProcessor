@@ -10,20 +10,40 @@ using namespace std;
 void yyerror(char *msg);
 int yywrap(void);
 int yylex(void);
+
+DTD() * doc;
+
 %}
 
 %union { 
-   char *s; 
+   char *s;
+   list<Contenu> *lc;
+   DTD *dtd;
+   DeclarationAtt *dAtt;
+   DeclarationElt *dElt;
+   Contenu *content;
+   list<Attribut> *lAtt;
+   Attribut *Att;
    }
 
 %token ELEMENT ATTLIST CLOSE OPENPAR CLOSEPAR COMMA PIPE FIXED EMPTY ANY PCDATA AST QMARK PLUS CDATA
 %token <s> NAME TOKENTYPE DECLARATION STRING
 %%
 
+%type <lc> list_choice list_choice_plus list_sequence
+%type <dtd> main
+%type <dAtt> attlist
+%type <dElt> element
+%type <content> choice sequence choice_or_sequence item
+%type <lAtt> att_definition
+%type <Att> attribut
+%type cardinality att_type type_enumere liste_enum_plus liste_enum item_enum
+%type <s> defaut_declaration
+
 main
  : main attlist { $1->addAtt($2); $$ = $1;}
  | main element { $1->addElt($2); $$ = $1;}
- |/* empty */ { $$ = new DTD();}
+ |/* empty */ { doc = new DTD(); $$ = doc;}
  ;
 
 attlist
@@ -36,43 +56,43 @@ element
  ;
 
 choice_or_sequence
- : choice cardinality 
- | sequence cardinality
+ : choice cardinality {$1->setCardinality($2); $$ = $1;} 
+ | sequence cardinality {$1->setCardinality($2); $$ = $1;}
  ;
 
 sequence
- : OPENPAR list_sequence CLOSEPAR {$$ = $2;}
+ : OPENPAR list_sequence CLOSEPAR {if ($2->size() !=1) {$$ = new ContenuSequence($2);} else {$$ = $2->begin()}}
  ;
 
 choice
- : OPENPAR list_choice_plus CLOSEPAR {$$ = $2;}
+ : OPENPAR list_choice_plus CLOSEPAR {$$ = new ContenuChoix($2);}
  ;
 
 list_choice_plus
- : list_choice PIPE item {$$ -> $1; $$->push_back($3);}
+ : list_choice PIPE item {$$ = $1; $$->push_back($3);}
  ;
 
 list_choice
- : item  // si list_sequence est une liste alors push_back, sinon créer une liste ???
- | list_choice PIPE item {$$ -> $1; $$->push_back($3);}
+ : item  {$$ = new list<Contenu>(); $$->push_back($1);}
+ | list_choice PIPE item {$$ = $1; $$->push_back($3);}
  ;
 
 list_sequence
- : item  // si list_sequence est une liste alors push_back, sinon créer une liste ???
- | list_sequence COMMA item {$$ -> $1; $$->push_back($3);}
+ : item  {$$ = new list<Contenu>(); $$->push_back($1)}
+ | list_sequence COMMA item {$$ = $1; $$->push_back($3);}
  ;
 
-item
- : NAME cardinality
- | PCDATA
- | choice_or_sequence cardinality
+item /*on renvoie un contenu*/
+ : NAME cardinality {$$ = new ContenuSimple($1,doc); $$->setCardinality($2);}
+ | PCDATA {$$ = new ContenuSimple($1,doc);}
+ | choice_or_sequence cardinality {$1->setCardinality($2); $$ = $1;}
  ;
 
 cardinality
- : AST
- | QMARK
- | PLUS
- | /*empty*/
+ : AST {$$ = $1;}
+ | QMARK {$$ = $1;}
+ | PLUS {$$ = $1;}
+ | /*empty*/ {$$ = ""};
  ;
 
 
@@ -114,7 +134,7 @@ item_enum
 // \OLD
 
 defaut_declaration
- : DECLARATION 
+ : DECLARATION {$$ = $1;} 
  | STRING     
  | FIXED STRING 
  ;
