@@ -1,0 +1,37 @@
+digraph G {
+
+
+
+DTD [label="DTD" shape=note]
+
+XML [label="XML" shape=note]
+
+XSL [label="XSL" shape=note]
+
+HTML [label="HTML" shape=note]
+
+analyseDTD [label="Analyseur\nSyntaxique" shape=octagon]
+
+analyseXML [label="Analyseur\nSyntaxique" shape=octagon]
+
+analyseXSL [label="Analyseur\nSyntaxique" shape=octagon]
+
+structureDTD [label="Structure DTD" shape=tab]
+
+structureXML [label="Structure XML" shape=tab]
+
+structureXSL [label="Structure XSL" shape=tab]
+
+structureHTML [label="Structure HTML" shape=tab]
+
+verifications [label="Vérifications sémantiques" shape=octagon]
+
+transformations [label="Transofrmations" shape=octagon]
+
+diagnostic [label="diagnostic" shape=note]
+
+DTD -> analyseDTD -> structureDTD -> verifications -> diagnostic
+XML -> analyseXML -> structureXML -> verifications
+                     structureXML -> transformations -> structureHTML -> HTML
+XSL -> analyseXSL -> structureXSL -> transformations
+}

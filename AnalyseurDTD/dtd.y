@@ -159,5 +159,3 @@ void yyerror(char *msg)
 {
   fprintf(stderr, "%s\n", msg);
 }
-
-
