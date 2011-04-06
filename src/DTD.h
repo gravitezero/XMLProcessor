@@ -7,14 +7,14 @@
 
 using namespace std;
 
-typedef list<DeclarationElement> * Elements;
-typedef list<DeclarationAttribut> * Attributs;
+typedef list<DeclarationElement*> Elements;
+typedef list<DeclarationAttribut*> Attributs;
 
 class DTD 
 {
 	public:
-	DTD(Elements declarationElements, Attributs declarationAttributs);
-	virtual ~DTD(Elements declarationElements, Attributs declarationAttributs);
+	DTD();
+	virtual ~DTD();
 	
 	protected:
 	Elements declarationElements;

@@ -2,7 +2,7 @@
 
 
 
-DTD::DTD(Elements declarationElements, Attributs declarationAttributs)
+DTD::DTD()
 {
 
 }
@@ -10,7 +10,7 @@ DTD::DTD(Elements declarationElements, Attributs declarationAttributs)
 
 
 
-DTD::~DTD(Elements declarationElements, Attributs declarationAttributs)
+DTD::~DTD()
 {
 
 }

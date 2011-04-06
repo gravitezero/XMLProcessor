@@ -12,8 +12,3 @@ Contenu::~Contenu()
 {
 
 }
-
-void::setCardinality(char* card)
-{
-
-}

@@ -1,7 +1,7 @@
 #ifndef XML_H
 #define XML_H
 
-#include "Element.h"
+#include "Element.hpp"
 #include <list>
 
 
@@ -13,7 +13,7 @@ class XML{
 	virtual ~XML();
 	
 	private:
-	list<Element> elements;
+        list<Element*> elements;
 	
 	
 };

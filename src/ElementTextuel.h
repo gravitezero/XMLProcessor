@@ -3,15 +3,18 @@
 
 #include <list>
 #include <string.h>
-#include "Element.h"
+#include "Element.hpp"
 
 using namespace std;
 
 class ElementTextuel : public Element{
 	public:
-	ElementTextuel();
+        ElementTextuel(string);
 	virtual ~ ElementTextuel();
-	
+
+        string getValue();
+        void accept(VisitorInterface*);
+
 	protected:
 	string value;
 	
