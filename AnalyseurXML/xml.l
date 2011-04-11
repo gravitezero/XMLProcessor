@@ -8,11 +8,15 @@
 #include <stdlib.h>
 #include <list>
 #include "commun.h"
+<<<<<<< HEAD
 
 #include "XMLDocument.h"
 #include "Element.h"
 #include "Declaration.h"
 #include "Doctype.h"
+=======
+#include "XMLDocument.h"
+>>>>>>> 680f0233e46e60be0a02dfe85df9b3ef2aa3b910
 
 #include "yy.tab.h"
 

@@ -34,8 +34,19 @@ XMLDocument *doc;
    Doctype *do;   
       
    list< pair<string,string> > * la;
+<<<<<<< HEAD
    list<Declaration * > * ld;
    list<Element *> *ct;
+=======
+   Declaration * de;
+   list<Declaration *> *ld;
+
+   XMLDocument * xd;
+   Element *el;
+   list<Element *> *ct;
+
+   Doctype *do;
+>>>>>>> 680f0233e46e60be0a02dfe85df9b3ef2aa3b910
    
 }
 

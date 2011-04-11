@@ -75,14 +75,25 @@ typedef union YYSTYPE
    Doctype *do;   
       
    list< pair<string,string> > * la;
+<<<<<<< HEAD
    list<Declaration * > * ld;
    list<Element *> *ct;
+=======
+   Declaration * de;
+   list<Declaration *> *ld;
+
+   XMLDocument * xd;
+   Element *el;
+   list<Element *> *ct;
+
+   Doctype *do;
+>>>>>>> 680f0233e46e60be0a02dfe85df9b3ef2aa3b910
    
 
 
 
 /* Line 1676 of yacc.c  */
-#line 86 "yy.tab.h"
+#line 97 "yy.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
