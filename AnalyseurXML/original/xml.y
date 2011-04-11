@@ -5,13 +5,8 @@ using namespace std;
 #include <string>
 #include <cstdio>
 #include <cstdlib>
-/*#include "commun.h"*/
-
-#include "XMLDocument.h"
-#include "Doctype.h"
-#include "ElementComplexe.h"
-#include "ElementTextuel.h"
-
+#include "commun.h"
+#include "yy.tab.h"
 
 int yywrap(void);
 void yyerror(char *msg);
@@ -24,33 +19,15 @@ XMLDocument *doc;
 %union {
    char * s;
    ElementName * en;  /* le nom d'un element avec son namespace */
-   list< pair<string,string> > * la;
+   list<pair<string,string>> *la;
+   list<Declaration> *ld;
 
-   XMLDocument * xd;
-   Element *el;
-   Doctype *dc;
-   Declaration * de;
-   list<Element *> *ct;
-   list<Declaration *> *ld;   
 }
 
 
-%token <s> EQ SLASH CLOSE END CLOSESPECIAL DOCTYPE
+%token EQ SLASH CLOSE END CLOSESPECIAL DOCTYPE
 %token <s> ENCODING VALUE DATA COMMENT NAME NSNAME
 %token <en> NSSTART START STARTSPECIAL
-
-%type <xd> document
-%type <el> element
-%type <s>  misc_seq_opt
-%type <s>  misc
-%type <ct> content
-%type <ct> close_content_and_end
-%type <ct> empty_or_content
-%type <s>  start
-%type <s>  name_or_nsname_opt
-
-%type <de> declaration
-%type <dc> doctype
 
 %type <la> attributs
 %type <ld> declarations
@@ -58,26 +35,24 @@ XMLDocument *doc;
 %%
 
 document
- : declarations element misc_seq_opt { doc->setElement($2); $$ = doc;}
+ : declarations element misc_seq_opt { doc.setElement($2); $$ = doc;}
  ;
-
 misc_seq_opt
  : misc_seq_opt misc {$$ = $1;}
  | /*empty*/ { $$ = "";}
  ;
-
 misc
  : COMMENT {$$ = $1;}		
  ;
 
 declarations
  : declarations declaration {$$ = $1; $$->push_back($2);}
- | declarations doctype {$$ = $1; $$->push_back($2);}
- | /*empty*/ {doc = new XMLDocument(); $$ = new list<Declaration *>; doc->setHeader($$);} 
+ | declarations doctype {$$ = $1; $$->push_back($2); doc->setHeader($1);}
+ | /*empty*/ {declarations = new List<Declaration *>;} 
  ;
  
 doctype
- : DOCTYPE NAME NAME VALUE CLOSE {$$ = new Doctype($2,$3,$4);}
+ : DOCTYPE NAME NAME VALUE CLOSE {$$ = new Doctype($2,$3,$4); doc = new XMLDocument($2,$3,$4); }
  ;
 
 declaration
@@ -100,7 +75,7 @@ empty_or_content
 
 attributs
  : attributs NAME EQ VALUE {$$ = $1; $$->push_back(make_pair($2,$4));}
- | /* empty */ {$$ = new AttList;}
+ | /* empty */ {$$ = new_list<Attribut>();}
  ;
 
 name_or_nsname_opt 
@@ -117,7 +92,7 @@ content
  : content DATA {$$ = $1; $$->push_back(new ElementTextuel($2));}		
  | content misc {$$ = $1;}	// on ignore les commentaires misc = COMMENT        
  | content element {$$ = $1; $$->push_back($2);}     
- | /*empty*/ {$$ = new List<Element * >();}        
+ | /*empty*/ {$$ = new List<Element>();}        
  ;
 
 %%

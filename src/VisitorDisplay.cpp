@@ -2,6 +2,8 @@
 #include "Element.hpp"
 #include "ElementTextuel.h"
 #include "ElementComplexe.h"
+#include "DeclarationAttribut.h"
+#include "DeclarationElement.h"
 #include <list>
 #include <iostream>
 
@@ -64,9 +66,25 @@ void VisitorDisplay::visit(ElementComplexe* elementComplexe)
 
     for(list<Element*> ::iterator it = elementList.begin(); it != elementList.end(); ++it)
     {
-        (*it)->accept(this);
-    }
-    //Fermer la balise de l'élément
-    cout<<"</"<<name<<">\n";
 
+        (*it)->accept(this);
+
+    }
+
+    //Fermer la balise de l'élément
+
+    cout<<"</"<<name<<">";
+
+
+
+
+}
+
+void VisitorDisplay::visit(DeclarationElement* declarationElement)
+{
+
+}
+void VisitorDisplay::visit(DeclarationAttribut* declarationAttribut)
+{
+    //TODO
 }

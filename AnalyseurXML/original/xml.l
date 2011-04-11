@@ -6,16 +6,8 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
-#include <list>
 #include "commun.h"
-
-#include "XMLDocument.h"
-#include "Doctype.h"
-#include "ElementComplexe.h"
-#include "ElementTextuel.h"
-
 #include "yy.tab.h"
-
 
 static char* skipSpace(char *s) {
   char *buf;

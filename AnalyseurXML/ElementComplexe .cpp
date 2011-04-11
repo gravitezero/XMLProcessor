@@ -3,7 +3,7 @@
 
 
 
-ElementComplexe::ElementComplexe()
+ElementComplexe::ElementComplexe(ElementName e)
 {
 	//TODO : initialisation
 }

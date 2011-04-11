@@ -5,6 +5,7 @@
 #include "ElementTextuel.h"
 #include "VisitorInterface.hpp"
 #include "VisitorDisplay.h"
+#include "XML.h"
 
 int main(int argc, char *argv[])
 {
@@ -32,8 +33,12 @@ int main(int argc, char *argv[])
 
     title->addElement(texte);
 
+    XML xml;
+    xml.addElement(document);
+    //xml.addElement(title);
 
-    document->accept(new VisitorDisplay());
+    xml.accept(new VisitorDisplay());
+    //document->accept(new VisitorDisplay());
 
     std::cout<<"XXXXXXXXXXXXXXXXXXX"<<std::endl;
     return a.exec();

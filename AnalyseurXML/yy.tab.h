@@ -39,25 +39,21 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     ELEMENT = 258,
-     ATTLIST = 259,
+     EQ = 258,
+     SLASH = 259,
      CLOSE = 260,
-     OPENPAR = 261,
-     CLOSEPAR = 262,
-     COMMA = 263,
-     PIPE = 264,
-     FIXED = 265,
-     EMPTY = 266,
-     ANY = 267,
-     PCDATA = 268,
-     AST = 269,
-     QMARK = 270,
-     PLUS = 271,
-     CDATA = 272,
-     NAME = 273,
-     TOKENTYPE = 274,
-     DECLARATION = 275,
-     STRING = 276
+     END = 261,
+     CLOSESPECIAL = 262,
+     DOCTYPE = 263,
+     ENCODING = 264,
+     VALUE = 265,
+     DATA = 266,
+     COMMENT = 267,
+     NAME = 268,
+     NSNAME = 269,
+     NSSTART = 270,
+     START = 271,
+     STARTSPECIAL = 272
    };
 #endif
 
@@ -68,21 +64,23 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 18 "dtd.y"
- 
-   char *s;
-   list<Contenu *> *lc;
-   DTD *dtd;
-   DeclarationAtt *dAtt;
-   DeclarationElt *dElt;
-   Contenu *content;
-   list<Attribut> *lAtt;
-   Attribut *Att;
-   
+#line 24 "xml.y"
+
+   char * s;
+   ElementName * en;  /* le nom d'un element avec son namespace */
+   list< pair<string,string> > * la;
+
+   XMLDocument * xd;
+   Element *el;
+   Doctype *dc;
+   Declaration * de;
+   list<Element *> *ct;
+   list<Declaration *> *ld;   
+
 
 
 /* Line 1676 of yacc.c  */
-#line 86 "yy.tab.h"
+#line 84 "yy.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

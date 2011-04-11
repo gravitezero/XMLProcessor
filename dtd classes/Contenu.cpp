@@ -1,7 +1,7 @@
 #include"Contenu.h"
 
 
-/*
+
 Contenu::Contenu()
 {
 
@@ -12,9 +12,8 @@ Contenu::~Contenu()
 {
 
 }
-*/
 
-void Contenu::setCardinality(std::string card)
+void::setCardinality(char* card)
 {
-    cardinalite = card;
+
 }
