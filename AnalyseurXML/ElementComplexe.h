@@ -3,6 +3,7 @@
 
 #include <list>
 #include "Element.hpp"
+#include "commun.h"
 
 using namespace std;
 
@@ -10,6 +11,7 @@ class ElementComplexe : public Element
 {
 	public:
         ElementComplexe(ElementName);
+	ElementComplexe(std::string n, AttList a, list<Element *> *e);
 	virtual ~ ElementComplexe();
 
         ElementName getElementName();
