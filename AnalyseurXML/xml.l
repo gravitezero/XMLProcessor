@@ -6,11 +6,19 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
+#include <list>
 #include "commun.h"
+
 #include "XMLDocument.h"
+<<<<<<< HEAD
+=======
+#include "Element.h"
+#include "Declaration.h"
+>>>>>>> fa46d99cdcf678995f7749c4fdd2468be7083a5a
 #include "Doctype.h"
 
 #include "yy.tab.h"
+
 
 static char* skipSpace(char *s) {
   char *buf;
