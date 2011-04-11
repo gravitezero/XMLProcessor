@@ -5,6 +5,7 @@ using namespace std;
 #include <string>
 #include <cstdio>
 #include <cstdlib>
+<<<<<<< HEAD
 #include <list>
 /*#include "commun.h"*/
 
@@ -14,6 +15,15 @@ using namespace std;
 #include "Doctype.h"
 
 /*#include "yy.tab.h"*/
+=======
+/*#include "commun.h"*/
+
+#include "XMLDocument.h"
+#include "Doctype.h"
+#include "ElementComplexe.h"
+#include "ElementTextuel.h"
+
+>>>>>>> f81499f2fd8ed04d4495c6b1f3449775e2872612
 
 int yywrap(void);
 void yyerror(char *msg);
@@ -25,6 +35,7 @@ XMLDocument *doc;
 
 %union {
    char * s;
+<<<<<<< HEAD
    ElementName * en;  /* le nom d'un element avec son namespace */ 
    Element * el;
    Declaration * de;
@@ -35,6 +46,17 @@ XMLDocument *doc;
    list<Declaration * > * ld;
    list<Element *> *ct;
    
+=======
+   ElementName * en;  /* le nom d'un element avec son namespace */
+   list< pair<string,string> > * la;
+
+   XMLDocument * xd;
+   Element *el;
+   Doctype *dc;
+   Declaration * de;
+   list<Element *> *ct;
+   list<Declaration *> *ld;   
+>>>>>>> f81499f2fd8ed04d4495c6b1f3449775e2872612
 }
 
 

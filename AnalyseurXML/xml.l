@@ -10,10 +10,15 @@
 #include "commun.h"
 
 #include "XMLDocument.h"
+<<<<<<< HEAD
 #include "Element.hpp"
 #include "ElementComplexe.h"
 #include "Declaration.h"
+=======
+>>>>>>> f81499f2fd8ed04d4495c6b1f3449775e2872612
 #include "Doctype.h"
+#include "ElementComplexe.h"
+#include "ElementTextuel.h"
 
 #include "yy.tab.h"
 
