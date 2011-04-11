@@ -24,7 +24,7 @@ SOURCES += main.cpp \
     ElementComplexe.cpp \
     ElementTextuel.cpp \
     PCDATA.cpp \
-    XML.cpp \
+    XMLDocument.cpp \
     VisitorDisplay.cpp
 
 HEADERS += \
@@ -37,7 +37,7 @@ HEADERS += \
     ElementComplexe.h \
     ElementTextuel.h \
     PCDATA.h \
-    XML.h \
+    XMLDocument.h \
     VisitorDisplay.h \
     VisitorInterface.hpp \
     Element.hpp

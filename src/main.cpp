@@ -5,7 +5,7 @@
 #include "ElementTextuel.h"
 #include "VisitorInterface.hpp"
 #include "VisitorDisplay.h"
-#include "XML.h"
+#include "XMLDocument.h"
 
 int main(int argc, char *argv[])
 {
@@ -29,11 +29,11 @@ int main(int argc, char *argv[])
     document->addElement(title);
 
     //Element textuel : texte
-    ElementTextuel* texte = new ElementTextuel("Exemple XML");
+    ElementTextuel* texte = new ElementTextuel("Exemple XMLDocumentDocument");
 
     title->addElement(texte);
 
-    XML xml;
+    XMLDocument xml;
     xml.addElement(document);
     //xml.addElement(title);
 

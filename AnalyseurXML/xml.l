@@ -9,13 +9,11 @@
 #include <list>
 #include "commun.h"
 
-#include "XMLDocument.h"
-#include "Element.hpp"
-#include "ElementComplexe.h"
-#include "Declaration.h"
-#include "Doctype.h"
-#include "ElementComplexe.h"
-#include "ElementTextuel.h"
+#include "../src/commun.h"
+#include "../src/XMLDocument.h"
+#include "../src/Doctype.h"
+#include "../src/ElementComplexe.h"
+#include "../src/ElementTextuel.h"
 
 #include "yy.tab.h"
 
