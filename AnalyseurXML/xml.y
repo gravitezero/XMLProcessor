@@ -6,14 +6,14 @@ using namespace std;
 #include <cstdio>
 #include <cstdlib>
 #include <list>
-#include "commun.h"
+/*#include "commun.h"*/
 
 #include "XMLDocument.h"
 #include "Element.h"
 #include "Declaration.h"
 #include "Doctype.h"
 
-#include "yy.tab.h"
+/*#include "yy.tab.h"*/
 
 
 int yywrap(void);
@@ -29,24 +29,13 @@ XMLDocument *doc;
    ElementName * en;  /* le nom d'un element avec son namespace */
    
    Element * el;   
-   Declaration *de;
+   Declaration * de;
    XMLDocument * xd;
-   Doctype *do;   
+   Doctype * dc;   
       
    list< pair<string,string> > * la;
-<<<<<<< HEAD
    list<Declaration * > * ld;
    list<Element *> *ct;
-=======
-   Declaration * de;
-   list<Declaration *> *ld;
-
-   XMLDocument * xd;
-   Element *el;
-   list<Element *> *ct;
-
-   Doctype *do;
->>>>>>> 680f0233e46e60be0a02dfe85df9b3ef2aa3b910
    
 }
 
@@ -66,7 +55,7 @@ XMLDocument *doc;
 %type <s>  name_or_nsname_opt
 
 %type <de> declaration
-%type <do> doctype
+%type <dc> doctype
 
 %type <la> attributs
 %type <ld> declarations
@@ -89,7 +78,7 @@ misc
 declarations
  : declarations declaration {$$ = $1; $$->push_back($2);}
  | declarations doctype {$$ = $1; $$->push_back($2);}
- | /*empty*/ {doc = new XMLDocument(); $$ = new List<Declaration *>; doc->setHeader($$);} 
+ | /*empty*/ {doc = new XMLDocument(); $$ = new list<Declaration *>; doc->setHeader($$);} 
  ;
  
 doctype
