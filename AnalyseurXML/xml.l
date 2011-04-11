@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "commun.h"
 #include "XMLDocument.h"
+#include "Doctype.h"
 
 #include "yy.tab.h"
 

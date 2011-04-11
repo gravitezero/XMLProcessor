@@ -11,7 +11,6 @@ public :
 	Declaration(AttList *a);
 	virtual ~Declaration();
 
-
 private : 
 	AttList *attributs;
 
