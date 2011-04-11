@@ -1,7 +1,7 @@
 #ifndef XML_H
 #define XML_H
 
-#include "Element.h"
+#include "Element.hpp"
 #include "Declaration.h"
 #include <list>
 
