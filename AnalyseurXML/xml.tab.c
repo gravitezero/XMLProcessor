@@ -76,22 +76,12 @@ using namespace std;
 #include <string>
 #include <cstdio>
 #include <cstdlib>
-<<<<<<< HEAD
 /*#include "commun.h"*/
 
 #include "XMLDocument.h"
 #include "Doctype.h"
-=======
-#include <list>
-/*#include "commun.h"*/
-
-#include "XMLDocument.h"
-#include "Element.h"
-#include "Declaration.h"
-#include "Doctype.h"
-
-/*#include "yy.tab.h"*/
->>>>>>> fa46d99cdcf678995f7749c4fdd2468be7083a5a
+#include "ElementComplexe.h"
+#include "ElementTextuel.h"
 
 
 int yywrap(void);
@@ -103,7 +93,7 @@ XMLDocument *doc;
 
 
 /* Line 189 of yacc.c  */
-#line 107 "xml.tab.c"
+#line 97 "xml.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -155,39 +145,23 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 34 "xml.y"
+#line 24 "xml.y"
 
    char * s;
    ElementName * en;  /* le nom d'un element avec son namespace */
-<<<<<<< HEAD
    list< pair<string,string> > * la;
-
-
 
    XMLDocument * xd;
    Element *el;
    Doctype *dc;
    Declaration * de;
    list<Element *> *ct;
-   list<Declaration *> *ld;
-
-=======
-   
-   Element * el;   
-   Declaration * de;
-   XMLDocument * xd;
-   Doctype * dc;   
-      
-   list< pair<string,string> > * la;
-   list<Declaration * > * ld;
-   list<Element *> *ct;
->>>>>>> fa46d99cdcf678995f7749c4fdd2468be7083a5a
-   
+   list<Declaration *> *ld;   
 
 
 
 /* Line 214 of yacc.c  */
-#line 191 "xml.tab.c"
+#line 165 "xml.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -199,7 +173,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 203 "xml.tab.c"
+#line 177 "xml.tab.c"
 
 #ifdef short
 # undef short
@@ -490,9 +464,9 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    87,    87,    91,    92,    96,   100,   101,   102,   106,
-     110,   114,   118,   119,   123,   124,   128,   129,   133,   134,
-     135,   139,   143,   144,   145,   146
+       0,    61,    61,    65,    66,    70,    74,    75,    76,    80,
+      84,    88,    92,    93,    97,    98,   102,   103,   107,   108,
+     109,   113,   117,   118,   119,   120
 };
 #endif
 
@@ -1414,175 +1388,175 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 87 "xml.y"
+#line 61 "xml.y"
     { doc->setElement((yyvsp[(2) - (3)].el)); (yyval.xd) = doc;;}
     break;
 
   case 3:
 
 /* Line 1455 of yacc.c  */
-#line 91 "xml.y"
+#line 65 "xml.y"
     {(yyval.s) = (yyvsp[(1) - (2)].s);;}
     break;
 
   case 4:
 
 /* Line 1455 of yacc.c  */
-#line 92 "xml.y"
+#line 66 "xml.y"
     { (yyval.s) = "";;}
     break;
 
   case 5:
 
 /* Line 1455 of yacc.c  */
-#line 96 "xml.y"
+#line 70 "xml.y"
     {(yyval.s) = (yyvsp[(1) - (1)].s);;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 100 "xml.y"
+#line 74 "xml.y"
     {(yyval.ld) = (yyvsp[(1) - (2)].ld); (yyval.ld)->push_back((yyvsp[(2) - (2)].de));;}
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 101 "xml.y"
+#line 75 "xml.y"
     {(yyval.ld) = (yyvsp[(1) - (2)].ld); (yyval.ld)->push_back((yyvsp[(2) - (2)].dc));;}
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 102 "xml.y"
+#line 76 "xml.y"
     {doc = new XMLDocument(); (yyval.ld) = new list<Declaration *>; doc->setHeader((yyval.ld));;}
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 106 "xml.y"
+#line 80 "xml.y"
     {(yyval.dc) = new Doctype((yyvsp[(2) - (5)].s),(yyvsp[(3) - (5)].s),(yyvsp[(4) - (5)].s));;}
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 110 "xml.y"
+#line 84 "xml.y"
     {(yyval.de) = new Declaration((yyvsp[(2) - (3)].la));;}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 114 "xml.y"
+#line 88 "xml.y"
     {(yyval.el) = new ElementComplexe((yyvsp[(1) - (3)].s),(yyvsp[(2) - (3)].la),(yyvsp[(3) - (3)].ct));;}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 118 "xml.y"
+#line 92 "xml.y"
     {(yyval.s) = (yyvsp[(1) - (1)].en);;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 119 "xml.y"
+#line 93 "xml.y"
     {(yyval.s) = (yyvsp[(1) - (1)].en);;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 123 "xml.y"
+#line 97 "xml.y"
     {(yyval.ct) = NULL;;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 124 "xml.y"
+#line 98 "xml.y"
     {(yyval.ct) = (yyvsp[(1) - (3)].ct);;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 128 "xml.y"
+#line 102 "xml.y"
     {(yyval.la) = (yyvsp[(1) - (4)].la); (yyval.la)->push_back(make_pair((yyvsp[(2) - (4)].s),(yyvsp[(4) - (4)].s)));;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 129 "xml.y"
+#line 103 "xml.y"
     {(yyval.la) = new AttList;;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 133 "xml.y"
+#line 107 "xml.y"
     {(yyval.s) = (yyvsp[(1) - (1)].s);;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 134 "xml.y"
+#line 108 "xml.y"
     {(yyval.s) = (yyvsp[(1) - (1)].s);;}
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 135 "xml.y"
+#line 109 "xml.y"
     {(yyval.s) = "";;}
     break;
 
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 139 "xml.y"
+#line 113 "xml.y"
     {(yyval.ct) = (yyvsp[(2) - (3)].ct);;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 143 "xml.y"
+#line 117 "xml.y"
     {(yyval.ct) = (yyvsp[(1) - (2)].ct); (yyval.ct)->push_back(new ElementTextuel((yyvsp[(2) - (2)].s)));;}
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 144 "xml.y"
+#line 118 "xml.y"
     {(yyval.ct) = (yyvsp[(1) - (2)].ct);;}
     break;
 
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 145 "xml.y"
+#line 119 "xml.y"
     {(yyval.ct) = (yyvsp[(1) - (2)].ct); (yyval.ct)->push_back((yyvsp[(2) - (2)].el));;}
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 146 "xml.y"
+#line 120 "xml.y"
     {(yyval.ct) = new List<Element * >();;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1586 "xml.tab.c"
+#line 1560 "xml.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1794,7 +1768,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 149 "xml.y"
+#line 123 "xml.y"
 
 
 int main(int argc, char **argv)
