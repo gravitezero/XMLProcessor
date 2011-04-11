@@ -5,6 +5,7 @@
 #include "ElementTextuel.h"
 #include "VisitorInterface.hpp"
 #include "VisitorDisplay.h"
+#include "XML.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +13,7 @@ int main(int argc, char *argv[])
 
     //Element Complexe 1 : document
     ElementName nom1;
-    nom1.first = "ns";
+    nom1.first = "";
     nom1.second = "Document";
     ElementComplexe* document = new ElementComplexe(nom1);
     document->addAttribute(make_pair("color","red"));
@@ -20,7 +21,7 @@ int main(int argc, char *argv[])
 
     //Element Complexe 2 : title
     ElementName nom2;
-    nom2.first = "ns";
+    nom2.first = "";
     nom2.second = "Title";
     ElementComplexe* title = new ElementComplexe(nom2);
 
@@ -32,8 +33,12 @@ int main(int argc, char *argv[])
 
     title->addElement(texte);
 
+    XML xml;
+    xml.addElement(document);
+    //xml.addElement(title);
 
-    document->accept(new VisitorDisplay());
+    xml.accept(new VisitorDisplay());
+    //document->accept(new VisitorDisplay());
 
     std::cout<<"XXXXXXXXXXXXXXXXXXX"<<std::endl;
     return a.exec();

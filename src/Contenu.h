@@ -1,9 +1,12 @@
-
+#include <string>
 
 class Contenu
 {
 	public:
-	Contenu();
-	virtual ~Contenu();
+        //Contenu();
+        //virtual ~Contenu();
+        void setCardinality(std::string card);
 
+protected:
+        std::string cardinalite;
 };
