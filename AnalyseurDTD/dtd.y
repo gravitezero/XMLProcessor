@@ -17,7 +17,7 @@ DTD() * doc;
 
 %union { 
    char *s;
-   list<Contenu> *lc;
+   list<Contenu *> *lc;
    DTD *dtd;
    DeclarationAtt *dAtt;
    DeclarationElt *dElt;

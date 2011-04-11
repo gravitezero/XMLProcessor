@@ -8,12 +8,14 @@ class VisitorInterface;
 
 class Element{
 
-    public:
-   // Element();
-   // virtual ~Element();
-    virtual void accept(VisitorInterface*) = 0;
+public:
+   Element();
+   virtual ~Element();
+   virtual void accept(VisitorInterface*) = 0;
 
-
+	
+protected:
+	AttList attlist;
 
 
 

@@ -3,16 +3,14 @@
 
 #include "commun.h"
 
-class Element{
-	
-	public:
+class Element
+{
+public:
 	Element();
 	virtual ~Element();
 	
-	protected:
+protected:
 	AttList attlist;
-	
-	
 	
 };
 

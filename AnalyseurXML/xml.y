@@ -5,10 +5,12 @@ using namespace std;
 #include <string>
 #include <cstdio>
 #include <cstdlib>
-#include "commun.h"
-#include "yy.tab.h"
+/*#include "commun.h"*/
 
 #include "XMLDocument.h"
+#include "Doctype.h"
+#include "ElementComplexe.h"
+#include "ElementTextuel.h"
 
 
 int yywrap(void);
@@ -23,18 +25,17 @@ XMLDocument *doc;
    char * s;
    ElementName * en;  /* le nom d'un element avec son namespace */
    list< pair<string,string> > * la;
-   list<Declaration * > * ld;
 
    XMLDocument * xd;
    Element *el;
+   Doctype *dc;
+   Declaration * de;
    list<Element *> *ct;
-   Declaration *de;
-   Doctype *do;
-   
+   list<Declaration *> *ld;   
 }
 
 
-%token EQ SLASH CLOSE END CLOSESPECIAL DOCTYPE
+%token <s> EQ SLASH CLOSE END CLOSESPECIAL DOCTYPE
 %token <s> ENCODING VALUE DATA COMMENT NAME NSNAME
 %token <en> NSSTART START STARTSPECIAL
 
@@ -49,7 +50,7 @@ XMLDocument *doc;
 %type <s>  name_or_nsname_opt
 
 %type <de> declaration
-%type <do> doctype
+%type <dc> doctype
 
 %type <la> attributs
 %type <ld> declarations
@@ -72,7 +73,7 @@ misc
 declarations
  : declarations declaration {$$ = $1; $$->push_back($2);}
  | declarations doctype {$$ = $1; $$->push_back($2);}
- | /*empty*/ {doc = new XMLDocument(); $$ = new List<Declaration *>; doc->setHeader($$);} 
+ | /*empty*/ {doc = new XMLDocument(); $$ = new list<Declaration *>; doc->setHeader($$);} 
  ;
  
 doctype

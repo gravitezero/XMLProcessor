@@ -2,17 +2,17 @@
 #define DOCTYPE_H
 
 #include "Declaration.h"
+#include <string>
 
 
-
-class Doctype
+class Doctype : public Declaration
 {
 public : 
 	Doctype();
-	Doctype(string n, string s, string v);
+	Doctype(std::string n, std::string s, std::string v);
 
 
 	virtual ~Doctype();
-}
+};
 
 #endif
