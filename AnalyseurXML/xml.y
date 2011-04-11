@@ -6,7 +6,6 @@ using namespace std;
 #include <cstdio>
 #include <cstdlib>
 #include "commun.h"
-#include "yy.tab.h"
 
 #include "XMLDocument.h"
 
@@ -23,12 +22,13 @@ XMLDocument *doc;
    char * s;
    ElementName * en;  /* le nom d'un element avec son namespace */
    list< pair<string,string> > * la;
-   list<Declaration * > * ld;
+   Declaration * de;
+   list<Declaration *> *ld;
 
    XMLDocument * xd;
    Element *el;
    list<Element *> *ct;
-   Declaration *de;
+
    Doctype *do;
    
 }

@@ -77,7 +77,6 @@ using namespace std;
 #include <cstdio>
 #include <cstdlib>
 #include "commun.h"
-#include "yy.tab.h"
 
 #include "XMLDocument.h"
 
@@ -91,7 +90,7 @@ XMLDocument *doc;
 
 
 /* Line 189 of yacc.c  */
-#line 95 "xml.tab.c"
+#line 94 "xml.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -143,17 +142,18 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 22 "xml.y"
+#line 21 "xml.y"
 
    char * s;
    ElementName * en;  /* le nom d'un element avec son namespace */
    list< pair<string,string> > * la;
-   list<Declaration * > * ld;
+   Declaration * de;
+   list<Declaration *> *ld;
 
    XMLDocument * xd;
    Element *el;
    list<Element *> *ct;
-   Declaration *de;
+
    Doctype *do;
    
 

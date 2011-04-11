@@ -7,6 +7,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include "commun.h"
+#include "XMLDocument.h"
+
 #include "yy.tab.h"
 
 static char* skipSpace(char *s) {
