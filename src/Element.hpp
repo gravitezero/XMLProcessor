@@ -2,7 +2,7 @@
 #define ELEMENT_HPP
 
 #include "commun.h"
-//#include "VisitorInterface.hpp"
+
 
 class VisitorInterface;
 

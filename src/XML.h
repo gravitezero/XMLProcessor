@@ -7,11 +7,15 @@
 
 using namespace std;
 
+class VisitorInterface;
+
 class XML{
 	public :
 	XML();
 	virtual ~XML();
-	
+        void addElement(Element*);
+        void accept(VisitorInterface * visitor);
+
 	private:
         list<Element*> elements;
 	

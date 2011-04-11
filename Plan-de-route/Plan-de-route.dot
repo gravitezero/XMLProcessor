@@ -74,7 +74,7 @@ subgraph cluster04
     
     step41 [label="Ecrire un analyseur\nde feuille de style qui\nconstruit un arbre xslt"]
     
-    step42 [label="Ecrire la DTD\nd'une feuille de style simplifiée"]
+    step42 [label="Ecrire la DTD\nd'une feuille de style simplifiée" color=orange]
 
 
     step31 -> step41 -> step42
@@ -88,7 +88,7 @@ subgraph cluster04
 subgraph cluster05
 { label="Transformation d'arbre"
 
-    step51 [label="Ecrire les templates de traitement\nd'un rapport pour fabriquer\nune structure representant le document HTML"]
+    step51 [label="Ecrire les templates de traitement\nd'un rapport pour fabriquer\nune structure representant le document HTML" color=green]
 
     step52 [label="Ecrire un programme de traitement\ndes templates contenus dans\nune feuille de style"]
     

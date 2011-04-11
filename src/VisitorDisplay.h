@@ -13,6 +13,8 @@ class VisitorDisplay : public VisitorInterface{
 	virtual ~ VisitorDisplay();
 	void visit(ElementTextuel* elementTextuel);
 	void visit(ElementComplexe* elementComplexe);
+        virtual void visit(DeclarationElement* declarationElement);
+        virtual void visit(DeclarationAttribut* declarationAttribut);
 	
 
 
