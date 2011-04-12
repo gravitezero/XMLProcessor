@@ -68,15 +68,15 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 18 "dtd.y"
+#line 25 "dtd.y"
  
    char *s;
    list<Contenu *> *lc;
    DTD *dtd;
-   DeclarationAtt *dAtt;
-   DeclarationElt *dElt;
+   DeclarationAttribut *dAtt;
+   DeclarationElement *dElt;
    Contenu *content;
-   list<Attribut> *lAtt;
+   list<Attribut *> *lAtt;
    Attribut *Att;
    
 

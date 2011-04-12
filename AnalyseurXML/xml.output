@@ -3,20 +3,20 @@ Terminals unused in grammar
    ENCODING
 
 
-Grammar
+Grammaire
 
     0 $accept: document $end
 
     1 document: declarations element misc_seq_opt
 
     2 misc_seq_opt: misc_seq_opt misc
-    3             | /* empty */
+    3             | /* vide */
 
     4 misc: COMMENT
 
     5 declarations: declarations declaration
     6             | declarations doctype
-    7             | /* empty */
+    7             | /* vide */
 
     8 doctype: DOCTYPE NAME NAME VALUE CLOSE
 
@@ -31,21 +31,21 @@ Grammar
    14                 | close_content_and_end name_or_nsname_opt CLOSE
 
    15 attributs: attributs NAME EQ VALUE
-   16          | /* empty */
+   16          | /* vide */
 
    17 name_or_nsname_opt: NAME
    18                   | NSNAME
-   19                   | /* empty */
+   19                   | /* vide */
 
    20 close_content_and_end: CLOSE content END
 
    21 content: content DATA
    22        | content misc
    23        | content element
-   24        | /* empty */
+   24        | /* vide */
 
 
-Terminals, with rules where they appear
+Terminaux, suivis des règles où ils apparaissent
 
 $end (0) 0
 error (256)
@@ -66,356 +66,356 @@ START (271) 11
 STARTSPECIAL (272) 9
 
 
-Nonterminals, with rules where they appear
+Non-terminaux, suivis des règles où ils apparaissent
 
 $accept (18)
-    on left: 0
+    à gauche: 0
 document (19)
-    on left: 1, on right: 0
+    à gauche: 1, à droite: 0
 misc_seq_opt (20)
-    on left: 2 3, on right: 1 2
+    à gauche: 2 3, à droite: 1 2
 misc (21)
-    on left: 4, on right: 2 22
+    à gauche: 4, à droite: 2 22
 declarations (22)
-    on left: 5 6 7, on right: 1 5 6
+    à gauche: 5 6 7, à droite: 1 5 6
 doctype (23)
-    on left: 8, on right: 6
+    à gauche: 8, à droite: 6
 declaration (24)
-    on left: 9, on right: 5
+    à gauche: 9, à droite: 5
 element (25)
-    on left: 10, on right: 1 23
+    à gauche: 10, à droite: 1 23
 start (26)
-    on left: 11 12, on right: 10
+    à gauche: 11 12, à droite: 10
 empty_or_content (27)
-    on left: 13 14, on right: 10
+    à gauche: 13 14, à droite: 10
 attributs (28)
-    on left: 15 16, on right: 9 10 15
+    à gauche: 15 16, à droite: 9 10 15
 name_or_nsname_opt (29)
-    on left: 17 18 19, on right: 14
+    à gauche: 17 18 19, à droite: 14
 close_content_and_end (30)
-    on left: 20, on right: 14
+    à gauche: 20, à droite: 14
 content (31)
-    on left: 21 22 23 24, on right: 20 21 22 23
+    à gauche: 21 22 23 24, à droite: 20 21 22 23
 
 
-state 0
+état 0
 
     0 $accept: . document $end
 
-    $default  reduce using rule 7 (declarations)
+    $défaut  réduction par utilisation de la règle 7 (declarations)
 
-    document      go to state 1
-    declarations  go to state 2
+    document      aller à l'état 1
+    declarations  aller à l'état 2
 
 
-state 1
+état 1
 
     0 $accept: document . $end
 
-    $end  shift, and go to state 3
+    $end  décalage et aller à l'état 3
 
 
-state 2
+état 2
 
     1 document: declarations . element misc_seq_opt
     5 declarations: declarations . declaration
     6             | declarations . doctype
 
-    DOCTYPE       shift, and go to state 4
-    NSSTART       shift, and go to state 5
-    START         shift, and go to state 6
-    STARTSPECIAL  shift, and go to state 7
+    DOCTYPE       décalage et aller à l'état 4
+    NSSTART       décalage et aller à l'état 5
+    START         décalage et aller à l'état 6
+    STARTSPECIAL  décalage et aller à l'état 7
 
-    doctype      go to state 8
-    declaration  go to state 9
-    element      go to state 10
-    start        go to state 11
+    doctype      aller à l'état 8
+    declaration  aller à l'état 9
+    element      aller à l'état 10
+    start        aller à l'état 11
 
 
-state 3
+état 3
 
     0 $accept: document $end .
 
-    $default  accept
+    $défaut  accepter
 
 
-state 4
+état 4
 
     8 doctype: DOCTYPE . NAME NAME VALUE CLOSE
 
-    NAME  shift, and go to state 12
+    NAME  décalage et aller à l'état 12
 
 
-state 5
+état 5
 
    12 start: NSSTART .
 
-    $default  reduce using rule 12 (start)
+    $défaut  réduction par utilisation de la règle 12 (start)
 
 
-state 6
+état 6
 
    11 start: START .
 
-    $default  reduce using rule 11 (start)
+    $défaut  réduction par utilisation de la règle 11 (start)
 
 
-state 7
+état 7
 
     9 declaration: STARTSPECIAL . attributs CLOSESPECIAL
 
-    $default  reduce using rule 16 (attributs)
+    $défaut  réduction par utilisation de la règle 16 (attributs)
 
-    attributs  go to state 13
+    attributs  aller à l'état 13
 
 
-state 8
+état 8
 
     6 declarations: declarations doctype .
 
-    $default  reduce using rule 6 (declarations)
+    $défaut  réduction par utilisation de la règle 6 (declarations)
 
 
-state 9
+état 9
 
     5 declarations: declarations declaration .
 
-    $default  reduce using rule 5 (declarations)
+    $défaut  réduction par utilisation de la règle 5 (declarations)
 
 
-state 10
+état 10
 
     1 document: declarations element . misc_seq_opt
 
-    $default  reduce using rule 3 (misc_seq_opt)
+    $défaut  réduction par utilisation de la règle 3 (misc_seq_opt)
 
-    misc_seq_opt  go to state 14
+    misc_seq_opt  aller à l'état 14
 
 
-state 11
+état 11
 
    10 element: start . attributs empty_or_content
 
-    $default  reduce using rule 16 (attributs)
+    $défaut  réduction par utilisation de la règle 16 (attributs)
 
-    attributs  go to state 15
+    attributs  aller à l'état 15
 
 
-state 12
+état 12
 
     8 doctype: DOCTYPE NAME . NAME VALUE CLOSE
 
-    NAME  shift, and go to state 16
+    NAME  décalage et aller à l'état 16
 
 
-state 13
+état 13
 
     9 declaration: STARTSPECIAL attributs . CLOSESPECIAL
    15 attributs: attributs . NAME EQ VALUE
 
-    CLOSESPECIAL  shift, and go to state 17
-    NAME          shift, and go to state 18
+    CLOSESPECIAL  décalage et aller à l'état 17
+    NAME          décalage et aller à l'état 18
 
 
-state 14
+état 14
 
     1 document: declarations element misc_seq_opt .
     2 misc_seq_opt: misc_seq_opt . misc
 
-    COMMENT  shift, and go to state 19
+    COMMENT  décalage et aller à l'état 19
 
-    $default  reduce using rule 1 (document)
+    $défaut  réduction par utilisation de la règle 1 (document)
 
-    misc  go to state 20
+    misc  aller à l'état 20
 
 
-state 15
+état 15
 
    10 element: start attributs . empty_or_content
    15 attributs: attributs . NAME EQ VALUE
 
-    SLASH  shift, and go to state 21
-    CLOSE  shift, and go to state 22
-    NAME   shift, and go to state 18
+    SLASH  décalage et aller à l'état 21
+    CLOSE  décalage et aller à l'état 22
+    NAME   décalage et aller à l'état 18
 
-    empty_or_content       go to state 23
-    close_content_and_end  go to state 24
+    empty_or_content       aller à l'état 23
+    close_content_and_end  aller à l'état 24
 
 
-state 16
+état 16
 
     8 doctype: DOCTYPE NAME NAME . VALUE CLOSE
 
-    VALUE  shift, and go to state 25
+    VALUE  décalage et aller à l'état 25
 
 
-state 17
+état 17
 
     9 declaration: STARTSPECIAL attributs CLOSESPECIAL .
 
-    $default  reduce using rule 9 (declaration)
+    $défaut  réduction par utilisation de la règle 9 (declaration)
 
 
-state 18
+état 18
 
    15 attributs: attributs NAME . EQ VALUE
 
-    EQ  shift, and go to state 26
+    EQ  décalage et aller à l'état 26
 
 
-state 19
+état 19
 
     4 misc: COMMENT .
 
-    $default  reduce using rule 4 (misc)
+    $défaut  réduction par utilisation de la règle 4 (misc)
 
 
-state 20
+état 20
 
     2 misc_seq_opt: misc_seq_opt misc .
 
-    $default  reduce using rule 2 (misc_seq_opt)
+    $défaut  réduction par utilisation de la règle 2 (misc_seq_opt)
 
 
-state 21
+état 21
 
    13 empty_or_content: SLASH . CLOSE
 
-    CLOSE  shift, and go to state 27
+    CLOSE  décalage et aller à l'état 27
 
 
-state 22
+état 22
 
    20 close_content_and_end: CLOSE . content END
 
-    $default  reduce using rule 24 (content)
+    $défaut  réduction par utilisation de la règle 24 (content)
 
-    content  go to state 28
+    content  aller à l'état 28
 
 
-state 23
+état 23
 
    10 element: start attributs empty_or_content .
 
-    $default  reduce using rule 10 (element)
+    $défaut  réduction par utilisation de la règle 10 (element)
 
 
-state 24
+état 24
 
    14 empty_or_content: close_content_and_end . name_or_nsname_opt CLOSE
 
-    NAME    shift, and go to state 29
-    NSNAME  shift, and go to state 30
+    NAME    décalage et aller à l'état 29
+    NSNAME  décalage et aller à l'état 30
 
-    $default  reduce using rule 19 (name_or_nsname_opt)
+    $défaut  réduction par utilisation de la règle 19 (name_or_nsname_opt)
 
-    name_or_nsname_opt  go to state 31
+    name_or_nsname_opt  aller à l'état 31
 
 
-state 25
+état 25
 
     8 doctype: DOCTYPE NAME NAME VALUE . CLOSE
 
-    CLOSE  shift, and go to state 32
+    CLOSE  décalage et aller à l'état 32
 
 
-state 26
+état 26
 
    15 attributs: attributs NAME EQ . VALUE
 
-    VALUE  shift, and go to state 33
+    VALUE  décalage et aller à l'état 33
 
 
-state 27
+état 27
 
    13 empty_or_content: SLASH CLOSE .
 
-    $default  reduce using rule 13 (empty_or_content)
+    $défaut  réduction par utilisation de la règle 13 (empty_or_content)
 
 
-state 28
+état 28
 
    20 close_content_and_end: CLOSE content . END
    21 content: content . DATA
    22        | content . misc
    23        | content . element
 
-    END      shift, and go to state 34
-    DATA     shift, and go to state 35
-    COMMENT  shift, and go to state 19
-    NSSTART  shift, and go to state 5
-    START    shift, and go to state 6
+    END      décalage et aller à l'état 34
+    DATA     décalage et aller à l'état 35
+    COMMENT  décalage et aller à l'état 19
+    NSSTART  décalage et aller à l'état 5
+    START    décalage et aller à l'état 6
 
-    misc     go to state 36
-    element  go to state 37
-    start    go to state 11
+    misc     aller à l'état 36
+    element  aller à l'état 37
+    start    aller à l'état 11
 
 
-state 29
+état 29
 
    17 name_or_nsname_opt: NAME .
 
-    $default  reduce using rule 17 (name_or_nsname_opt)
+    $défaut  réduction par utilisation de la règle 17 (name_or_nsname_opt)
 
 
-state 30
+état 30
 
    18 name_or_nsname_opt: NSNAME .
 
-    $default  reduce using rule 18 (name_or_nsname_opt)
+    $défaut  réduction par utilisation de la règle 18 (name_or_nsname_opt)
 
 
-state 31
+état 31
 
    14 empty_or_content: close_content_and_end name_or_nsname_opt . CLOSE
 
-    CLOSE  shift, and go to state 38
+    CLOSE  décalage et aller à l'état 38
 
 
-state 32
+état 32
 
     8 doctype: DOCTYPE NAME NAME VALUE CLOSE .
 
-    $default  reduce using rule 8 (doctype)
+    $défaut  réduction par utilisation de la règle 8 (doctype)
 
 
-state 33
+état 33
 
    15 attributs: attributs NAME EQ VALUE .
 
-    $default  reduce using rule 15 (attributs)
+    $défaut  réduction par utilisation de la règle 15 (attributs)
 
 
-state 34
+état 34
 
    20 close_content_and_end: CLOSE content END .
 
-    $default  reduce using rule 20 (close_content_and_end)
+    $défaut  réduction par utilisation de la règle 20 (close_content_and_end)
 
 
-state 35
+état 35
 
    21 content: content DATA .
 
-    $default  reduce using rule 21 (content)
+    $défaut  réduction par utilisation de la règle 21 (content)
 
 
-state 36
+état 36
 
    22 content: content misc .
 
-    $default  reduce using rule 22 (content)
+    $défaut  réduction par utilisation de la règle 22 (content)
 
 
-state 37
+état 37
 
    23 content: content element .
 
-    $default  reduce using rule 23 (content)
+    $défaut  réduction par utilisation de la règle 23 (content)
 
 
-state 38
+état 38
 
    14 empty_or_content: close_content_and_end name_or_nsname_opt CLOSE .
 
-    $default  reduce using rule 14 (empty_or_content)
+    $défaut  réduction par utilisation de la règle 14 (empty_or_content)

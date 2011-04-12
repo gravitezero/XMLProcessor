@@ -78,16 +78,23 @@ using namespace std;
 #include <cstdlib>
 
 
+#include "../src/DTD.h"
+#include "../src/contenusequence.h"
+#include "../src/contenuchoix.h"
+#include "../src/contenusimple.h"
+#include "../src/DeclarationElement.h"
+#include "../src/DeclarationAttribut.h"
+
 void yyerror(char *msg);
 int yywrap(void);
 int yylex(void);
 
-DTD() * doc;
+DTD *doc;
 
 
 
 /* Line 189 of yacc.c  */
-#line 91 "dtd.tab.c"
+#line 98 "dtd.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -143,21 +150,21 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 18 "dtd.y"
+#line 25 "dtd.y"
  
    char *s;
    list<Contenu *> *lc;
    DTD *dtd;
-   DeclarationAtt *dAtt;
-   DeclarationElt *dElt;
+   DeclarationAttribut *dAtt;
+   DeclarationElement *dElt;
    Contenu *content;
-   list<Attribut> *lAtt;
+   list<Attribut *> *lAtt;
    Attribut *Att;
    
 
 
 /* Line 214 of yacc.c  */
-#line 161 "dtd.tab.c"
+#line 168 "dtd.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -169,7 +176,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 173 "dtd.tab.c"
+#line 180 "dtd.tab.c"
 
 #ifdef short
 # undef short
@@ -465,10 +472,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    45,    45,    46,    47,    51,    56,    60,    61,    65,
-      69,    73,    77,    78,    82,    83,    87,    88,    89,    93,
-      94,    95,    96,   102,   103,   107,   111,   112,   113,   119,
-     123,   127,   128,   132,   138,   139,   140
+       0,    52,    52,    53,    54,    58,    63,    67,    68,    72,
+      76,    80,    84,    85,    89,    90,    94,    95,    96,   100,
+     101,   102,   103,   109,   110,   114,   118,   119,   120,   126,
+     130,   134,   135,   139,   145,   146,   147
 };
 #endif
 
@@ -1401,189 +1408,189 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 45 "dtd.y"
-    { (yyvsp[(1) - (2)].dtd)->addAtt((yyvsp[(2) - (2)].dAtt)); (yyval.dtd) = (yyvsp[(1) - (2)].dtd);;}
+#line 52 "dtd.y"
+    { (yyvsp[(1) - (2)].dtd)->addDeclarationAttributs((yyvsp[(2) - (2)].dAtt)); (yyval.dtd) = (yyvsp[(1) - (2)].dtd);;}
     break;
 
   case 3:
 
 /* Line 1455 of yacc.c  */
-#line 46 "dtd.y"
-    { (yyvsp[(1) - (2)].dtd)->addElt((yyvsp[(2) - (2)].dElt)); (yyval.dtd) = (yyvsp[(1) - (2)].dtd);;}
+#line 53 "dtd.y"
+    { (yyvsp[(1) - (2)].dtd)->addDeclarationElement((yyvsp[(2) - (2)].dElt)); (yyval.dtd) = (yyvsp[(1) - (2)].dtd);;}
     break;
 
   case 4:
 
 /* Line 1455 of yacc.c  */
-#line 47 "dtd.y"
+#line 54 "dtd.y"
     { doc = new DTD(); (yyval.dtd) = doc;;}
     break;
 
   case 5:
 
 /* Line 1455 of yacc.c  */
-#line 51 "dtd.y"
-    {(yyval.dAtt) = new DeclarationAtt((yyvsp[(2) - (4)].s),(yyvsp[(3) - (4)].lAtt));;}
+#line 58 "dtd.y"
+    {(yyval.dAtt) = new DeclarationAttribut((yyvsp[(2) - (4)].s),(yyvsp[(3) - (4)].lAtt));;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 56 "dtd.y"
-    {(yyval.dElt) = new DeclarationElt((yyvsp[(2) - (4)].s),(yyvsp[(3) - (4)].content));;}
+#line 63 "dtd.y"
+    {(yyval.dElt) = new DeclarationElement((yyvsp[(2) - (4)].s),(yyvsp[(3) - (4)].content));;}
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 60 "dtd.y"
+#line 67 "dtd.y"
     {(yyvsp[(1) - (2)].content)->setCardinality((yyvsp[(2) - (2)].s)); (yyval.content) = (yyvsp[(1) - (2)].content);;}
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 61 "dtd.y"
+#line 68 "dtd.y"
     {(yyvsp[(1) - (2)].content)->setCardinality((yyvsp[(2) - (2)].s)); (yyval.content) = (yyvsp[(1) - (2)].content);;}
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 65 "dtd.y"
-    {if ((yyvsp[(2) - (3)].lc)->size() !=1) {(yyval.content) = new ContenuSequence((yyvsp[(2) - (3)].lc));} else {(yyval.content) = (yyvsp[(2) - (3)].lc)->begin()};}
+#line 72 "dtd.y"
+    {if ((yyvsp[(2) - (3)].lc)->size() !=1) {(yyval.content) = new ContenuSequence((yyvsp[(2) - (3)].lc));} else {(yyval.content) = * (yyvsp[(2) - (3)].lc)->begin(); };}
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 69 "dtd.y"
+#line 76 "dtd.y"
     {(yyval.content) = new ContenuChoix((yyvsp[(2) - (3)].lc));;}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 73 "dtd.y"
+#line 80 "dtd.y"
     {(yyval.lc) = (yyvsp[(1) - (3)].lc); (yyval.lc)->push_back((yyvsp[(3) - (3)].content));;}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 77 "dtd.y"
-    {(yyval.lc) = new list<Contenu>(); (yyval.lc)->push_back((yyvsp[(1) - (1)].content));;}
+#line 84 "dtd.y"
+    {(yyval.lc) = new list<Contenu *>(); (yyval.lc)->push_back((yyvsp[(1) - (1)].content));;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 78 "dtd.y"
+#line 85 "dtd.y"
     {(yyval.lc) = (yyvsp[(1) - (3)].lc); (yyval.lc)->push_back((yyvsp[(3) - (3)].content));;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 82 "dtd.y"
-    {(yyval.lc) = new list<Contenu>(); (yyval.lc)->push_back((yyvsp[(1) - (1)].content));}
+#line 89 "dtd.y"
+    {(yyval.lc) = new list<Contenu *>(); (yyval.lc)->push_back((yyvsp[(1) - (1)].content));}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 83 "dtd.y"
+#line 90 "dtd.y"
     {(yyval.lc) = (yyvsp[(1) - (3)].lc); (yyval.lc)->push_back((yyvsp[(3) - (3)].content));;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 87 "dtd.y"
+#line 94 "dtd.y"
     {(yyval.content) = new ContenuSimple((yyvsp[(1) - (2)].s),doc); (yyval.content)->setCardinality((yyvsp[(2) - (2)].s));;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 88 "dtd.y"
+#line 95 "dtd.y"
     {(yyval.content) = new ContenuSimple((yyvsp[(1) - (1)].s),doc);;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 89 "dtd.y"
+#line 96 "dtd.y"
     {(yyvsp[(1) - (2)].content)->setCardinality((yyvsp[(2) - (2)].s)); (yyval.content) = (yyvsp[(1) - (2)].content);;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 93 "dtd.y"
+#line 100 "dtd.y"
     {(yyval.s) = (yyvsp[(1) - (1)].s);;}
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 94 "dtd.y"
+#line 101 "dtd.y"
     {(yyval.s) = (yyvsp[(1) - (1)].s);;}
     break;
 
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 95 "dtd.y"
+#line 102 "dtd.y"
     {(yyval.s) = (yyvsp[(1) - (1)].s);;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 96 "dtd.y"
+#line 103 "dtd.y"
     {(yyval.s) = "";;}
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 102 "dtd.y"
+#line 109 "dtd.y"
     {(yyval.lAtt) = (yyvsp[(1) - (2)].lAtt); (yyval.lAtt)->push_back((yyvsp[(2) - (2)].Att));;}
     break;
 
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 103 "dtd.y"
-    {new list<Attribut>();;}
+#line 110 "dtd.y"
+    {(yyval.lAtt) = new list<Attribut *>();;}
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 107 "dtd.y"
-    {(yyval.Att) = new Attribut((yyvsp[(1) - (3)].s),(yyvsp[(2) - (3)].s),(yyvsp[(3) - (3)].s));;}
+#line 114 "dtd.y"
+    {(yyval.Att) = new Attribut; *(yyval.Att) = make_pair((yyvsp[(1) - (3)].s), (yyvsp[(2) - (3)].s));;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 111 "dtd.y"
+#line 118 "dtd.y"
     {(yyval.s) = (yyvsp[(1) - (1)].s);;}
     break;
 
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 138 "dtd.y"
+#line 145 "dtd.y"
     {(yyval.s) = (yyvsp[(1) - (1)].s);;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1587 "dtd.tab.c"
+#line 1594 "dtd.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1795,7 +1802,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 143 "dtd.y"
+#line 150 "dtd.y"
 
 int main(int argc, char **argv)
 {

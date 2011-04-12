@@ -55,7 +55,7 @@ void ElementComplexe::addElement(Element* e)
     elementsList->push_back(e);
 }
 
-void ElementComplexe::addAttribute(Attribut a)
+void ElementComplexe::addAttribute(Attribut *a)
 {
     attlist->push_back(a);
 }
