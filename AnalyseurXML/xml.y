@@ -1,17 +1,16 @@
 %{
-
-using namespace std;
 #include <cstring>
 #include <string>
 #include <cstdio>
 #include <cstdlib>
-/*#include "commun.h"*/
 
-#include "XMLDocument.h"
-#include "Doctype.h"
-#include "ElementComplexe.h"
-#include "ElementTextuel.h"
+#include "../src/commun.h"
+#include "../src/XMLDocument.h"
+#include "../src/Doctype.h"
+#include "../src/ElementComplexe.h"
+#include "../src/ElementTextuel.h"
 
+using namespace std;
 
 int yywrap(void);
 void yyerror(char *msg);
@@ -23,15 +22,17 @@ XMLDocument *doc;
 
 %union {
    char * s;
-   ElementName * en;  /* le nom d'un element avec son namespace */
-   list< pair<string,string> > * la;
+   ElementName *en;  /* le nom d'un element avec son namespace */
+   AttList *la;
 
-   XMLDocument * xd;
+   XMLDocument *xdoc;
    Element *el;
    Doctype *dc;
    Declaration * de;
+      
+   list< pair<string,string> > * la;
+   list<Declaration * > * ld;
    list<Element *> *ct;
-   list<Declaration *> *ld;   
 }
 
 
@@ -39,14 +40,14 @@ XMLDocument *doc;
 %token <s> ENCODING VALUE DATA COMMENT NAME NSNAME
 %token <en> NSSTART START STARTSPECIAL
 
-%type <xd> document
+%type <xdoc> document
 %type <el> element
 %type <s>  misc_seq_opt
 %type <s>  misc
 %type <ct> content
 %type <ct> close_content_and_end
 %type <ct> empty_or_content
-%type <s>  start
+%type <en>  start
 %type <s>  name_or_nsname_opt
 
 %type <de> declaration
@@ -117,7 +118,7 @@ content
  : content DATA {$$ = $1; $$->push_back(new ElementTextuel($2));}		
  | content misc {$$ = $1;}	// on ignore les commentaires misc = COMMENT        
  | content element {$$ = $1; $$->push_back($2);}     
- | /*empty*/ {$$ = new List<Element * >();}        
+ | /*empty*/ {$$ = new list<Element * >();}        
  ;
 
 %%

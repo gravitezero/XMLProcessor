@@ -64,18 +64,30 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 24 "xml.y"
+<<<<<<< HEAD
+#line 25 "xml.y"
 
    char * s;
-   ElementName * en;  /* le nom d'un element avec son namespace */
-   list< pair<string,string> > * la;
+   ElementName * en;  /* le nom d'un element avec son namespace */ 
+   Element * el;
+=======
+#line 23 "xml.y"
 
-   XMLDocument * xd;
+   char * s;
+   ElementName *en;  /* le nom d'un element avec son namespace */
+   AttList *la;
+
+   XMLDocument *xdoc;
    Element *el;
    Doctype *dc;
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
    Declaration * de;
+   XMLDocument * xd;
+   Doctype * dc;   
+      
+   list< pair<string,string> > * la;
+   list<Declaration * > * ld;
    list<Element *> *ct;
-   list<Declaration *> *ld;   
 
 
 

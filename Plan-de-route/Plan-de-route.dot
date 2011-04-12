@@ -34,9 +34,9 @@ subgraph cluster02
 
     step21 [label="3.2.1 Définir la structure\ndes arbres XML et de la DTD" color=green]
 
-    step22 [label="3.2.1 Definir les actions\nde construction de ces arbres"]
+    step22 [label="3.2.1 Definir les actions\nde construction de ces arbres" color=orange]
 
-    step23 [label="3.2.1 Utiliser ces actions\ndans les règles d'analyse"]
+    step23 [label="3.2.1 Utiliser ces actions\ndans les règles d'analyse" color=orange]
     
     result21 [ shape=box label="structure interne\nrepresentant le document XML" color=green]
     
@@ -49,9 +49,9 @@ subgraph cluster02
     step21 -> step22 -> step23 -> result21 -> step24
     step23 -> result22 -> step25
 
-    step26 [label="Realiser l'affichage\ndu contenu du document XML"]
+    step26 [label="Realiser l'affichage\ndu contenu du document XML" color=orange]
 
-    step27 [label="Realiser l'affichage\ndu contenu de la DTD"]
+    step27 [label="Realiser l'affichage\ndu contenu de la DTD" color=orange]
     
     result23 [shape=box label="Placer les methode d'affichage\ndans la classe du document XML"]
     
@@ -65,7 +65,7 @@ subgraph cluster02
 subgraph cluster03
 { label="Vérification des conditions de validité"
 
-    step31 [label="Ecrire la méthode\nde vérification d'un arbre XML\nsuivant une DTD"]
+    step31 [label="Ecrire la méthode\nde vérification d'un arbre XML\nsuivant une DTD" color=orange]
 
 }
 
@@ -74,7 +74,7 @@ subgraph cluster04
     
     step41 [label="Ecrire un analyseur\nde feuille de style qui\nconstruit un arbre xslt"]
     
-    step42 [label="Ecrire la DTD\nd'une feuille de style simplifiée"]
+    step42 [label="Ecrire la DTD\nd'une feuille de style simplifiée" color=orange]
 
 
     step31 -> step41 -> step42
@@ -88,7 +88,7 @@ subgraph cluster04
 subgraph cluster05
 { label="Transformation d'arbre"
 
-    step51 [label="Ecrire les templates de traitement\nd'un rapport pour fabriquer\nune structure representant le document HTML"]
+    step51 [label="Ecrire les templates de traitement\nd'un rapport pour fabriquer\nune structure representant le document HTML" color=green]
 
     step52 [label="Ecrire un programme de traitement\ndes templates contenus dans\nune feuille de style"]
     

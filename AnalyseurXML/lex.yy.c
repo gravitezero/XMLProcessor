@@ -601,10 +601,21 @@ char *yytext;
 #include <list>
 #include "commun.h"
 
+<<<<<<< HEAD
 #include "XMLDocument.h"
+#include "Element.hpp"
+#include "ElementComplexe.h"
+#include "Declaration.h"
 #include "Doctype.h"
 #include "ElementComplexe.h"
 #include "ElementTextuel.h"
+=======
+#include "../src/commun.h"
+#include "../src/XMLDocument.h"
+#include "../src/Doctype.h"
+#include "../src/ElementComplexe.h"
+#include "../src/ElementTextuel.h"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 
 #include "yy.tab.h"
 
@@ -669,7 +680,11 @@ static char *split_namespace(char *s) { /* extrait la deuxième partie après l'
  * et a l'interieur des balises
  */
 
-#line 673 "lex.yy.c"
+<<<<<<< HEAD
+#line 676 "lex.yy.c"
+=======
+#line 674 "lex.yy.c"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 
 #define INITIAL 0
 #define CONTENT 1
@@ -857,10 +872,17 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 103 "xml.l"
+<<<<<<< HEAD
+#line 106 "xml.l"
 
 
-#line 864 "lex.yy.c"
+#line 867 "lex.yy.c"
+=======
+#line 104 "xml.l"
+
+
+#line 865 "lex.yy.c"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 
 	if ( !(yy_init) )
 		{
@@ -946,106 +968,181 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 105 "xml.l"
+<<<<<<< HEAD
+#line 108 "xml.l"
+=======
+#line 106 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext); /* skip */}
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 106 "xml.l"
+<<<<<<< HEAD
+#line 109 "xml.l"
+=======
+#line 107 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext); /* skip */}
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 107 "xml.l"
+<<<<<<< HEAD
+#line 110 "xml.l"
+=======
+#line 108 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext); return DOCTYPE;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 108 "xml.l"
+<<<<<<< HEAD
+#line 111 "xml.l"
+=======
+#line 109 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext); return SLASH;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 109 "xml.l"
+<<<<<<< HEAD
+#line 112 "xml.l"
+=======
+#line 110 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext); return EQ;}
 	YY_BREAK
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 110 "xml.l"
+<<<<<<< HEAD
+#line 113 "xml.l"
+=======
+#line 111 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext); BEGIN(CONTENT); return CLOSE;}
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 111 "xml.l"
+<<<<<<< HEAD
+#line 114 "xml.l"
+=======
+#line 112 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext); return CLOSESPECIAL;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 112 "xml.l"
+<<<<<<< HEAD
+#line 115 "xml.l"
+=======
+#line 113 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext);yylval.s = strdup(yytext); return NAME;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 113 "xml.l"
+<<<<<<< HEAD
+#line 116 "xml.l"
+=======
+#line 114 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext);yylval.s = strdup(yytext); return NSNAME;}
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 114 "xml.l"
+<<<<<<< HEAD
+#line 117 "xml.l"
+=======
+#line 115 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext);yylval.s = strdup(getString(yytext)); return VALUE;}
 	YY_BREAK
 case 11:
 /* rule 11 can match eol */
 YY_RULE_SETUP
-#line 116 "xml.l"
+<<<<<<< HEAD
+#line 119 "xml.l"
+=======
+#line 117 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext);BEGIN(INITIAL); char * tmp = word(yytext); yylval.en = new ElementName("",tmp); free(tmp); return STARTSPECIAL;}
 	YY_BREAK
 case 12:
 /* rule 12 can match eol */
 YY_RULE_SETUP
-#line 117 "xml.l"
+<<<<<<< HEAD
+#line 120 "xml.l"
+=======
+#line 118 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext);BEGIN(INITIAL); char * tmp = word(yytext); yylval.en = new ElementName("",tmp); free(tmp); return START;}
 	YY_BREAK
 case 13:
 /* rule 13 can match eol */
 YY_RULE_SETUP
-#line 118 "xml.l"
+<<<<<<< HEAD
+#line 121 "xml.l"
+=======
+#line 119 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext);BEGIN(INITIAL); char *tmp1 = nameSpace(yytext); char * tmp2 = split_namespace(yytext); yylval.en = new ElementName(tmp1,tmp2); free(tmp1); free(tmp2); return NSSTART;}
 	YY_BREAK
 case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
-#line 119 "xml.l"
+<<<<<<< HEAD
+#line 122 "xml.l"
+=======
+#line 120 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext);BEGIN(INITIAL); return END;}
 	YY_BREAK
 case 15:
 /* rule 15 can match eol */
 YY_RULE_SETUP
-#line 120 "xml.l"
+<<<<<<< HEAD
+#line 123 "xml.l"
+=======
+#line 121 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext);yylval.s = strdup(yytext); return COMMENT;}
 	YY_BREAK
 case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
-#line 122 "xml.l"
+<<<<<<< HEAD
+#line 125 "xml.l"
+=======
+#line 123 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext);yylval.s = strdup(skipSpace(yytext)); return DATA;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 124 "xml.l"
+<<<<<<< HEAD
+#line 127 "xml.l"
+=======
+#line 125 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 {printf("%s",yytext);fprintf(stderr, "!ERROR(%c)\n", *yytext);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 126 "xml.l"
+<<<<<<< HEAD
+#line 129 "xml.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 1049 "lex.yy.c"
+#line 1052 "lex.yy.c"
+=======
+#line 127 "xml.l"
+YY_FATAL_ERROR( "flex scanner jammed" );
+	YY_BREAK
+#line 1050 "lex.yy.c"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(CONTENT):
 	yyterminate();
@@ -2044,4 +2141,8 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 126 "xml.l"
+<<<<<<< HEAD
+#line 129 "xml.l"
+=======
+#line 127 "xml.l"
+>>>>>>> 56c020bf831feec07bb1958955d7eacee6970a0c
