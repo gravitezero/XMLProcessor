@@ -7,11 +7,18 @@ using namespace std;
 #include <cstdlib>
 
 
+#include "../src/DTD.h"
+#include "../src/contenusequence.h"
+#include "../src/contenuchoix.h"
+#include "../src/contenusimple.h"
+#include "../src/DeclarationElement.h"
+#include "../src/DeclarationAttribut.h"
+
 void yyerror(char *msg);
 int yywrap(void);
 int yylex(void);
 
-DTD() * doc;
+DTD *doc;
 
 %}
 
@@ -19,10 +26,10 @@ DTD() * doc;
    char *s;
    list<Contenu *> *lc;
    DTD *dtd;
-   DeclarationAtt *dAtt;
-   DeclarationElt *dElt;
+   DeclarationAttribut *dAtt;
+   DeclarationElement *dElt;
    Contenu *content;
-   list<Attribut> *lAtt;
+   list<Attribut *> *lAtt;
    Attribut *Att;
    }
 
@@ -42,18 +49,18 @@ DTD() * doc;
 
 
 main
- : main attlist { $1->addAtt($2); $$ = $1;}
- | main element { $1->addElt($2); $$ = $1;}
+ : main attlist { $1->addDeclarationAttributs($2); $$ = $1;}
+ | main element { $1->addDeclarationElement($2); $$ = $1;}
  |/* empty */ { doc = new DTD(); $$ = doc;}
  ;
 
 attlist
- : ATTLIST NAME att_definition CLOSE {$$ = new DeclarationAtt($2,$3);}
+ : ATTLIST NAME att_definition CLOSE {$$ = new DeclarationAttribut($2,$3);}
  ;
 
 
 element
- : ELEMENT NAME choice_or_sequence CLOSE {$$ = new DeclarationElt($2,$3);}
+ : ELEMENT NAME choice_or_sequence CLOSE {$$ = new DeclarationElement($2,$3);}
  ;
 
 choice_or_sequence
@@ -62,7 +69,7 @@ choice_or_sequence
  ;
 
 sequence
- : OPENPAR list_sequence CLOSEPAR {if ($2->size() !=1) {$$ = new ContenuSequence($2);} else {$$ = $2->begin()}}
+ : OPENPAR list_sequence CLOSEPAR {if ($2->size() !=1) {$$ = new ContenuSequence($2);} else {$$ = * $2->begin(); }}
  ;
 
 choice
@@ -74,12 +81,12 @@ list_choice_plus
  ;
 
 list_choice
- : item  {$$ = new list<Contenu>(); $$->push_back($1);}
+ : item  {$$ = new list<Contenu *>(); $$->push_back($1);}
  | list_choice PIPE item {$$ = $1; $$->push_back($3);}
  ;
 
 list_sequence
- : item  {$$ = new list<Contenu>(); $$->push_back($1)}
+ : item  {$$ = new list<Contenu *>(); $$->push_back($1)}
  | list_sequence COMMA item {$$ = $1; $$->push_back($3);}
  ;
 
@@ -100,11 +107,11 @@ cardinality
 
 att_definition
  : att_definition attribut {$$ = $1; $$->push_back($2);}
- | /* empty */ {new list<Attribut>();}
+ | /* empty */ {$$ = new list<Attribut *>();}
  ;
 
 attribut
- : NAME att_type defaut_declaration {$$ = new Attribut($1,$2,$3);}
+ : NAME att_type defaut_declaration {$$ = new Attribut; *$$ = make_pair($1, $2);}
  ;
 
 att_type

@@ -7,7 +7,7 @@ using namespace std;
 #include <string>
 
 typedef pair<string,string> Attribut;
-typedef list<Attribut> AttList;
+typedef list<Attribut *> AttList;
 typedef pair<string,string> ElementName;
 
 #ifdef DEBUG

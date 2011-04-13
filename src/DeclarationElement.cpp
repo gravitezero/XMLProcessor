@@ -8,7 +8,7 @@ DeclarationElement::DeclarationElement()
 
 }
 
-DeclarationElement::DeclarationElement(string nomElt, list<Contenu*>  contents)
+DeclarationElement::DeclarationElement(string nomElt, Contenu *contents)
 {
     //TODO
 }
@@ -29,7 +29,7 @@ string DeclarationElement::getElementName()
     return nomElement;
 }
 
-list<Contenu*> DeclarationElement::getContents()
+Contenu* DeclarationElement::getContents()
 {
     return contenus;
 }

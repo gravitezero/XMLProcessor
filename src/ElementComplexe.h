@@ -16,7 +16,7 @@ class ElementComplexe : public Element
         ElementName *getElementName();
         AttList *getAttList();
         list<Element*> *getElements();
-        void addAttribute(Attribut);
+        void addAttribute(Attribut *);
         void accept(VisitorInterface*);
         void addElement(Element*);
 	protected:

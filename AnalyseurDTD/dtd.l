@@ -5,6 +5,15 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
+
+#include "../src/DTD.h"
+#include "../src/contenusequence.h"
+#include "../src/contenuchoix.h"
+#include "../src/contenusimple.h"
+#include "../src/DeclarationElement.h"
+#include "../src/DeclarationAttribut.h"
+
+
 #include "yy.tab.h"
 
 static char* skipSpace(char *s) {

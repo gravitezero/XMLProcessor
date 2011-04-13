@@ -596,6 +596,15 @@ char *yytext;
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
+
+#include "../src/DTD.h"
+#include "../src/contenusequence.h"
+#include "../src/contenuchoix.h"
+#include "../src/contenusimple.h"
+#include "../src/DeclarationElement.h"
+#include "../src/DeclarationAttribut.h"
+
+
 #include "yy.tab.h"
 
 static char* skipSpace(char *s) {
@@ -618,7 +627,7 @@ static char* skipSpace(char *s) {
    INITIAL : en dehors d'un bloc ELEMENT ou ATTLIST
    INSIDE : dans un bloc ELEMENT ou ATTLIST
 */
-#line 622 "lex.yy.c"
+#line 631 "lex.yy.c"
 
 #define INITIAL 0
 #define INSIDE 1
@@ -806,10 +815,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 62 "dtd.l"
+#line 71 "dtd.l"
 
 
-#line 813 "lex.yy.c"
+#line 822 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -895,140 +904,140 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 64 "dtd.l"
+#line 73 "dtd.l"
 { /* skip */}
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 65 "dtd.l"
+#line 74 "dtd.l"
 {printf("%s",yytext); BEGIN(INSIDE); return ELEMENT; }
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 66 "dtd.l"
+#line 75 "dtd.l"
 {printf("%s",yytext); BEGIN(INSIDE); return ATTLIST; }
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
-#line 67 "dtd.l"
+#line 76 "dtd.l"
 {printf("%s",yytext); BEGIN(INITIAL); return CLOSE; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 68 "dtd.l"
+#line 77 "dtd.l"
 {printf("%s",yytext); return OPENPAR; }
 	YY_BREAK
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 69 "dtd.l"
+#line 78 "dtd.l"
 {printf("%s",yytext); return CLOSEPAR; }
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 70 "dtd.l"
+#line 79 "dtd.l"
 {printf("%s",yytext); return COMMA; }
 	YY_BREAK
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
-#line 71 "dtd.l"
+#line 80 "dtd.l"
 {printf("%s",yytext); return PIPE; }
 	YY_BREAK
 case 9:
 /* rule 9 can match eol */
 YY_RULE_SETUP
-#line 72 "dtd.l"
+#line 81 "dtd.l"
 {printf("%s",yytext); stringreturn(DECLARATION); }
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 73 "dtd.l"
+#line 82 "dtd.l"
 {printf("%s",yytext); return FIXED; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 74 "dtd.l"
+#line 83 "dtd.l"
 {printf("%s",yytext); return AST ; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 75 "dtd.l"
+#line 84 "dtd.l"
 {printf("%s",yytext); return QMARK ; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 76 "dtd.l"
+#line 85 "dtd.l"
 {printf("%s",yytext); return PLUS ; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 77 "dtd.l"
+#line 86 "dtd.l"
 {printf("%s",yytext); return EMPTY; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 78 "dtd.l"
+#line 87 "dtd.l"
 {printf("%s",yytext); return ANY; }
 	YY_BREAK
 case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
-#line 79 "dtd.l"
+#line 88 "dtd.l"
 {printf("%s",yytext); return PCDATA; }
 	YY_BREAK
 case 17:
 /* rule 17 can match eol */
 YY_RULE_SETUP
-#line 80 "dtd.l"
+#line 89 "dtd.l"
 {printf("%s",yytext); return CDATA; }
 	YY_BREAK
 case 18:
 /* rule 18 can match eol */
 YY_RULE_SETUP
-#line 81 "dtd.l"
+#line 90 "dtd.l"
 {printf("%s",yytext); stringreturn(STRING); }
 	YY_BREAK
 case 19:
 /* rule 19 can match eol */
 YY_RULE_SETUP
-#line 82 "dtd.l"
+#line 91 "dtd.l"
 {printf("%s",yytext); stringreturn(TOKENTYPE); }
 	YY_BREAK
 case 20:
 /* rule 20 can match eol */
 YY_RULE_SETUP
-#line 83 "dtd.l"
+#line 92 "dtd.l"
 {printf("%s",yytext); stringreturn(NAME); }
 	YY_BREAK
 case 21:
 /* rule 21 can match eol */
 YY_RULE_SETUP
-#line 84 "dtd.l"
+#line 93 "dtd.l"
 {printf("%s",yytext); /* skip comments stringreturn(COMMENT); */ }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 86 "dtd.l"
+#line 95 "dtd.l"
 {printf("%s",yytext);fprintf(stderr, "!ERROR(%c)\n", *yytext);}
 	YY_BREAK
 case 23:
 /* rule 23 can match eol */
 YY_RULE_SETUP
-#line 87 "dtd.l"
+#line 96 "dtd.l"
 {printf("%s",yytext);/* skip, must be an extra one at EOF */;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 88 "dtd.l"
+#line 97 "dtd.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 1032 "lex.yy.c"
+#line 1041 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(INSIDE):
 	yyterminate();
@@ -2027,4 +2036,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 88 "dtd.l"
+#line 97 "dtd.l"

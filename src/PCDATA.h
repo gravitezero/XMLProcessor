@@ -1,3 +1,6 @@
+#ifndef  PCDATA_H
+#define PCDATA_H
+
 #include"Contenu.h"
 
 class PCDATA : public Contenu
@@ -7,3 +10,5 @@ class PCDATA : public Contenu
 	virtual ~PCDATA();
 
 };
+
+#endif

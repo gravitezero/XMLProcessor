@@ -1,4 +1,4 @@
-#include "contenusequence.h""
+#include "contenusequence.h"
 
 ContenuSequence::ContenuSequence()
 {
@@ -6,9 +6,9 @@ ContenuSequence::ContenuSequence()
 
 
 
-ContenuSequence::ContenuSequence(list<Contenu*>  contents)
+ContenuSequence::ContenuSequence(list<Contenu*> *l)
 {
-    contenus = contents;
+    contenus = l;
 }
 
 ContenuSequence::~ContenuSequence()

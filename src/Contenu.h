@@ -1,3 +1,6 @@
+#ifndef CONTENU_H
+#define CONTENU_H
+
 #include <string>
 
 class Contenu
@@ -10,3 +13,6 @@ class Contenu
 protected:
         std::string cardinalite;
 };
+
+
+#endif

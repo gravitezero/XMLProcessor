@@ -8,7 +8,7 @@ DeclarationAttribut::DeclarationAttribut()
 
 }
 
-DeclarationAttribut::DeclarationAttribut(string elmt, list<Attribut*>  attributs)
+DeclarationAttribut::DeclarationAttribut(string elmt, list<Attribut*>  *attributs)
 {
     //TODO
 }
@@ -29,7 +29,7 @@ string DeclarationAttribut::getName()
     return nomAttribut;
 }
 
-list<Attribut*> DeclarationAttribut::getAttributes()
+list<Attribut*> *DeclarationAttribut::getAttributes()
 {
     return attributs;
 }

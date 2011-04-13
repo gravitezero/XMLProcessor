@@ -56,7 +56,7 @@ void VisitorDisplay::visit(ElementComplexe* elementComplexe)
     for(AttList::iterator it = attList->begin(); it != attList->end(); ++it)
     {
 
-        cout<<" "<< it->first<<" = \""<<it->second<<"\"";
+        cout<<" "<< (*it)->first<<" = \""<<  (*it)->second<<"\"";
     }
     cout<<">";
 

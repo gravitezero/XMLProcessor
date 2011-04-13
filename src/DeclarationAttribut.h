@@ -1,3 +1,7 @@
+#ifndef DECLARATION_ATTRIBUT_H
+#define DECLARATION_ATTRIBUT_H
+
+
 #include<string>
 #include<list>
 
@@ -11,15 +15,17 @@ class DeclarationAttribut
 {
 	public:
 	DeclarationAttribut();
-        DeclarationAttribut(string elmt, list<Attribut*>  attributs);
+        DeclarationAttribut(string elmt, list<Attribut *>  *attributs);
 	virtual ~DeclarationAttribut();
         void accept(VisitorInterface*);
         string getName();
-        list<Attribut*> getAttributes();
+        list<Attribut *> *getAttributes();
 
 	protected:
 	string nomAttribut;
-	list<Attribut*> attributs;
+	list<Attribut *> *attributs;
 
 
 };
+
+#endif

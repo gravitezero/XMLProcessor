@@ -9,11 +9,11 @@ class ContenuSequence : public Contenu
 {
 public:
     ContenuSequence();
-    ContenuSequence(list<Contenu*>);
+    ContenuSequence(list<Contenu*> *l);
     virtual ~ContenuSequence();
 
     protected:
-    list<Contenu*>  contenus;
+    list<Contenu*>  *contenus;
 };
 
 

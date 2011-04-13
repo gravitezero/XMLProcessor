@@ -30,7 +30,6 @@ XMLDocument *doc;
    Doctype *dc;
    Declaration * de;
       
-   list< pair<string,string> > * la;
    list<Declaration * > * ld;
    list<Element *> *ct;
 }
@@ -100,7 +99,7 @@ empty_or_content
  ;
 
 attributs
- : attributs NAME EQ VALUE {$$ = $1; $$->push_back(make_pair($2,$4));}
+ : attributs NAME EQ VALUE {$$ = $1; Attribut *a = new Attribut; *a = make_pair($2,$4); $$->push_back(a);}
  | /* empty */ {$$ = new AttList;}
  ;
 

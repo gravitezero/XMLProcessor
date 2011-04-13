@@ -6,9 +6,9 @@ ContenuChoix::ContenuChoix()
 
 
 
-ContenuChoix::ContenuChoix(list<Contenu*>  contents)
+ContenuChoix::ContenuChoix(list<Contenu*>  *l)
 {
-    contenus = contents;
+    contenus = l;
 }
 
 ContenuChoix::~ContenuChoix()

@@ -1,3 +1,7 @@
+#ifndef CONTENU_NON_TEXTUEL_H
+#define CONTENU_NON_TEXTUEL_H
+
+
 #include<list>
 
 #include"Contenu.h"
@@ -14,3 +18,5 @@ class ContenuNonTextuel : public Contenu
 	list<Contenu*> contenu; 
 
 };
+
+#endif
