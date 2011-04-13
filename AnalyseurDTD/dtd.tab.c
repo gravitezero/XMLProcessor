@@ -63,6 +63,14 @@
 /* Using locations.  */
 #define YYLSP_NEEDED 0
 
+/* Substitute the variable and function names.  */
+#define yyparse         dtdparse
+#define yylex           dtdlex
+#define yyerror         dtderror
+#define yylval          dtdlval
+#define yychar          dtdchar
+#define yydebug         dtddebug
+#define yynerrs         dtdnerrs
 
 
 /* Copy the first part of user declarations.  */
@@ -85,16 +93,16 @@ using namespace std;
 #include "../src/DeclarationElement.h"
 #include "../src/DeclarationAttribut.h"
 
-void yyerror(char *msg);
-int yywrap(void);
-int yylex(void);
+void dtderror(char *msg);
+int dtdwrap(void);
+int dtdlex(void);
 
 DTD *doc;
 
 
 
 /* Line 189 of yacc.c  */
-#line 98 "dtd.tab.c"
+#line 106 "dtd.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -164,7 +172,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 168 "dtd.tab.c"
+#line 176 "dtd.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -176,7 +184,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 180 "dtd.tab.c"
+#line 188 "dtd.tab.c"
 
 #ifdef short
 # undef short
@@ -1590,7 +1598,7 @@ yyreduce:
 
 
 /* Line 1455 of yacc.c  */
-#line 1594 "dtd.tab.c"
+#line 1602 "dtd.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1804,22 +1812,49 @@ yyreturn:
 /* Line 1675 of yacc.c  */
 #line 150 "dtd.y"
 
+int dtdparse(void);
+extern FILE * dtdin;
+
 int main(int argc, char **argv)
 {
-  int err;
-  yydebug=1;
+/*  int err;
+  dtddebug=1;
 
-  err = yyparse();
+  err = dtdparse();
   if (err != 0) printf("Parse ended with %d error(s)\n", err);
         else  printf("Parse ended with sucess\n", err);
+  return 0;*/
+
+ /* Analyse DTD */
+  int err = -1;
+  int errDTD;
+
+  FILE * fidDTD;
+
+  fidDTD = fopen(argv[2], "r");
+  dtdin  = fidDTD;
+
+  errDTD = dtdparse();
+  fclose(fidDTD);
+
+  if (errDTD != 0) printf("Parse DTD ended with %d error(s)\n", errDTD);
+  	else  printf("Parse DTD ended with sucess\n", errDTD);
+
+
   return 0;
+
+
+
+
 }
-int yywrap(void)
+
+
+int dtdwrap(void)
 {
   return 1;
 }
 
-void yyerror(char *msg)
+void dtderror(char *msg)
 {
   fprintf(stderr, "%s\n", msg);
 }

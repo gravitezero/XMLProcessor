@@ -137,7 +137,7 @@ int main(int argc, char **argv)
   int err = -1;
   int errXML;
 
-  FILE *fidXML, *fidDTD;
+  FILE *fidXML;
 
 
   if(argc != 2){

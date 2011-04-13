@@ -8,14 +8,16 @@ DeclarationElement::DeclarationElement()
 
 }
 
-DeclarationElement::DeclarationElement(string nomElt, Contenu *contents)
+DeclarationElement::DeclarationElement(string n, Contenu *c)
 {
-    //TODO
+	nomElement = n;
+	contenu = c;
+	
 }
 
 DeclarationElement::~DeclarationElement()
 {
-
+	delete contenu;
 }
 
 void DeclarationElement::accept(VisitorInterface * visitor)
@@ -29,7 +31,7 @@ string DeclarationElement::getElementName()
     return nomElement;
 }
 
-Contenu* DeclarationElement::getContents()
+Contenu* DeclarationElement::getContent()
 {
-    return contenus;
+    return contenu;
 }

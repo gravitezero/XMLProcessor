@@ -22,7 +22,7 @@ class DeclarationAttribut
         list<Attribut *> *getAttributes();
 
 	protected:
-	string nomAttribut;
+	string nomElement;
 	list<Attribut *> *attributs;
 
 
