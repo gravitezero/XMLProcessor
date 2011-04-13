@@ -8,6 +8,7 @@ ElementComplexe::ElementComplexe(ElementName *name)
 
 {
 	elementName = new ElementName(name->first,name->second);	
+
 /*	elementName.first = name.first;
         elementName.second = name.second;*/
 }

@@ -14,7 +14,11 @@ Declaration::Declaration(AttList *a)
 
 Declaration::~Declaration()
 {
-
+	for (AttList::const_iterator it; it = attributs->begin(); it != attributs->end(); ++it)
+	{
+		delete (*it);
+	}
+	delete attributs;
 }
 
 
