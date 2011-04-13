@@ -10,6 +10,7 @@ class ContenuSequence : public Contenu
 public:
     ContenuSequence();
     ContenuSequence(list<Contenu*> *l);
+    void setCardinality(string c);
     virtual ~ContenuSequence();
 
     protected:

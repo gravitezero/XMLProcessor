@@ -1,0 +1,114 @@
+digraph G {
+
+####################################
+
+## HOW TO DO
+
+## Placer les bonnes légendes lorsqu'une tâche change de status.
+
+####################################
+
+subgraph cluster99
+{label="Légende"
+
+    pascommence [label="pas commençé"]
+    encours [label="en cours de réalisation" color=orange]
+    fini [label="finie" color=green]
+}
+
+subgraph cluster01
+{ label="Analyse syntaxique"
+
+    step11 [label="3.1.1 Compilation des sources fournies" color=green]
+
+    step12 [label="3.1.2 Completer la grammaire des DTD" color=green]
+
+    step13 [label="3.1.3 Réalisation d'un analyseur de XML" color=orange]
+    
+    step11 -> step12 -> step13
+    
+}
+    
+subgraph cluster02
+{ label="Construction des structures de données"
+
+    step21 [label="3.2.1 Définir la structure\ndes arbres XML et de la DTD" color=green]
+
+    step22 [label="3.2.1 Definir les actions\nde construction de ces arbres"]
+
+    step23 [label="3.2.1 Utiliser ces actions\ndans les règles d'analyse"]
+    
+    result21 [ shape=box label="structure interne\nrepresentant le document XML" color=green]
+    
+    result22 [ shape=box label="structure interne\nrepresentant la DTD" color=green]
+    
+    step24 [label="Coder classe du document XML" color=orange]
+    
+    step25 [label="Coder classe de la DTD" color=orange]
+    
+    step21 -> step22 -> step23 -> result21 -> step24
+    step23 -> result22 -> step25
+
+    step26 [label="Realiser l'affichage\ndu contenu du document XML"]
+
+    step27 [label="Realiser l'affichage\ndu contenu de la DTD"]
+    
+    result23 [shape=box label="Placer les methode d'affichage\ndans la classe du document XML"]
+    
+    result24 [shape=box label="Placer les methode d'affichage\ndans la classe de la DTD"]
+    
+    result21 -> step26 -> result23
+    result22 -> step27 -> result24
+
+}
+
+subgraph cluster03
+{ label="Vérification des conditions de validité"
+
+    step31 [label="Ecrire la méthode\nde vérification d'un arbre XML\nsuivant une DTD"]
+
+}
+
+subgraph cluster04
+{ label="Analyse de la feuille de style"
+    
+    step41 [label="Ecrire un analyseur\nde feuille de style qui\nconstruit un arbre xslt"]
+    
+    step42 [label="Ecrire la DTD\nd'une feuille de style simplifiée"]
+
+
+    step31 -> step41 -> step42
+    result23 -> step41
+    result24 -> step41
+    step24 -> step41
+    step25 -> step41
+    step13 -> step41
+}
+
+subgraph cluster05
+{ label="Transformation d'arbre"
+
+    step51 [label="Ecrire les templates de traitement\nd'un rapport pour fabriquer\nune structure representant le document HTML"]
+
+    step52 [label="Ecrire un programme de traitement\ndes templates contenus dans\nune feuille de style"]
+    
+    step51 -> step52
+
+}
+
+subgraph cluster06
+{ label="Intégration"
+    
+    step61 [label="Intégrer tout les précédents élements"]
+    
+    step13 -> step61
+    result23 -> step61
+    result24 -> step61
+    step31 -> step61
+    step52 -> step61
+    
+}
+
+
+
+}
