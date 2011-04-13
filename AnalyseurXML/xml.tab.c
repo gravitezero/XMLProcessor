@@ -63,6 +63,14 @@
 /* Using locations.  */
 #define YYLSP_NEEDED 0
 
+/* Substitute the variable and function names.  */
+#define yyparse         xmlparse
+#define yylex           xmllex
+#define yyerror         xmlerror
+#define yylval          xmllval
+#define yychar          xmlchar
+#define yydebug         xmldebug
+#define yynerrs         xmlnerrs
 
 
 /* Copy the first part of user declarations.  */
@@ -83,16 +91,16 @@
 
 using namespace std;
 
-int yywrap(void);
-void yyerror(char *msg);
-int yylex(void);
+int xmlwrap(void);
+void xmlerror(char *msg);
+int xmllex(void);
 
 XMLDocument *doc;
 
 
 
 /* Line 189 of yacc.c  */
-#line 96 "xml.tab.c"
+#line 104 "xml.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -161,7 +169,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 165 "xml.tab.c"
+#line 173 "xml.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -173,7 +181,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 177 "xml.tab.c"
+#line 185 "xml.tab.c"
 
 #ifdef short
 # undef short
@@ -1556,7 +1564,7 @@ yyreduce:
 
 
 /* Line 1455 of yacc.c  */
-#line 1560 "xml.tab.c"
+#line 1568 "xml.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1770,22 +1778,48 @@ yyreturn:
 /* Line 1675 of yacc.c  */
 #line 123 "xml.y"
 
+int xmlparse(void);
+extern FILE * xmlin;
+
 
 int main(int argc, char **argv)
 {
-  int err;
+ /* int err;
 
-  err = yyparse();
+  err = xmlparse();
   if (err != 0) printf("Parse ended with %d error(s)\n", err);
-  	else  printf("Parse ended with sucess\n", err);
+  	else  printf("Parse ended with sucess\n", err);*/
+
+  int err = -1;
+  int errXML;
+
+  FILE *fidXML, *fidDTD;
+
+
+  if(argc != 2){
+ 	printf("Parse ended with %d error(s)\n", err);
+  }
+
+  /* Analyse XML */
+  fidXML = fopen(argv[1], "r");
+  xmlin  = fidXML;
+
+  errXML = xmlparse();
+  fclose(fidXML);
+  if (errXML != 0) printf("Parse XML ended with %d error(s)\n", errXML);
+  	else  printf("Parse XML ended with sucess\n", errXML);
+
+
+
+
   return 0;
 }
-int yywrap(void)
+int xmlwrap(void)
 {
   return 1;
 }
 
-void yyerror(char *msg)
+void xmlerror(char *msg)
 {
   fprintf(stderr, "%s\n", msg);
 }
