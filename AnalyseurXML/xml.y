@@ -9,6 +9,7 @@
 #include "../src/Doctype.h"
 #include "../src/ElementComplexe.h"
 #include "../src/ElementTextuel.h"
+#include "../src/VisitorDisplay.h"
 
 using namespace std;
 
@@ -149,10 +150,17 @@ int main(int argc, char **argv)
 
   errXML = xmlparse();
   fclose(fidXML);
-  if (errXML != 0) printf("Parse XML ended with %d error(s)\n", errXML);
-  	else  printf("Parse XML ended with sucess\n", errXML);
+  if (errXML != 0)
+  { 
+	printf("Parse XML ended with %d error(s)\n", errXML);
+  }
+  else
+  {
+	printf("Parse XML ended with sucess\n", errXML);
+	doc->accept(new VisitorDisplay());
+  }
 
-
+	
 
 
   return 0;

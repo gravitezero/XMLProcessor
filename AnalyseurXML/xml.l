@@ -14,6 +14,7 @@
 #include "../src/Doctype.h"
 #include "../src/ElementComplexe.h"
 #include "../src/ElementTextuel.h"
+#include "../src/VisitorDisplay.h"
 
 #include "xml.tab.h"
 

@@ -12,14 +12,13 @@ using namespace std;
 class VisitorInterface;
 
 class XMLDocument{
-	public :
+public :
 	XMLDocument();
 	virtual ~XMLDocument();
         void setElement(Element *);
 	void setHeader(list<Declaration *> *l);
         void accept(VisitorInterface * visitor);
-
-	private:
+private:
         Element *element;
 	list<Declaration *> *header;
 	
