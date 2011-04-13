@@ -81,7 +81,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 85 "yy.tab.h"
+#line 85 "xml.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
