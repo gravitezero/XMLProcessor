@@ -24,3 +24,10 @@ void ContenuSequence::setCardinality(std::string card)
 {
 	cardinalite = card;
 }
+
+
+
+list<Contenu *> *ContenuSequence::getContent()
+{
+	return contenus;
+}

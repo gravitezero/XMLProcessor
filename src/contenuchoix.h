@@ -14,7 +14,7 @@ public:
     ContenuChoix(list<Contenu*> *l);
     void setCardinality(std::string card);
     virtual ~ContenuChoix();
-
+    list<Contenu *> *getContent();
     protected:
     list<Contenu*>  *contenus;
 

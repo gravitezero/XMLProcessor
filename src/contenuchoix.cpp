@@ -24,3 +24,9 @@ void ContenuChoix::setCardinality(std::string card)
 {
 	cardinalite = card;
 }
+
+
+list<Contenu *> *ContenuChoix::getContent()
+{
+	return contenus;
+}

@@ -41,23 +41,24 @@
    enum yytokentype {
      ELEMENT = 258,
      ATTLIST = 259,
-     CLOSE = 260,
-     OPENPAR = 261,
-     CLOSEPAR = 262,
-     COMMA = 263,
-     PIPE = 264,
-     FIXED = 265,
-     EMPTY = 266,
-     ANY = 267,
-     PCDATA = 268,
-     AST = 269,
-     QMARK = 270,
-     PLUS = 271,
-     CDATA = 272,
-     NAME = 273,
-     TOKENTYPE = 274,
-     DECLARATION = 275,
-     STRING = 276
+     OPEN = 260,
+     CLOSE = 261,
+     OPENPAR = 262,
+     CLOSEPAR = 263,
+     COMMA = 264,
+     PIPE = 265,
+     FIXED = 266,
+     EMPTY = 267,
+     ANY = 268,
+     PCDATA = 269,
+     AST = 270,
+     QMARK = 271,
+     PLUS = 272,
+     CDATA = 273,
+     NAME = 274,
+     TOKENTYPE = 275,
+     DECLARATION = 276,
+     STRING = 277
    };
 #endif
 
@@ -82,7 +83,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 86 "dtd.tab.h"
+#line 87 "dtd.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
