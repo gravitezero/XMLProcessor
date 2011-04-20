@@ -92,7 +92,7 @@ list_sequence
 
 item /*on renvoie un contenu*/
  : NAME cardinality {$$ = new ContenuSimple($1,doc); $$->setCardinality($2);}
- | PCDATA {$$ = new ContenuSimple("#PCDATA",doc);}
+ | PCDATA {$$ = new ContenuSimple("#PCDATA",0);}
  | choice_or_sequence cardinality {$1->setCardinality($2); $$ = $1;}
  ;
 

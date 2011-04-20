@@ -1,6 +1,6 @@
 #include "XMLDocument.h"
 #include "VisitorInterface.hpp"
-
+#include <cstdio>
 
 
 

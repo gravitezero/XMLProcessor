@@ -48,4 +48,39 @@
     \end{algorithm}
         
     \subsection{Transformation}
-        %TODO ici l'algo fait par Baptiste
+     Algorithme de transformation XSLT :
+
+	Transformation(ArbreXML, arbre XSLT)
+	
+		prendre l'element dont l'attribut est "\" du XSLT, pour construire la racine de l'arbre de retour.
+		Tranformer(root, XSLT("/"))
+	
+	Transformer(Element, ArbreXSLT)	
+		Ajouter à l'arbre le XSL de l'élement.
+		Chercher l'element <xsl:apply-templates/>, pour le remplacer par soit:
+			- pour chaque fils, réécrire le contenu XSL de l'élement, et appeler transformation(fils, ) 
+			- le contenu XML de l'élément.
+
+ 
+	\paragraph{Explication} Il s'agit de parcourir les arbres XML et XSLT de haut en bas de façon indépendante.
+	On commence par pointer sur la racine de l'arbre XML (/). On recherche dans l'arbre XSLT l'élément "template" dont l'attribut "match" est égal à "/".
+	On recopie l'ensemble de ces fils dans l'arbre HTML. Lorsque l'on tombe sur la feuille "apply_templates", on retourne sur l'arbre XML et on vérifie que l'élément actuellement pointé à des fils. Si c'est le cas on pointe sur le premier fils, et on recommence la même opération. Si l'élément pointé n'a pas de fils alors on inscrit dans l'arbre HTML le contenu de l'élément XML. On remonte ensuite dans l'arbre XML et on passe à l'élément suivant jusqu'à la fin du parcours de l'arbre XML.
+
+	\paragraph{Exemple}
+	On pointe sur "rapport" dans l'arbre XML
+	\includegraphics[width=0.7\textwidth]{img/XMLa}\\
+	On recherche dans l'arbre XSLT l'élément "template" dont l'attribut "match" vaut "rapport"
+	\includegraphics[width=0.7\textwidth]{img/XSLTa}\\
+	On recopie les éléments fils de cette élément 
+	\includegraphics[width=0.7\textwidth]{img/HTMLa}\\
+	On remarque que cette arbre à une feuille "apply-templates". On retourne donc sur l'arbre XML et on pointe sur le premier fils de "rapport" soit "titre"
+	\includegraphics[width=0.7\textwidth]{img/XMLb}\\
+	On recherche dans l'arbre XSLT l'élément "template" dont l'attribut "match" vaut "titre"
+	\includegraphics[width=0.7\textwidth]{img/XSLTb}\\
+	On recopie les éléments fils de cette élément 
+	\includegraphics[width=0.7\textwidth]{img/HTMLb}\\
+	Et ainsi de suite jusqu'à l'arbre suivant : 
+	On recherche dans l'arbre XSLT l'élément "template" dont l'attribut "match" vaut "rapport"
+	\includegraphics[width=0.7\textwidth]{img/XSLTa}\\
+	On recopie les éléments fils de cette élément 
+	\includegraphics[width=0.7\textwidth]{img/ArbreHTML}\\

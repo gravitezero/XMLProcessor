@@ -24,7 +24,7 @@
 	</xsl:template>
 
 	<xsl:template match="prenom">
-		<xsl:apply-templates/>
+		<b><xsl:apply-templates/></b>
 	</xsl:template>
 
 	<xsl:template match="nom">

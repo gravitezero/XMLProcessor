@@ -58,24 +58,27 @@ void VisitorDisplay::visit(ElementComplexe* elementComplexe)
 
         cout<<" "<< (*it)->first<<" = \""<<  (*it)->second<<"\"";
     }
-    cout<<">";
+ 
 
     //récupérer les fils
     //Appeler les petits
-    list<Element*> *elementList(elementComplexe->getElements());
+	if (elementComplexe->getElements() != NULL)
+	{
+	   cout<<">"<<endl;
+	 
+	   list<Element*> *elementList(elementComplexe->getElements());
+	    for(list<Element*> ::iterator it = elementList->begin(); it != elementList->end(); ++it)
+	    {
+    		(*it)->accept(this);
+        }
 
-    for(list<Element*> ::iterator it = elementList->begin(); it != elementList->end(); ++it)
-    {
+	    //Fermer la balise de l'élément
 
-        (*it)->accept(this);
+	    cout<<"</"<<name<<">"<<endl;
 
-    }
-
-    //Fermer la balise de l'élément
-
-    cout<<"</"<<name<<">";
-
-
+	} else
+        cout<<"/>"<<endl;
+    
 
 
 }
