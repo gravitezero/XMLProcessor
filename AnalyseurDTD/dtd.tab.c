@@ -1523,7 +1523,7 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 95 "dtd.y"
-    {(yyval.content) = new ContenuSimple("#PCDATA",doc);;}
+    {(yyval.content) = new ContenuSimple("#PCDATA",0);;}
     break;
 
   case 18:

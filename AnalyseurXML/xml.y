@@ -100,7 +100,7 @@ empty_or_content
  ;
 
 attributs
- : attributs NAME EQ VALUE {$$ = $1; Attribut *a = new Attribut; *a = make_pair($2,$4); $$->push_back(a);}
+ : attributs name_or_nsname_opt EQ VALUE {$$ = $1; Attribut *a = new Attribut; *a = make_pair($2,$4); $$->push_back(a);}
  | /* empty */ {$$ = new AttList;}
  ;
 
@@ -157,6 +157,7 @@ int main(int argc, char **argv)
   else
   {
 	printf("Parse XML ended with sucess\n", errXML);
+	
 	doc->accept(new VisitorDisplay());
   }
 

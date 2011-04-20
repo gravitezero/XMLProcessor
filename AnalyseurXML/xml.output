@@ -30,7 +30,7 @@ Grammaire
    13 empty_or_content: SLASH CLOSE
    14                 | close_content_and_end name_or_nsname_opt CLOSE
 
-   15 attributs: attributs NAME EQ VALUE
+   15 attributs: attributs name_or_nsname_opt EQ VALUE
    16          | /* vide */
 
    17 name_or_nsname_opt: NAME
@@ -59,7 +59,7 @@ ENCODING (264)
 VALUE (265) 8 15
 DATA (266) 21
 COMMENT (267) 4
-NAME (268) 8 15 17
+NAME (268) 8 17
 NSNAME (269) 18
 NSSTART (270) 12
 START (271) 11
@@ -91,7 +91,7 @@ empty_or_content (27)
 attributs (28)
     à gauche: 15 16, à droite: 9 10 15
 name_or_nsname_opt (29)
-    à gauche: 17 18 19, à droite: 14
+    à gauche: 17 18 19, à droite: 14 15
 close_content_and_end (30)
     à gauche: 20, à droite: 14
 content (31)
@@ -211,10 +211,15 @@ content (31)
 état 13
 
     9 declaration: STARTSPECIAL attributs . CLOSESPECIAL
-   15 attributs: attributs . NAME EQ VALUE
+   15 attributs: attributs . name_or_nsname_opt EQ VALUE
 
     CLOSESPECIAL  décalage et aller à l'état 17
     NAME          décalage et aller à l'état 18
+    NSNAME        décalage et aller à l'état 19
+
+    $défaut  réduction par utilisation de la règle 19 (name_or_nsname_opt)
+
+    name_or_nsname_opt  aller à l'état 20
 
 
 état 14
@@ -222,31 +227,35 @@ content (31)
     1 document: declarations element misc_seq_opt .
     2 misc_seq_opt: misc_seq_opt . misc
 
-    COMMENT  décalage et aller à l'état 19
+    COMMENT  décalage et aller à l'état 21
 
     $défaut  réduction par utilisation de la règle 1 (document)
 
-    misc  aller à l'état 20
+    misc  aller à l'état 22
 
 
 état 15
 
    10 element: start attributs . empty_or_content
-   15 attributs: attributs . NAME EQ VALUE
+   15 attributs: attributs . name_or_nsname_opt EQ VALUE
 
-    SLASH  décalage et aller à l'état 21
-    CLOSE  décalage et aller à l'état 22
-    NAME   décalage et aller à l'état 18
+    SLASH   décalage et aller à l'état 23
+    CLOSE   décalage et aller à l'état 24
+    NAME    décalage et aller à l'état 18
+    NSNAME  décalage et aller à l'état 19
 
-    empty_or_content       aller à l'état 23
-    close_content_and_end  aller à l'état 24
+    $défaut  réduction par utilisation de la règle 19 (name_or_nsname_opt)
+
+    empty_or_content       aller à l'état 25
+    name_or_nsname_opt     aller à l'état 20
+    close_content_and_end  aller à l'état 26
 
 
 état 16
 
     8 doctype: DOCTYPE NAME NAME . VALUE CLOSE
 
-    VALUE  décalage et aller à l'état 25
+    VALUE  décalage et aller à l'état 27
 
 
 état 17
@@ -258,82 +267,96 @@ content (31)
 
 état 18
 
-   15 attributs: attributs NAME . EQ VALUE
+   17 name_or_nsname_opt: NAME .
 
-    EQ  décalage et aller à l'état 26
+    $défaut  réduction par utilisation de la règle 17 (name_or_nsname_opt)
 
 
 état 19
+
+   18 name_or_nsname_opt: NSNAME .
+
+    $défaut  réduction par utilisation de la règle 18 (name_or_nsname_opt)
+
+
+état 20
+
+   15 attributs: attributs name_or_nsname_opt . EQ VALUE
+
+    EQ  décalage et aller à l'état 28
+
+
+état 21
 
     4 misc: COMMENT .
 
     $défaut  réduction par utilisation de la règle 4 (misc)
 
 
-état 20
+état 22
 
     2 misc_seq_opt: misc_seq_opt misc .
 
     $défaut  réduction par utilisation de la règle 2 (misc_seq_opt)
 
 
-état 21
+état 23
 
    13 empty_or_content: SLASH . CLOSE
 
-    CLOSE  décalage et aller à l'état 27
+    CLOSE  décalage et aller à l'état 29
 
 
-état 22
+état 24
 
    20 close_content_and_end: CLOSE . content END
 
     $défaut  réduction par utilisation de la règle 24 (content)
 
-    content  aller à l'état 28
+    content  aller à l'état 30
 
 
-état 23
+état 25
 
    10 element: start attributs empty_or_content .
 
     $défaut  réduction par utilisation de la règle 10 (element)
 
 
-état 24
+état 26
 
    14 empty_or_content: close_content_and_end . name_or_nsname_opt CLOSE
 
-    NAME    décalage et aller à l'état 29
-    NSNAME  décalage et aller à l'état 30
+    NAME    décalage et aller à l'état 18
+    NSNAME  décalage et aller à l'état 19
 
     $défaut  réduction par utilisation de la règle 19 (name_or_nsname_opt)
 
     name_or_nsname_opt  aller à l'état 31
 
 
-état 25
+état 27
 
     8 doctype: DOCTYPE NAME NAME VALUE . CLOSE
 
     CLOSE  décalage et aller à l'état 32
 
 
-état 26
+état 28
 
-   15 attributs: attributs NAME EQ . VALUE
+   15 attributs: attributs name_or_nsname_opt EQ . VALUE
 
     VALUE  décalage et aller à l'état 33
 
 
-état 27
+état 29
 
    13 empty_or_content: SLASH CLOSE .
 
     $défaut  réduction par utilisation de la règle 13 (empty_or_content)
 
 
-état 28
+état 30
 
    20 close_content_and_end: CLOSE content . END
    21 content: content . DATA
@@ -342,27 +365,13 @@ content (31)
 
     END      décalage et aller à l'état 34
     DATA     décalage et aller à l'état 35
-    COMMENT  décalage et aller à l'état 19
+    COMMENT  décalage et aller à l'état 21
     NSSTART  décalage et aller à l'état 5
     START    décalage et aller à l'état 6
 
     misc     aller à l'état 36
     element  aller à l'état 37
     start    aller à l'état 11
-
-
-état 29
-
-   17 name_or_nsname_opt: NAME .
-
-    $défaut  réduction par utilisation de la règle 17 (name_or_nsname_opt)
-
-
-état 30
-
-   18 name_or_nsname_opt: NSNAME .
-
-    $défaut  réduction par utilisation de la règle 18 (name_or_nsname_opt)
 
 
 état 31
@@ -381,7 +390,7 @@ content (31)
 
 état 33
 
-   15 attributs: attributs NAME EQ VALUE .
+   15 attributs: attributs name_or_nsname_opt EQ VALUE .
 
     $défaut  réduction par utilisation de la règle 15 (attributs)
 
