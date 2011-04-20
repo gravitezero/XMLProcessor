@@ -2,9 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
 	<xsl:template match="/">
-	<HTML>
 		<xsl:apply-templates/>
-	</HTML>
 	</xsl:template>
 
 	<xsl:template match="rapport">
@@ -26,7 +24,7 @@
 	</xsl:template>
 
 	<xsl:template match="prenom">
-		<xsl:apply-templates/>
+		<b><xsl:apply-templates/></b>
 	</xsl:template>
 
 	<xsl:template match="nom">
