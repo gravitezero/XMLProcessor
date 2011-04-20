@@ -12,6 +12,7 @@ class Element{
    // Element();
    // virtual ~Element();
     virtual void accept(VisitorInterface*) = 0;
+    virtual string build(VisitorInterface*) = 0;
 
 
 

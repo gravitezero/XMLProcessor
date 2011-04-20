@@ -11,11 +11,15 @@ class VisitorDisplay : public VisitorInterface{
 	public:
 	VisitorDisplay();
 	virtual ~ VisitorDisplay();
-	void visit(ElementTextuel* elementTextuel);
-	void visit(ElementComplexe* elementComplexe);
-        virtual void visit(DeclarationElement* declarationElement);
-        virtual void visit(DeclarationAttribut* declarationAttribut);
-	
+        void visit(ElementTextuel* elementTextuel);
+        void visit(ElementComplexe* elementComplexe);
+        virtual std::string build(ElementTextuel* elementTextuel) ;
+        virtual std::string build(ElementComplexe* elementComplexe) ;
+        std::string build(DeclarationElement* declarationElement);
+        std::string build(DeclarationAttribut* declarationAttribut);
+        std::string build(ContenuSimple*);
+        std::string build(ContenuChoix*);
+        std::string build(ContenuSequence*);
 
 
 	

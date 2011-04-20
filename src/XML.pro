@@ -24,8 +24,14 @@ SOURCES += main.cpp \
     ElementComplexe.cpp \
     ElementTextuel.cpp \
     PCDATA.cpp \
-    XML.cpp \
-    VisitorDisplay.cpp
+    XMLDocument.cpp \
+    VisitorDisplay.cpp \
+    Doctype.cpp \
+    visitorbuild.cpp \
+    Declaration.cpp \
+    contenuchoix.cpp \
+    contenusequence.cpp \
+    contenusimple.cpp
 
 HEADERS += \
     commun.h \
@@ -37,7 +43,13 @@ HEADERS += \
     ElementComplexe.h \
     ElementTextuel.h \
     PCDATA.h \
-    XML.h \
+    XMLDocument.h \
     VisitorDisplay.h \
     VisitorInterface.hpp \
-    Element.hpp
+    Element.hpp \
+    Doctype.h \
+    visitorbuild.h \
+    Declaration.h \
+    contenuchoix.h \
+    contenusequence.h \
+    contenusimple.h

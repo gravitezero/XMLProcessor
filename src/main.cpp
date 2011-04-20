@@ -5,42 +5,72 @@
 #include "ElementTextuel.h"
 #include "VisitorInterface.hpp"
 #include "VisitorDisplay.h"
-#include "XML.h"
+#include "visitorbuild.h"
+#include "XMLDocument.h"
+#include "contenusimple.h"
+#include "contenusequence.h"
+#include "contenuchoix.h"
+#include "DTD.h"
+#include "commun.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    //QCoreApplication a(argc, argv);
 
-    //Element Complexe 1 : document
-    ElementName nom1;
-    nom1.first = "";
-    nom1.second = "Document";
-    ElementComplexe* document = new ElementComplexe(nom1);
-    document->addAttribute(make_pair("color","red"));
-    document->addAttribute(make_pair("title","book"));
 
-    //Element Complexe 2 : title
-    ElementName nom2;
-    nom2.first = "";
-    nom2.second = "Title";
-    ElementComplexe* title = new ElementComplexe(nom2);
+    DTD* dtd = new DTD();
 
-    //Ajouter title a document
-    document->addElement(title);
+    XMLDocument *xml = new XMLDocument();
+    ElementName *nom = new ElementName();
+    nom->first = "";
+    nom->second = "auteur";
 
-    //Element textuel : texte
-    ElementTextuel* texte = new ElementTextuel("Exemple XML");
 
-    title->addElement(texte);
+    //ElementComplexe(ElementName *n, AttList *a, list<Element *> *e);
+    list<Element*>* listElt = new list<Element*>;
+    AttList* attList = new AttList();
+    Attribut *att = new Attribut();
+    att->first = "nom";
+    att->second = "Byfall";
+    ElementComplexe* auteurXML = new ElementComplexe(nom, attList, listElt);
+    //auteurXML->addAttribute(att);
 
-    XML xml;
-    xml.addElement(document);
-    //xml.addElement(title);
+    ElementName *nomLivre = new ElementName();
+    nomLivre->first = "";
+    nomLivre->second = "livre";
 
-    xml.accept(new VisitorDisplay());
-    //document->accept(new VisitorDisplay());
 
-    std::cout<<"XXXXXXXXXXXXXXXXXXX"<<std::endl;
-    return a.exec();
+
+    ElementTextuel* text = new ElementTextuel("Chacha");
+
+
+    AttList* attList2 = new AttList();
+    ElementComplexe* livreXML = new ElementComplexe(nom, attList2, listElt);
+    livreXML->addElement(text);
+    auteurXML->addElement(livreXML);
+  //  cout<<xml->build(new VisitorDisplay());
+
+
+
+    //DTD
+    ContenuSimple *livre = new ContenuSimple("livre",dtd);
+    ContenuSimple *pcdata = new ContenuSimple("#PCDATA",dtd);
+
+
+
+
+    DeclarationElement* elementRacine = new DeclarationElement("auteur", livre);
+    DeclarationElement* eltA = new DeclarationElement("livre", pcdata);
+
+
+    dtd->addDeclarationElement(elementRacine);
+    dtd->addDeclarationElement(eltA);
+
+
+
+    std::cout<<dtd->accept(new VisitorBuild())<<std::endl;
+    std::cout<<"Fin"<<std::endl;
+
+    return 0;
 
 }

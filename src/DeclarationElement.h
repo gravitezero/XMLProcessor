@@ -1,3 +1,6 @@
+#ifndef DECLARATION_ELEMENT_H
+#define DECLARATION_ELEMENT_H
+
 #include<string>
 #include<list>
 
@@ -12,14 +15,16 @@ class DeclarationElement
 {
 	public:
 	DeclarationElement();
-        DeclarationElement(string nomElt, list<Contenu*>  contents);
+        DeclarationElement(string nomElt, Contenu *contents);
 	virtual ~DeclarationElement();
-        void accept(VisitorInterface*);
+        string accept(VisitorInterface*);
         string getElementName();
-        list<Contenu*> getContents();
+        Contenu *getContents();
 
 	protected:
-	list<Contenu*> contenus;
+	Contenu *contenus;
 	string nomElement; 
 	
 };
+
+#endif

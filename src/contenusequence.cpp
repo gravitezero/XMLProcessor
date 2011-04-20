@@ -1,4 +1,5 @@
-#include "contenusequence.h""
+#include "contenusequence.h"
+#include "VisitorInterface.hpp"
 
 ContenuSequence::ContenuSequence()
 {
@@ -6,12 +7,25 @@ ContenuSequence::ContenuSequence()
 
 
 
-ContenuSequence::ContenuSequence(list<Contenu*>  contents)
+ContenuSequence::ContenuSequence(list<Contenu*> *l)
 {
-    contenus = contents;
+
+    contenus = l;
 }
 
 ContenuSequence::~ContenuSequence()
 {
 
+}
+
+
+std::string ContenuSequence::accept(VisitorInterface* v)
+{
+    return v->build(this);
+
+}
+
+list<Contenu*> * ContenuSequence::getContents()
+{
+    return contenus;
 }

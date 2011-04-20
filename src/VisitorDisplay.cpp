@@ -38,8 +38,8 @@ void VisitorDisplay::visit(ElementTextuel* elementTextuel)
 void VisitorDisplay::visit(ElementComplexe* elementComplexe)
 {
     cout<<"<";
-    string ns(elementComplexe->getElementName().first);
-    string name(elementComplexe->getElementName().second);
+    string ns(elementComplexe->getElementName()->first);
+    string name(elementComplexe->getElementName()->second);
     if (ns.compare("") != 0)
     {
            ns+=":";
@@ -50,21 +50,21 @@ void VisitorDisplay::visit(ElementComplexe* elementComplexe)
 
     cout<<name;
     //Récupérer la liste des attributs
-    AttList attList = elementComplexe->getAttList();
+    AttList *attList = elementComplexe->getAttList();
 
-      //Parcours de la liste et affichage des attributs
-    for(AttList::iterator it = attList.begin(); it != attList.end(); ++it)
+    //Parcours de la liste et affichage des attributs
+    for(AttList::iterator it = attList->begin(); it != attList->end(); ++it)
     {
 
-        cout<<" "<< it->first<<" = \""<<it->second<<"\"";
+        cout<<" "<< (*it)->first<<" = \""<<  (*it)->second<<"\"";
     }
     cout<<">";
 
     //récupérer les fils
     //Appeler les petits
-    list<Element*> elementList(elementComplexe->getElements());
+    list<Element*> *elementList(elementComplexe->getElements());
 
-    for(list<Element*> ::iterator it = elementList.begin(); it != elementList.end(); ++it)
+    for(list<Element*> ::iterator it = elementList->begin(); it != elementList->end(); ++it)
     {
 
         (*it)->accept(this);
@@ -80,11 +80,39 @@ void VisitorDisplay::visit(ElementComplexe* elementComplexe)
 
 }
 
-void VisitorDisplay::visit(DeclarationElement* declarationElement)
+std::string VisitorDisplay::build(ElementTextuel* elementTextuel)
 {
 
 }
-void VisitorDisplay::visit(DeclarationAttribut* declarationAttribut)
+
+std::string VisitorDisplay::build(ElementComplexe* elementComplexe)
 {
-    //TODO
+
 }
+
+std::string VisitorDisplay::build(DeclarationElement* declarationElement)
+{
+
+}
+
+std::string VisitorDisplay::build(DeclarationAttribut* declarationAttribut)
+{
+
+}
+
+std::string VisitorDisplay::build(ContenuSimple*)
+{
+
+}
+
+std::string VisitorDisplay::build(ContenuChoix*)
+{
+
+}
+
+std::string VisitorDisplay::build(ContenuSequence*)
+{
+
+}
+
+

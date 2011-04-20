@@ -4,16 +4,22 @@
 
 
 
-ElementComplexe::ElementComplexe(ElementName name)
+ElementComplexe::ElementComplexe(ElementName *name)
 
 {
-        elementName.first = name.first;
-        elementName.second = name.second;
+	elementName = new ElementName(name->first,name->second);	
+/*	elementName.first = name.first;
+        elementName.second = name.second;*/
+}
+
+ElementComplexe::ElementComplexe(ElementName *n, AttList *a, list<Element *> *e)
+{
+	//TODO
 }
 
 ElementComplexe::~ElementComplexe()
 {
-	//TODO
+	delete elementName;
 }
 	
 /*Retourne le nom de l'élément
@@ -22,18 +28,18 @@ ex : pour un élément tel que <"ns":"name" > elle retourne <ns,name>
    ou
   pour un élément <"":"name" > elle retourne <,name>
 */
-ElementName ElementComplexe::getElementName()
+ElementName *ElementComplexe::getElementName()
 {
     return elementName;
 }
 
-AttList ElementComplexe::getAttList()
+AttList *ElementComplexe::getAttList()
 {
     return attlist;
 }
 
 //Retourne les éléments fils
-list<Element*> ElementComplexe::getElements()
+list<Element*> *ElementComplexe::getElements()
 {
     return elementsList;
 }
@@ -44,12 +50,18 @@ void ElementComplexe::accept(VisitorInterface * visitor)
     visitor->visit(this);
 }
 
-void ElementComplexe::addElement(Element* e)
+string ElementComplexe::build(VisitorInterface * visitor)
 {
-    elementsList.push_back(e);
+    //TODO :
+    visitor->visit(this);
 }
 
-void ElementComplexe::addAttribute(Attribut a)
+void ElementComplexe::addElement(Element* e)
 {
-    attlist.push_back(a);
+    elementsList->push_back(e);
+}
+
+void ElementComplexe::addAttribute(Attribut *a)
+{
+    attlist->push_back(a);
 }

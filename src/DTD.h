@@ -1,3 +1,7 @@
+#ifndef DTD_H
+#define DTD_H
+
+
 // include Système
 #include<list>
 
@@ -15,14 +19,18 @@ class DTD
 {
 	public:
 	DTD();
-        DTD(Elements declarationElements, Attributs declarationAttributs);
+        DTD(Elements *declarationElements, Attributs *declarationAttributs);
 	virtual ~DTD();
-        void addDeclarationElement(DeclarationElement*);
+        
+	void addDeclarationElement(DeclarationElement*);
         void addDeclarationAttributs(DeclarationAttribut*);
-        void accept(VisitorInterface * visitor);
+        std::string accept(VisitorInterface * visitor);
+        DeclarationElement* getElementByName(string name);
 
 
 	protected:
-	Elements declarationElements;
-	Attributs declarationAttributs;
+	Elements *declarationElements;
+	Attributs *declarationAttributs;
 };
+
+#endif

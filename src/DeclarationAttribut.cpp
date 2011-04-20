@@ -8,7 +8,7 @@ DeclarationAttribut::DeclarationAttribut()
 
 }
 
-DeclarationAttribut::DeclarationAttribut(string elmt, list<Attribut*>  attributs)
+DeclarationAttribut::DeclarationAttribut(string elmt, list<Attribut*>  *attributs)
 {
     //TODO
 }
@@ -18,9 +18,9 @@ DeclarationAttribut::~DeclarationAttribut()
 
 }
 
-void DeclarationAttribut::accept(VisitorInterface * visitor)
+string DeclarationAttribut::accept(VisitorInterface * visitor)
 {
-    visitor->visit(this);
+    return visitor->build(this);
 }
 
 
@@ -29,7 +29,7 @@ string DeclarationAttribut::getName()
     return nomAttribut;
 }
 
-list<Attribut*> DeclarationAttribut::getAttributes()
+list<Attribut*> *DeclarationAttribut::getAttributes()
 {
     return attributs;
 }
