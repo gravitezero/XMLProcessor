@@ -46,7 +46,7 @@ void DTD::addDeclarationAttributs(DeclarationAttribut* a)
 
 std::string DTD::accept(VisitorInterface * visitor)
 {
-    cout<<"SUPPOSONS QU'ON A LE 1ER"<<endl;
+
 
     std::string result = (*declarationElements->begin())->accept(visitor);
 

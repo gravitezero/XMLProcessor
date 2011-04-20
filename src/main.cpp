@@ -12,11 +12,13 @@
 #include "contenuchoix.h"
 #include "DTD.h"
 #include "commun.h"
+#include <QRegExp>
 
 int main(int argc, char *argv[])
 {
     //QCoreApplication a(argc, argv);
 
+    QRegExp rx;
 
     DTD* dtd = new DTD();
 
@@ -34,7 +36,7 @@ int main(int argc, char *argv[])
     att->first = "nom";
     att->second = "Byfall";
     ElementComplexe* auteurXML = new ElementComplexe(nom, attList, listElt);
-    //auteurXML->addAttribute(att);
+    auteurXML->addAttribute(att);
 
     ElementName *nomLivre = new ElementName();
     nomLivre->first = "";
@@ -46,13 +48,14 @@ int main(int argc, char *argv[])
 
 
     AttList* attList2 = new AttList();
-    ElementComplexe* livreXML = new ElementComplexe(nom, attList2, listElt2);
+    ElementComplexe* livreXML = new ElementComplexe(nomLivre, attList2, listElt2);
     livreXML->addElement(text);
     auteurXML->addElement(livreXML);
     xml->setElement(auteurXML);
 
     cout<<xml->build(new VisitorBuild());
 
+    QString toValidate(xml->build(new VisitorBuild()).c_str());
 
 
     //DTD
@@ -70,9 +73,25 @@ int main(int argc, char *argv[])
     dtd->addDeclarationElement(eltA);
 
 
-
+    rx.setPattern(QString(dtd->accept(new VisitorBuild()).c_str()));
     std::cout<<dtd->accept(new VisitorBuild())<<std::endl;
+    std::cout<<rx.indexIn(QString(xml->build(new VisitorBuild()).c_str()))<<std::endl;
+    //{
+      //  std::cout<<"On est dans la merde !"<<std::endl;
+    //}
     std::cout<<"Fin"<<std::endl;
+
+
+
+
+
+
+
+
+
+
+
+
 
     return 0;
 
