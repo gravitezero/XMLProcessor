@@ -1819,15 +1819,7 @@ extern FILE * dtdin;
 
 int main(int argc, char **argv)
 {
-/*  int err;
-  dtddebug=1;
-
-  err = dtdparse();
-  if (err != 0) printf("Parse ended with %d error(s)\n", err);
-        else  printf("Parse ended with sucess\n", err);
-  return 0;*/
-
- /* Analyse DTD */
+ // Analyse DTD
   int err = -1;
   int errDTD;
 

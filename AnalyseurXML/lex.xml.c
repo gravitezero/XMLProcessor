@@ -618,7 +618,6 @@ char *xmltext;
 #include <string.h>
 #include <stdlib.h>
 #include <list>
-#include "commun.h"
 
 #include "../src/commun.h"
 #include "../src/XMLDocument.h"
@@ -690,7 +689,7 @@ static char *split_namespace(char *s) { /* extrait la deuxième partie après l'
  * et a l'interieur des balises
  */
 
-#line 694 "lex.xml.c"
+#line 693 "lex.xml.c"
 
 #define INITIAL 0
 #define CONTENT 1
@@ -878,10 +877,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 105 "xml.l"
+#line 104 "xml.l"
 
 
-#line 885 "lex.xml.c"
+#line 884 "lex.xml.c"
 
 	if ( !(yy_init) )
 		{
@@ -967,106 +966,106 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 107 "xml.l"
+#line 106 "xml.l"
 {printf("%s",xmltext); /* skip */}
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 108 "xml.l"
+#line 107 "xml.l"
 {printf("%s",xmltext); /* skip */}
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 109 "xml.l"
+#line 108 "xml.l"
 {printf("%s",xmltext); return DOCTYPE;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 110 "xml.l"
+#line 109 "xml.l"
 {printf("%s",xmltext); return SLASH;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 111 "xml.l"
+#line 110 "xml.l"
 {printf("%s",xmltext); return EQ;}
 	YY_BREAK
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 112 "xml.l"
+#line 111 "xml.l"
 {printf("%s",xmltext); BEGIN(CONTENT); return CLOSE;}
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 113 "xml.l"
+#line 112 "xml.l"
 {printf("%s",xmltext); return CLOSESPECIAL;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 114 "xml.l"
+#line 113 "xml.l"
 {printf("%s",xmltext);xmllval.s = strdup(xmltext); return NAME;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 115 "xml.l"
+#line 114 "xml.l"
 {printf("%s",xmltext);xmllval.s = strdup(xmltext); return NSNAME;}
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 116 "xml.l"
+#line 115 "xml.l"
 {printf("%s",xmltext);xmllval.s = strdup(getString(xmltext)); return VALUE;}
 	YY_BREAK
 case 11:
 /* rule 11 can match eol */
 YY_RULE_SETUP
-#line 118 "xml.l"
+#line 117 "xml.l"
 {printf("%s",xmltext);BEGIN(INITIAL); char * tmp = word(xmltext); xmllval.en = new ElementName("",tmp); free(tmp); return STARTSPECIAL;}
 	YY_BREAK
 case 12:
 /* rule 12 can match eol */
 YY_RULE_SETUP
-#line 119 "xml.l"
+#line 118 "xml.l"
 {printf("%s",xmltext);BEGIN(INITIAL); char * tmp = word(xmltext); xmllval.en = new ElementName("",tmp); free(tmp); return START;}
 	YY_BREAK
 case 13:
 /* rule 13 can match eol */
 YY_RULE_SETUP
-#line 120 "xml.l"
+#line 119 "xml.l"
 {printf("%s",xmltext);BEGIN(INITIAL); char *tmp1 = nameSpace(xmltext); char * tmp2 = split_namespace(xmltext); xmllval.en = new ElementName(tmp1,tmp2); free(tmp1); free(tmp2); return NSSTART;}
 	YY_BREAK
 case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
-#line 121 "xml.l"
+#line 120 "xml.l"
 {printf("%s",xmltext);BEGIN(INITIAL); return END;}
 	YY_BREAK
 case 15:
 /* rule 15 can match eol */
 YY_RULE_SETUP
-#line 122 "xml.l"
+#line 121 "xml.l"
 {printf("%s",xmltext);xmllval.s = strdup(xmltext); return COMMENT;}
 	YY_BREAK
 case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
-#line 124 "xml.l"
+#line 123 "xml.l"
 {printf("%s",xmltext);xmllval.s = strdup(skipSpace(xmltext)); return DATA;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 126 "xml.l"
+#line 125 "xml.l"
 {printf("%s",xmltext);fprintf(stderr, "!ERROR(%c)\n", *xmltext);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 128 "xml.l"
+#line 127 "xml.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 1070 "lex.xml.c"
+#line 1069 "lex.xml.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(CONTENT):
 	yyterminate();
@@ -2065,4 +2064,4 @@ void xmlfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 128 "xml.l"
+#line 127 "xml.l"

@@ -7,7 +7,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <list>
-#include "commun.h"
 
 #include "../src/commun.h"
 #include "../src/XMLDocument.h"
