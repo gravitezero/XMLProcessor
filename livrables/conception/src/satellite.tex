@@ -11,7 +11,36 @@
 \section{Algorithmes}
 
     \subsection{Validation}
-        %TODO ici les algo fait par Baptiste, Than, Naby et Chafik
+	
+	validateXML(XML xml, DTD dtd){
+		String exp =transformXML(xml) // transfomer le fichier XML en 1 expression a valider
+		String pattern = transformDTD(dtd) // transformer le fichier DTD en pattern 
+		bool resultat = match(exp, pattern) // valider 		
+	}
+
+	transformDTD(DTD dtd){
+		RETOURNER tranformDeclarationElement(dtd.racine) //on commencer par l'element racine
+	}
+
+	tranformDeclarationElement(DeclarationElement decEle) // transformer recursivement 
+	{
+		String return;
+		SI (decEle est textuel) //si element textuel (pas de fils)
+		{
+			result="<"+decEle.nom+decATTLIST">decText"</"+decEle.nom+">
+		}
+		SINON
+		{
+			result ="(<"+decEle.nom+decATTLIST">";
+			pour chaque element fils filsEle{
+				SI PAS CONTRAINTE CARDINALITE:
+					result += tranformDeclarationElement(filsEle);
+				SINON
+					result += "(" tranformDeclarationElement(filsEle)+cadinalite(filsEle)+")";
+			}	
+		}
+	}
+
         
     \subsection{Transformation}
         %TODO ici l'algo fait par Baptiste
