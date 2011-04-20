@@ -22,3 +22,10 @@ void ContenuSimple::setCardinality(std::string card)
 {
 	cardinalite = card;
 }
+
+
+
+std::string ContenuSimple::getName()
+{
+	return nom;
+}
