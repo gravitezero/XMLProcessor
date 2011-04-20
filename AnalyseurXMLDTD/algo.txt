@@ -1,0 +1,51 @@
+Algorithme de validation
+
+validate_xml_againstDTD (string nomFichierXML){
+	SI (ficXML=readXML(nomFichierXML) && validateXML(ficXML))
+		SI ( (ficDTD= ficXML.fichierDTD) && (validate(ficDTD) )
+			RETOURNER validateUsingRegularExpression(ficXML, ficDTD)
+		SINON
+			RETOURNER ERREUR_FICHIER_DTD_NON_VALIDE		
+		FIN SI
+	SINON
+		RETOURNER ERREUR_FICHIER_XML_NON_VALIDE
+	FIN SI
+}
+
+validateUsingRegularExpression(xmlTransCible, ficDTD){
+	dtdRegularExp = transformerDTD(ficDTD)
+	RETOURNER match(xmlTransCible, dtdRegularExp)
+}
+
+transformerDTD(ficDTD){
+	regExp = « »
+transformer_element(elementDTD, ficDTD , regExp)
+POUR CHAQUE ElementDTD element
+transformer_attribut(element)
+POUR CHAQUE ElementDTD element de element.fils	
+
+}
+
+transformer_element(elementDTD, ficDTD , expReguliere){	
+transformer_structure_attribut(element, ficDTD)
+POUR CHAQUE ElementDTD fils de element.fils 
+transformer_element(fils, ficDTD , expReguliere)
+FIN LOOP
+transformer_structure_element(element, ficDTD)
+
+}
+
+transformer_structure_element(elementDTD){
+	Transformer la définition DTD en expression régulière             
+             	
+}
+
+<!ELEMENT books ( book+ ) >
+<!ELEMENT book ( title, author, price? ) >
+<!ELEMENT title ( #PCDATA ) >
+<!ELEMENT author ( #PCDATA ) >
+<!ELEMENT price EMPTY>
+<!ATTLIST price value #CDATA>
+
+<books>(<book>(\\s)*<title>[^<]*</title>(\\s)*<author>[^<]*</author>(\\s)* (<price  price=”[^<]*”/>[^<]*</price>)+(\\s)*</book>)+</books>
+

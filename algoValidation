@@ -1,25 +1,22 @@
-xmlValidator(Element element)
-{
-	si validateElement (element) est faux
-		retourner XML_NON_CONFORME_DTD
-	sinon
-		pour chaque fils elementFils d' element
-			xmlValidator(elementFils)
-	fin si
+Utilisation des expressions régulières
 
-	retourner XML_CONFORME_DTD
-}
+Une expression régulière est en un motif qui décrit un ensemble de chaînes de caractères possibles selon une syntaxe précise.Les quantifieurs les plus répandus sont :
 
 
+Principe de base :
 
-validateElement(Element element)
-{
-	ElementDef eleDef = dtd.chercher(element) //chercher la definition
-	SI eleDef est null //n'existe pas
-		retourner DEF_ELEMENT_NON_EXISTANT
+Une expression rationnelle est une suite de caractères typographiques (un "pattern") chargée de décrire une chaîne de caractères pour la trouver dans un bloc de text. Par exemple l’ensemble de mots « ex-équo, ex-equo, ex-aequo et ex-æquo » peut être condensée en un seul motif « ex-(a?e|æ|é)quo ». Les mécanismes de base pour former de telles expressions sont basés sur des caractères spéciaux de substitution, de groupement et de quantification.
 
-	SI validateAttributElement(element,eledef) est faux//validation attributs	
-		retourner 
-	//validation structure (fils, cardinalité...)
-				
-}
+Une barre verticale sépare le plus souvent deux expressions alternatives : « equo|aequo » désigne soit equo, soit aequo. Il est également possible d’utiliser des parenthèses pour définir le champ et la priorité de la détection, « (ae|e)quo » désignant le même ensemble que « aequo|equo » et de quantifier les groupements présents dans le motif en apposant des caractères de quantification à droite de ces groupements :
+    ? qui définit un groupe qui existe zéro ou une fois : toto? correspondant alors à « tot » ou « toto » ;
+    * qui définit un groupe qui existe zéro, une ou plusieurs fois : toto* correspondant à « tot », « toto », « totoo », « totooo », etc. ;
+    + qui définit un groupe qui existe une ou plusieurs fois, toto+ correspondant à « toto », « totoo », « totooo », etc.
+
+Ces caractères de quantification sont identiques à ceux de la DTD.
+
+
+
+
+
+
+

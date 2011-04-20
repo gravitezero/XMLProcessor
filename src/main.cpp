@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 
     //ElementComplexe(ElementName *n, AttList *a, list<Element *> *e);
     list<Element*>* listElt = new list<Element*>;
+    list<Element*>* listElt2 = new list<Element*>;
     AttList* attList = new AttList();
     Attribut *att = new Attribut();
     att->first = "nom";
@@ -45,10 +46,12 @@ int main(int argc, char *argv[])
 
 
     AttList* attList2 = new AttList();
-    ElementComplexe* livreXML = new ElementComplexe(nom, attList2, listElt);
+    ElementComplexe* livreXML = new ElementComplexe(nom, attList2, listElt2);
     livreXML->addElement(text);
     auteurXML->addElement(livreXML);
-  //  cout<<xml->build(new VisitorDisplay());
+    xml->setElement(auteurXML);
+
+    cout<<xml->build(new VisitorBuild());
 
 
 

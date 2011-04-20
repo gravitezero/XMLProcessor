@@ -44,6 +44,7 @@ std::string VisitorBuild::build(ElementTextuel* elementTextuel)
 
      list<Element*> *elementList(elementComplexe->getElements());
 
+
      for(list<Element*> ::iterator it = elementList->begin(); it != elementList->end(); ++it)
      {
 

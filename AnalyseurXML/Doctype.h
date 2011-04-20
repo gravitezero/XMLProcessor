@@ -4,12 +4,13 @@
 #include "Declaration.h"
 #include <string>
 
+using namespace std;
 
 class Doctype : public Declaration
 {
 public : 
 	Doctype();
-	Doctype(std::string n, std::string s, std::string v);
+	Doctype(string n, string s, string v);
 
 
 	virtual ~Doctype();

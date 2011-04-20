@@ -64,29 +64,30 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 24 "xml.y"
+#line 23 "xml.y"
 
    char * s;
-   ElementName * en;  /* le nom d'un element avec son namespace */
-   list< pair<string,string> > * la;
+   ElementName *en;  /* le nom d'un element avec son namespace */
+   AttList *la;
 
-   XMLDocument * xd;
+   XMLDocument *xdoc;
    Element *el;
    Doctype *dc;
    Declaration * de;
+      
+   list<Declaration * > * ld;
    list<Element *> *ct;
-   list<Declaration *> *ld;   
 
 
 
 /* Line 1676 of yacc.c  */
-#line 84 "yy.tab.h"
+#line 85 "yy.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
 #endif
 
-extern YYSTYPE yylval;
+extern YYSTYPE xmllval;
 
 

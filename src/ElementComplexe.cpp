@@ -14,7 +14,9 @@ ElementComplexe::ElementComplexe(ElementName *name)
 
 ElementComplexe::ElementComplexe(ElementName *n, AttList *a, list<Element *> *e)
 {
-	//TODO
+        elementsList = e;
+        attlist = a;
+        elementName = n;
 }
 
 ElementComplexe::~ElementComplexe()
@@ -53,7 +55,7 @@ void ElementComplexe::accept(VisitorInterface * visitor)
 string ElementComplexe::build(VisitorInterface * visitor)
 {
     //TODO :
-    visitor->visit(this);
+    return visitor->build(this);
 }
 
 void ElementComplexe::addElement(Element* e)

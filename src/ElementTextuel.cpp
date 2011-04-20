@@ -26,6 +26,6 @@ void ElementTextuel::accept(VisitorInterface * visitor)
 
 string ElementTextuel::build(VisitorInterface * visitor)
 {
-    //TODO corriger par un build
-    visitor->visit(this);
+
+    return visitor->build(this);
 }

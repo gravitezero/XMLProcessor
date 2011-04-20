@@ -1,21 +1,21 @@
 %{
-
-using namespace std;
 #include <cstring>
 #include <string>
 #include <cstdio>
 #include <cstdlib>
-/*#include "commun.h"*/
 
-#include "XMLDocument.h"
-#include "Doctype.h"
-#include "ElementComplexe.h"
-#include "ElementTextuel.h"
+#include "../src/commun.h"
+#include "../src/XMLDocument.h"
+#include "../src/Doctype.h"
+#include "../src/ElementComplexe.h"
+#include "../src/ElementTextuel.h"
+#include "../src/VisitorDisplay.h"
 
+using namespace std;
 
-int yywrap(void);
-void yyerror(char *msg);
-int yylex(void);
+int xmlwrap(void);
+void xmlerror(char *msg);
+int xmllex(void);
 
 XMLDocument *doc;
 
@@ -23,15 +23,16 @@ XMLDocument *doc;
 
 %union {
    char * s;
-   ElementName * en;  /* le nom d'un element avec son namespace */
-   list< pair<string,string> > * la;
+   ElementName *en;  /* le nom d'un element avec son namespace */
+   AttList *la;
 
-   XMLDocument * xd;
+   XMLDocument *xdoc;
    Element *el;
    Doctype *dc;
    Declaration * de;
+      
+   list<Declaration * > * ld;
    list<Element *> *ct;
-   list<Declaration *> *ld;   
 }
 
 
@@ -39,14 +40,14 @@ XMLDocument *doc;
 %token <s> ENCODING VALUE DATA COMMENT NAME NSNAME
 %token <en> NSSTART START STARTSPECIAL
 
-%type <xd> document
+%type <xdoc> document
 %type <el> element
 %type <s>  misc_seq_opt
 %type <s>  misc
 %type <ct> content
 %type <ct> close_content_and_end
 %type <ct> empty_or_content
-%type <s>  start
+%type <en>  start
 %type <s>  name_or_nsname_opt
 
 %type <de> declaration
@@ -99,7 +100,7 @@ empty_or_content
  ;
 
 attributs
- : attributs NAME EQ VALUE {$$ = $1; $$->push_back(make_pair($2,$4));}
+ : attributs NAME EQ VALUE {$$ = $1; Attribut *a = new Attribut; *a = make_pair($2,$4); $$->push_back(a);}
  | /* empty */ {$$ = new AttList;}
  ;
 
@@ -117,26 +118,59 @@ content
  : content DATA {$$ = $1; $$->push_back(new ElementTextuel($2));}		
  | content misc {$$ = $1;}	// on ignore les commentaires misc = COMMENT        
  | content element {$$ = $1; $$->push_back($2);}     
- | /*empty*/ {$$ = new List<Element * >();}        
+ | /*empty*/ {$$ = new list<Element * >();}        
  ;
 
 %%
+int xmlparse(void);
+extern FILE * xmlin;
+
 
 int main(int argc, char **argv)
 {
-  int err;
+ /* int err;
 
-  err = yyparse();
+  err = xmlparse();
   if (err != 0) printf("Parse ended with %d error(s)\n", err);
-  	else  printf("Parse ended with sucess\n", err);
+  	else  printf("Parse ended with sucess\n", err);*/
+
+  int err = -1;
+  int errXML;
+
+  FILE *fidXML;
+
+
+  if(argc != 2){
+ 	printf("Parse ended with %d error(s)\n", err);
+  }
+
+  /* Analyse XML */
+  fidXML = fopen(argv[1], "r");
+  xmlin  = fidXML;
+
+  errXML = xmlparse();
+  fclose(fidXML);
+  if (errXML != 0)
+  { 
+	printf("Parse XML ended with %d error(s)\n", errXML);
+  }
+  else
+  {
+	printf("Parse XML ended with sucess\n", errXML);
+	doc->accept(new VisitorDisplay());
+  }
+
+	
+
+
   return 0;
 }
-int yywrap(void)
+int xmlwrap(void)
 {
   return 1;
 }
 
-void yyerror(char *msg)
+void xmlerror(char *msg)
 {
   fprintf(stderr, "%s\n", msg);
 }
