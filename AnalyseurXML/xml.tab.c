@@ -1785,11 +1785,6 @@ extern FILE * xmlin;
 
 int main(int argc, char **argv)
 {
- /* int err;
-
-  err = xmlparse();
-  if (err != 0) printf("Parse ended with %d error(s)\n", err);
-  	else  printf("Parse ended with sucess\n", err);*/
 
   int err = -1;
   int errXML;
@@ -1801,7 +1796,7 @@ int main(int argc, char **argv)
  	printf("Parse ended with %d error(s)\n", err);
   }
 
-  /* Analyse XML */
+  // Analyse XML
   fidXML = fopen(argv[1], "r");
   xmlin  = fidXML;
 
@@ -1818,11 +1813,9 @@ int main(int argc, char **argv)
 	doc->accept(new VisitorDisplay());
   }
 
-	
-
-
   return 0;
 }
+
 int xmlwrap(void)
 {
   return 1;
