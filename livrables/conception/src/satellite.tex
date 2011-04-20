@@ -12,35 +12,40 @@
 
     \subsection{Validation}
 	
-	validateXML(XML xml, DTD dtd){
-		String exp =transformXML(xml) // transfomer le fichier XML en 1 expression a valider
-		String pattern = transformDTD(dtd) // transformer le fichier DTD en pattern 
-		bool resultat = match(exp, pattern) // valider 		
-	}
-
-	transformDTD(DTD dtd){
-		RETOURNER tranformDeclarationElement(dtd.racine) //on commencer par l'element racine
-	}
-
-	tranformDeclarationElement(DeclarationElement decEle) // transformer recursivement 
-	{
-		String return;
-		SI (decEle est textuel) //si element textuel (pas de fils)
-		{
-			result="<"+decEle.nom+decATTLIST">decText"</"+decEle.nom+">
-		}
-		SINON
-		{
-			result ="(<"+decEle.nom+decATTLIST">";
-			pour chaque element fils filsEle{
-				SI PAS CONTRAINTE CARDINALITE:
-					result += tranformDeclarationElement(filsEle);
-				SINON
-					result += "(" tranformDeclarationElement(filsEle)+cadinalite(filsEle)+")";
-			}	
-		}
-	}
-
+	\begin{algorithm}
+	\caption{validateXML(XML $xml$, DTD $dtd$)}
+	\begin{algorithmic}
+	    \STATE String $exp \gets$ transformXML(xml) \COMMENT{transformer le fichier XML en une expression a valider}
+	    \STATE String $pattern \gets$ transformDTD(dtd) \COMMENT{transformer le fichier DTD en pattern}
+	    \STATE bool $resultat \gets$ match(exp, pattern) \COMMENT{valider}
+    \end{algorithmic}
+    \end{algorithm}
+    
+    \begin{algorithm}
+	\caption{transformDTD(DTD dtd)}
+    \begin{algorithmic}
+	    \RETURN tranformDeclarationElement(dtd.racine) \COMMENT{on commencer par l'element racine}
+    \end{algorithmic}
+    \end{algorithm}
+        
+    \begin{algorithm}
+	\caption{tranformDeclarationElement(DeclarationElement decEle)}    
+    \begin{algorithmic}
+	    \STATE String $result$ \COMMENT{transformer recursivement} 
+        \IF{$decEle$ est textuel}
+		    \STATE $result \gets$ "\textless"+decEle.nom+decATTLIST"\textgreater decText"\textless/"+decEle.nom+"\textgreater
+	    \ELSE
+		    \STATE $result \gets$ "(\textless"+decEle.nom+decATTLIST"\textgreater"
+		    \FOR{chaque element fils $filsEle$}
+			    \IF{\NOT getCardinalité()}
+				    \STATE $result$ += tranformDeclarationElement(filsEle)
+			    \ELSE
+				    \STATE $result$ += "(" tranformDeclarationElement(filsEle)+cardinalite(filsEle)+")"
+		        \ENDIF
+	        \ENDFOR
+	    \ENDIF
+	\end{algorithmic}
+    \end{algorithm}
         
     \subsection{Transformation}
      Algorithme de transformation XSLT :

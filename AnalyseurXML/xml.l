@@ -112,7 +112,7 @@ closespecial "?>"{nl}?
 <INITIAL>{close}	{printf("%s",xmltext); BEGIN(CONTENT); return CLOSE;}
 <INITIAL>{closespecial}	{printf("%s",xmltext); return CLOSESPECIAL;}
 <INITIAL>{name}		{printf("%s",xmltext);xmllval.s = strdup(xmltext); return NAME;}
-<INITIAL>{nsname}		{printf("%s",xmltext);xmllval.s = strdup(xmltext); return NSNAME;}
+<INITIAL>{nsname}	{printf("%s",xmltext);xmllval.s = strdup(xmltext); return NSNAME;}
 <INITIAL>{string}	{printf("%s",xmltext);xmllval.s = strdup(getString(xmltext)); return VALUE;}
 
 {openspecial}{ws}?{name}	{printf("%s",xmltext);BEGIN(INITIAL); char * tmp = word(xmltext); xmllval.en = new ElementName("",tmp); free(tmp); return STARTSPECIAL;}
