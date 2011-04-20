@@ -1,6 +1,6 @@
 #include<cstdlib>
 #include<cstdio>
-#include "../src/commun.h"
+#include "commun.h"
 /*#include "xml.tab.h"
 #include "dtd.tab.h"
 */
