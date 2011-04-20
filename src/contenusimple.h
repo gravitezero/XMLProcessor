@@ -9,7 +9,9 @@ class ContenuSimple : public Contenu
 public:
     ContenuSimple();
     ContenuSimple(std::string , DTD*);
+    void setCardinality(std::string card);
     virtual ~ContenuSimple();
+    std::string getName();
 
 protected:
     std::string nom;

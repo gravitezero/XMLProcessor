@@ -8,18 +8,30 @@ ElementComplexe::ElementComplexe(ElementName *name)
 
 {
 	elementName = new ElementName(name->first,name->second);	
+
 /*	elementName.first = name.first;
         elementName.second = name.second;*/
 }
 
 ElementComplexe::ElementComplexe(ElementName *n, AttList *a, list<Element *> *e)
 {
-	//TODO
+	elementName = n;
+	attlist = a;
+	elementsList = e;
 }
 
 ElementComplexe::~ElementComplexe()
 {
 	delete elementName;
+        for(AttList::iterator it = attlist->begin(); it != attlist->end(); ++it)
+	{
+		delete (*it);
+	}
+
+	for (list<Element *>::iterator it = elementsList->begin(); it != elementsList->end(); ++it)
+	{
+		delete (*it);
+	}
 }
 	
 /*Retourne le nom de l'élément

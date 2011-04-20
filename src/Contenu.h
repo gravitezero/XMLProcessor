@@ -8,7 +8,7 @@ class Contenu
 	public:
         //Contenu();
         //virtual ~Contenu();
-        void setCardinality(std::string card);
+        virtual void setCardinality(std::string card);
 
 protected:
         std::string cardinalite;

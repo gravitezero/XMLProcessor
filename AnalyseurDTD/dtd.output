@@ -1,5 +1,6 @@
 Terminals unused in grammar
 
+   OPEN
    EMPTY
    ANY
 
@@ -73,66 +74,67 @@ $end (0) 0
 error (256)
 ELEMENT (258) 5
 ATTLIST (259) 4
-CLOSE (260) 4 5
-OPENPAR (261) 8 9 28
-CLOSEPAR (262) 8 9 28
-COMMA (263) 14
-PIPE (264) 10 12 29 31
-FIXED (265) 35
-EMPTY (266)
-ANY (267)
-PCDATA (268) 16
-AST (269) 18
-QMARK (270) 19
-PLUS (271) 20
-CDATA (272) 25
-NAME (273) 4 5 15 24 32
-TOKENTYPE (274) 26
-DECLARATION (275) 33
-STRING (276) 34 35
+OPEN (260)
+CLOSE (261) 4 5
+OPENPAR (262) 8 9 28
+CLOSEPAR (263) 8 9 28
+COMMA (264) 14
+PIPE (265) 10 12 29 31
+FIXED (266) 35
+EMPTY (267)
+ANY (268)
+PCDATA (269) 16
+AST (270) 18
+QMARK (271) 19
+PLUS (272) 20
+CDATA (273) 25
+NAME (274) 4 5 15 24 32
+TOKENTYPE (275) 26
+DECLARATION (276) 33
+STRING (277) 34 35
 
 
 Non-terminaux, suivis des règles où ils apparaissent
 
-$accept (22)
+$accept (23)
     à gauche: 0
-main (23)
+main (24)
     à gauche: 1 2 3, à droite: 0 1 2
-attlist (24)
+attlist (25)
     à gauche: 4, à droite: 1
-element (25)
+element (26)
     à gauche: 5, à droite: 2
-choice_or_sequence (26)
+choice_or_sequence (27)
     à gauche: 6 7, à droite: 5 17
-sequence (27)
+sequence (28)
     à gauche: 8, à droite: 7
-choice (28)
+choice (29)
     à gauche: 9, à droite: 6
-list_choice_plus (29)
+list_choice_plus (30)
     à gauche: 10, à droite: 9
-list_choice (30)
+list_choice (31)
     à gauche: 11 12, à droite: 10 12
-list_sequence (31)
+list_sequence (32)
     à gauche: 13 14, à droite: 8 14
-item (32)
+item (33)
     à gauche: 15 16 17, à droite: 10 11 12 13 14
-cardinality (33)
+cardinality (34)
     à gauche: 18 19 20 21, à droite: 6 7 15 17
-att_definition (34)
+att_definition (35)
     à gauche: 22 23, à droite: 4 22
-attribut (35)
+attribut (36)
     à gauche: 24, à droite: 22
-att_type (36)
+att_type (37)
     à gauche: 25 26 27, à droite: 24
-type_enumere (37)
+type_enumere (38)
     à gauche: 28, à droite: 27
-liste_enum_plus (38)
+liste_enum_plus (39)
     à gauche: 29, à droite: 28
-liste_enum (39)
+liste_enum (40)
     à gauche: 30 31, à droite: 29 31
-item_enum (40)
+item_enum (41)
     à gauche: 32, à droite: 29 30 31
-defaut_declaration (41)
+defaut_declaration (42)
     à gauche: 33 34 35, à droite: 24
 
 

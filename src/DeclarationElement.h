@@ -4,7 +4,7 @@
 #include<string>
 #include<list>
 
-//#include"Contenu.h"
+//#include"ContgetElementNameenu.h"
 
 using namespace std;
 
@@ -15,14 +15,14 @@ class DeclarationElement
 {
 	public:
 	DeclarationElement();
-        DeclarationElement(string nomElt, Contenu *contents);
+        DeclarationElement(string n, Contenu *c);
 	virtual ~DeclarationElement();
         void accept(VisitorInterface*);
         string getElementName();
-        Contenu *getContents();
+        Contenu *getContent();
 
 	protected:
-	Contenu *contenus;
+	Contenu *contenu;
 	string nomElement; 
 	
 };

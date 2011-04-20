@@ -9,12 +9,13 @@
 #include "../src/Doctype.h"
 #include "../src/ElementComplexe.h"
 #include "../src/ElementTextuel.h"
+#include "../src/VisitorDisplay.h"
 
 using namespace std;
 
-int yywrap(void);
-void yyerror(char *msg);
-int yylex(void);
+int xmlwrap(void);
+void xmlerror(char *msg);
+int xmllex(void);
 
 XMLDocument *doc;
 
@@ -121,22 +122,55 @@ content
  ;
 
 %%
+int xmlparse(void);
+extern FILE * xmlin;
+
 
 int main(int argc, char **argv)
 {
-  int err;
+ /* int err;
 
-  err = yyparse();
+  err = xmlparse();
   if (err != 0) printf("Parse ended with %d error(s)\n", err);
-  	else  printf("Parse ended with sucess\n", err);
+  	else  printf("Parse ended with sucess\n", err);*/
+
+  int err = -1;
+  int errXML;
+
+  FILE *fidXML;
+
+
+  if(argc != 2){
+ 	printf("Parse ended with %d error(s)\n", err);
+  }
+
+  /* Analyse XML */
+  fidXML = fopen(argv[1], "r");
+  xmlin  = fidXML;
+
+  errXML = xmlparse();
+  fclose(fidXML);
+  if (errXML != 0)
+  { 
+	printf("Parse XML ended with %d error(s)\n", errXML);
+  }
+  else
+  {
+	printf("Parse XML ended with sucess\n", errXML);
+	doc->accept(new VisitorDisplay());
+  }
+
+	
+
+
   return 0;
 }
-int yywrap(void)
+int xmlwrap(void)
 {
   return 1;
 }
 
-void yyerror(char *msg)
+void xmlerror(char *msg)
 {
   fprintf(stderr, "%s\n", msg);
 }

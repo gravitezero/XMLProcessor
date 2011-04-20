@@ -14,9 +14,9 @@ using namespace std;
 #include "../src/DeclarationElement.h"
 #include "../src/DeclarationAttribut.h"
 
-void yyerror(char *msg);
-int yywrap(void);
-int yylex(void);
+void dtderror(char *msg);
+int dtdwrap(void);
+int dtdlex(void);
 
 DTD *doc;
 
@@ -33,7 +33,7 @@ DTD *doc;
    Attribut *Att;
    }
 
-%token <s> ELEMENT ATTLIST CLOSE OPENPAR CLOSEPAR COMMA PIPE FIXED EMPTY ANY PCDATA AST QMARK PLUS CDATA
+%token <s> ELEMENT ATTLIST OPEN CLOSE OPENPAR CLOSEPAR COMMA PIPE FIXED EMPTY ANY PCDATA AST QMARK PLUS CDATA
 %token <s> NAME TOKENTYPE DECLARATION STRING
 %%
 
@@ -49,9 +49,9 @@ DTD *doc;
 
 
 main
- : main attlist { $1->addDeclarationAttributs($2); $$ = $1;}
- | main element { $1->addDeclarationElement($2); $$ = $1;}
- |/* empty */ { doc = new DTD(); $$ = doc;}
+ : main attlist { doc->addDeclarationAttributs($2); $$ = doc;}
+ | main element { doc->addDeclarationElement($2); $$ = doc;}
+ |/* empty */ {   printf("new DTD\n"); doc = new DTD(); $$ = doc;}
  ;
 
 attlist
@@ -69,7 +69,7 @@ choice_or_sequence
  ;
 
 sequence
- : OPENPAR list_sequence CLOSEPAR {if ($2->size() !=1) {$$ = new ContenuSequence($2);} else {$$ = * $2->begin(); }}
+ : OPENPAR list_sequence CLOSEPAR {if ($2->size() >1) {$$ = new ContenuSequence($2);} else {$$ = *($2->begin()); delete $2;}}
  ;
 
 choice
@@ -86,13 +86,13 @@ list_choice
  ;
 
 list_sequence
- : item  {$$ = new list<Contenu *>(); $$->push_back($1)}
+ : item  {$$ = new list<Contenu *>(); $$->push_back($1);}
  | list_sequence COMMA item {$$ = $1; $$->push_back($3);}
  ;
 
 item /*on renvoie un contenu*/
  : NAME cardinality {$$ = new ContenuSimple($1,doc); $$->setCardinality($2);}
- | PCDATA {$$ = new ContenuSimple($1,doc);}
+ | PCDATA {$$ = new ContenuSimple("#PCDATA",doc);}
  | choice_or_sequence cardinality {$1->setCardinality($2); $$ = $1;}
  ;
 
@@ -148,22 +148,49 @@ defaut_declaration
  ;
 
 %%
+int dtdparse(void);
+
+extern FILE * dtdin;
+
 int main(int argc, char **argv)
 {
-  int err;
-  yydebug=1;
+/*  int err;
+  dtddebug=1;
 
-  err = yyparse();
+  err = dtdparse();
   if (err != 0) printf("Parse ended with %d error(s)\n", err);
         else  printf("Parse ended with sucess\n", err);
+  return 0;*/
+
+ /* Analyse DTD */
+  int err = -1;
+  int errDTD;
+
+  FILE * fidDTD;
+
+  fidDTD = fopen(argv[1], "r");
+  dtdin  = fidDTD;
+
+  errDTD = dtdparse();
+  fclose(fidDTD);
+
+
+  if (errDTD != 0) printf("Parse DTD ended with %d error(s)\n", errDTD);
+  	else  printf("Parse DTD ended with sucess\n", errDTD);
+
+  printf("%s\n", doc->getRoot().c_str());
+
+  delete doc;
   return 0;
 }
-int yywrap(void)
+
+
+int dtdwrap(void)
 {
   return 1;
 }
 
-void yyerror(char *msg)
+void dtderror(char *msg)
 {
   fprintf(stderr, "%s\n", msg);
 }
