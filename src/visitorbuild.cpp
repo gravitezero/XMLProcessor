@@ -156,7 +156,11 @@ std::string VisitorBuild::build(DeclarationElement* declarationElement)
     //Debut de regex
     result+= "<";
     result+=declarationElement->getElementName();
-    result+= "( [:alpha:]+[:space:]*=[:space:]*[^\\\"]+[:space:]*)*";
+    //result+="(\\s*[^\\s=]+)\\s*=\\s*(\\'[^<\\']*\\'|\"[^<\"]*\")*"; //Internet
+    result+="((\\s)*[a-zA-Z]+(\\s)*=(\\s)*\"[^\"]*\")*";
+
+    //result+= "((\\s)*[a-zA-Z]+(\\s)*=\\\"[a-zA-Z]+\\\")*";
+    //[:space:]*\\\"[^\\\"]+\\\"[:space:]*
     result+=">";
     result+= declarationElement->getContents()->accept(this);
 
