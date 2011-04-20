@@ -1,4 +1,5 @@
 #include "contenusequence.h"
+#include "VisitorInterface.hpp"
 
 ContenuSequence::ContenuSequence()
 {
@@ -8,26 +9,23 @@ ContenuSequence::ContenuSequence()
 
 ContenuSequence::ContenuSequence(list<Contenu*> *l)
 {
+
     contenus = l;
 }
 
 ContenuSequence::~ContenuSequence()
 {
-	for (list<Contenu *>::iterator it = contenus->begin(); it != contenus->end(); ++it)
-	{
-		delete (*it);
-	}
+
 }
 
 
-void ContenuSequence::setCardinality(std::string card)
+std::string ContenuSequence::accept(VisitorInterface* v)
 {
-	cardinalite = card;
+    return v->build(this);
+
 }
 
-
-
-list<Contenu *> *ContenuSequence::getContent()
+list<Contenu*> * ContenuSequence::getContents()
 {
-	return contenus;
+    return contenus;
 }

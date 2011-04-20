@@ -23,3 +23,9 @@ void ElementTextuel::accept(VisitorInterface * visitor)
 {
     visitor->visit(this);
 }
+
+string ElementTextuel::build(VisitorInterface * visitor)
+{
+
+    return visitor->build(this);
+}

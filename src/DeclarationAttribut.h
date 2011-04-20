@@ -17,12 +17,12 @@ class DeclarationAttribut
 	DeclarationAttribut();
         DeclarationAttribut(string elmt, list<Attribut *>  *attributs);
 	virtual ~DeclarationAttribut();
-        void accept(VisitorInterface*);
+        string accept(VisitorInterface*);
         string getName();
         list<Attribut *> *getAttributes();
 
 	protected:
-	string nomElement;
+	string nomAttribut;
 	list<Attribut *> *attributs;
 
 

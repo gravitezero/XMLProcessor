@@ -12,12 +12,12 @@ class ContenuChoix : public Contenu
 public:
     ContenuChoix();
     ContenuChoix(list<Contenu*> *l);
-    void setCardinality(std::string card);
+    std::string accept(VisitorInterface*);
     virtual ~ContenuChoix();
-    list<Contenu *> *getContent();
+    list<Contenu*> * getContents();
+
     protected:
     list<Contenu*>  *contenus;
-
 };
 
 #endif // CONTENUCHOIX_H

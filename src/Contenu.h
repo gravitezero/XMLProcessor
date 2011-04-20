@@ -3,12 +3,16 @@
 
 #include <string>
 
+class VisitorInterface;
+
 class Contenu
 {
 	public:
         //Contenu();
         //virtual ~Contenu();
-        virtual void setCardinality(std::string card);
+        void setCardinality(std::string card);
+        std::string getCardinality();
+        virtual std::string accept(VisitorInterface*) = 0;
 
 protected:
         std::string cardinalite;

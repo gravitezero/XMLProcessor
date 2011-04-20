@@ -25,6 +25,11 @@ void XMLDocument::accept(VisitorInterface * visitor)
 	element->accept(visitor);
 }
 
+std::string XMLDocument::build(VisitorInterface * visitor)
+{
+        return element->build(visitor);
+}
+
 void XMLDocument::setHeader(list<Declaration *> *l)
 {
 	header = l;

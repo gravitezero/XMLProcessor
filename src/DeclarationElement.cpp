@@ -1,28 +1,30 @@
 #include"DeclarationElement.h"
 #include "VisitorInterface.hpp"
 #include"Contenu.h"
+#include <iostream>
 
+using namespace std;
 
 DeclarationElement::DeclarationElement()
 {
 
 }
 
-DeclarationElement::DeclarationElement(string n, Contenu *c)
+DeclarationElement::DeclarationElement(string nomElt, Contenu *contents)
 {
-	nomElement = n;
-	contenu = c;
-	
+    nomElement = nomElt;
+    contenus = contents;
 }
 
 DeclarationElement::~DeclarationElement()
 {
-	delete contenu;
+
 }
 
-void DeclarationElement::accept(VisitorInterface * visitor)
+string DeclarationElement::accept(VisitorInterface * visitor)
 {
-    visitor->visit(this);
+    cout<<"declarationElement accept"<<endl;
+    return visitor->build(this);
 }
 
 
@@ -31,7 +33,7 @@ string DeclarationElement::getElementName()
     return nomElement;
 }
 
-Contenu* DeclarationElement::getContent()
+Contenu* DeclarationElement::getContents()
 {
-    return contenu;
+    return contenus;
 }

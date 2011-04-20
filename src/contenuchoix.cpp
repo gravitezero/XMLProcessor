@@ -1,4 +1,5 @@
 #include "contenuchoix.h"
+#include "VisitorInterface.hpp"
 
 ContenuChoix::ContenuChoix()
 {
@@ -13,20 +14,16 @@ ContenuChoix::ContenuChoix(list<Contenu*>  *l)
 
 ContenuChoix::~ContenuChoix()
 {
-	for (list<Contenu *>::iterator it = contenus->begin(); it != contenus->end(); ++it)
-	{
-		delete (*it);
-	}
+
+}
+
+std::string ContenuChoix::accept(VisitorInterface* v)
+{
+    return v->build(this);
 }
 
 
-void ContenuChoix::setCardinality(std::string card)
+list<Contenu*> * ContenuChoix::getContents()
 {
-	cardinalite = card;
-}
-
-
-list<Contenu *> *ContenuChoix::getContent()
-{
-	return contenus;
+    return contenus;
 }

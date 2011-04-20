@@ -10,9 +10,10 @@ class ContenuSequence : public Contenu
 public:
     ContenuSequence();
     ContenuSequence(list<Contenu*> *l);
-    void setCardinality(string c);
     virtual ~ContenuSequence();
-    list<Contenu *> *getContent();
+    std::string accept(VisitorInterface*);
+    list<Contenu*> * getContents();
+
     protected:
     list<Contenu*>  *contenus;
 };

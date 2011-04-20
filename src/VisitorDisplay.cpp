@@ -52,7 +52,7 @@ void VisitorDisplay::visit(ElementComplexe* elementComplexe)
     //Récupérer la liste des attributs
     AttList *attList = elementComplexe->getAttList();
 
-      //Parcours de la liste et affichage des attributs
+    //Parcours de la liste et affichage des attributs
     for(AttList::iterator it = attList->begin(); it != attList->end(); ++it)
     {
 
@@ -83,11 +83,39 @@ void VisitorDisplay::visit(ElementComplexe* elementComplexe)
 
 }
 
-void VisitorDisplay::visit(DeclarationElement* declarationElement)
+std::string VisitorDisplay::build(ElementTextuel* elementTextuel)
 {
 
 }
-void VisitorDisplay::visit(DeclarationAttribut* declarationAttribut)
+
+std::string VisitorDisplay::build(ElementComplexe* elementComplexe)
 {
-    //TODO
+
 }
+
+std::string VisitorDisplay::build(DeclarationElement* declarationElement)
+{
+
+}
+
+std::string VisitorDisplay::build(DeclarationAttribut* declarationAttribut)
+{
+
+}
+
+std::string VisitorDisplay::build(ContenuSimple*)
+{
+
+}
+
+std::string VisitorDisplay::build(ContenuChoix*)
+{
+
+}
+
+std::string VisitorDisplay::build(ContenuSequence*)
+{
+
+}
+
+

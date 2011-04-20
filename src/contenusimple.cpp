@@ -1,5 +1,6 @@
 #include "contenusimple.h"
 #include "DTD.h"
+#include "VisitorInterface.hpp"
 
 ContenuSimple::ContenuSimple()
 {
@@ -12,20 +13,24 @@ ContenuSimple::ContenuSimple(std::string name, DTD * d)
 
 }
 
-ContenuSimple::~ContenuSimple()
-{
-	delete dtd;
-}
-
-
-void ContenuSimple::setCardinality(std::string card)
-{
-	cardinalite = card;
-}
-
-
-
 std::string ContenuSimple::getName()
 {
-	return nom;
+    return nom;
+}
+
+ContenuSimple::~ContenuSimple()
+{
+
+}
+
+std::string ContenuSimple::accept(VisitorInterface* v)
+
+{
+    return v->build(this);
+
+}
+
+DeclarationElement* ContenuSimple::getElementByName(std::string name){
+
+    return dtd->getElementByName(name);
 }

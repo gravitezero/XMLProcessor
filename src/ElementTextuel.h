@@ -14,6 +14,7 @@ class ElementTextuel : public Element{
 
         string getValue();
         void accept(VisitorInterface*);
+        string build(VisitorInterface*);
 
 	protected:
 	string value;

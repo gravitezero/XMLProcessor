@@ -8,30 +8,20 @@ ElementComplexe::ElementComplexe(ElementName *name)
 
 {
 	elementName = new ElementName(name->first,name->second);	
-
 /*	elementName.first = name.first;
         elementName.second = name.second;*/
 }
 
 ElementComplexe::ElementComplexe(ElementName *n, AttList *a, list<Element *> *e)
 {
-	elementName = n;
-	attlist = a;
-	elementsList = e;
+        elementsList = e;
+        attlist = a;
+        elementName = n;
 }
 
 ElementComplexe::~ElementComplexe()
 {
 	delete elementName;
-        for(AttList::iterator it = attlist->begin(); it != attlist->end(); ++it)
-	{
-		delete (*it);
-	}
-
-	for (list<Element *>::iterator it = elementsList->begin(); it != elementsList->end(); ++it)
-	{
-		delete (*it);
-	}
 }
 	
 /*Retourne le nom de l'élément
@@ -60,6 +50,12 @@ list<Element*> *ElementComplexe::getElements()
 void ElementComplexe::accept(VisitorInterface * visitor)
 {
     visitor->visit(this);
+}
+
+string ElementComplexe::build(VisitorInterface * visitor)
+{
+    //TODO :
+    return visitor->build(this);
 }
 
 void ElementComplexe::addElement(Element* e)

@@ -13,10 +13,6 @@ public :
 
 
 	virtual ~Doctype();
-protected:
-	std::string name1;
-	std::string name2;
-	std::string value;	
 };
 
 #endif
