@@ -10,7 +10,7 @@
         
 \section{Algorithmes}
 
-    \subsection{Validation}
+    \subsection{Validation 1} 
 	
 	ALgorithme de validation :
 	
@@ -19,10 +19,18 @@
 	\begin{algorithmic}
 	    \STATE String $exp \gets$ transformXML(xml) \COMMENT{transformer le fichier XML en une expression a valider}
 	    \STATE String $pattern \gets$ transformDTD(dtd) \COMMENT{transformer le fichier DTD en pattern}
-	    \STATE bool $resultat \gets$ match(exp, pattern) \COMMENT{valider}
+	    \STATE bool $resultat \gets$ match(exp, pattern) \COMMENT{valider structure XML}
+		\STATE bool $resultat \gets$ validateAttributXML(xml, dtd) \COMMENT{valider attributss}
     \end{algorithmic}
     \end{algorithm}
-    
+   
+    \begin{algorithm}
+	\caption{validateAttributXML(XML $xml$, DTD $dtd$)}
+    \begin{algorithmic}
+	    \RETURN validateAttributElement(dtd.racine, dtd) \COMMENT{on commencer par l'element racine}
+    \end{algorithmic}
+    \end{algorithm}
+	
     \begin{algorithm}
 	\caption{transformDTD(DTD dtd)}
     \begin{algorithmic}
@@ -35,7 +43,8 @@
     \begin{algorithmic}
 	    \STATE String $result$ \COMMENT{transformer recursivement} 
         \IF{$decEle$ est textuel}
-		    \STATE $result \gets$ "\textless"+decEle.nom+decATTLIST"\textgreater decText"\textless/"+decEle.nom+"\textgreater
+		    \STATE $result \gets$ "\textless"+decEle.nom+decATTLIST"\textgreater decText"\textless/"+decEle.nom+"
+\textgreater
 	    \ELSE
 		    \STATE $result \gets$ "(\textless"+decEle.nom+decATTLIST"\textgreater"
 		    \FOR{chaque element fils $filsEle$}
@@ -46,6 +55,126 @@
 		        \ENDIF
 	        \ENDFOR
 	    \ENDIF
+	\end{algorithmic}
+    \end{algorithm}	
+	
+	\begin{algorithm}
+	\caption{validateAttributElement(Element $eml$, DTD $dtd$)}
+    \begin{algorithmic}
+		\FOR{chaque Attribut $att$}
+			\IF{dtd.chercher($att$,$elm$)} \COMMENT{pas de declaration}
+				\RETURN KO
+			\ENDIF
+	    \ENDFOR    
+		\FOR{chaque Element fils $fils$ de $Ele$}
+			\IF{validateAttributElement($eml$, $dtd$)}
+				\RETURN KO
+			\ENDIF
+	    \ENDFOR 
+	\RETURN OK
+	\end{algorithmic}
+    \end{algorithm}
+	
+	
+	\subsection{Validation 2}
+	
+	\begin{algorithm}
+	\caption{validateXML(XML $xml$, DTD $dtd$)}
+	\begin{algorithmic}
+		\IF{!dtd.chercherDeclaration($xml.racine$)} \COMMENT{pas de declaration}
+			\RETURN KO
+		\ENDIF	
+	\RETURN	validateArbreElement($xml.racine$, $dtd$)	
+    \end{algorithmic}
+    \end{algorithm}
+	
+	\begin{algorithm}
+	\caption{validateArbreElement(Element $element$, DTD $dtd$)}    
+    \begin{algorithmic}	    
+        \IF{!validateElement($element$, $dtd$)}
+			\RETURN	KO    
+	    \ENDIF
+		\FOR{chaque Element $fils$ de $element$}
+		    \IF{!validateElement($fils$, $dtd$)}
+			\RETURN	KO    
+			\ENDIF
+		\ENDFOR
+	\RETURN	KO 
+	\end{algorithmic}
+    \end{algorithm}	
+	
+	\begin{algorithm}
+	\caption{validateElement(Element $element$, DTD $dtd$)}   
+		\IF{!validateAttributXML($element$, $dtd$)}
+			\RETURN	KO \COMMENT{attribut non valide} 
+	    \ENDIF
+		
+		\STATE String $pattern \gets$ transformDTDElement(element, dtd)
+		\IF{element est textuel}
+			\STATE String $exp \gets$ transformElementXMLTexuel(element) 
+		\ELSE
+			\STATE String $exp \gets$ transformElementXMLComplexe(element)
+	    \ENDIF
+		\RETURN	match($exp$, $pattern$)		
+	\end{algorithmic}
+    \end{algorithm}	
+	
+	\begin{algorithm}
+	\caption{transformElementXMLTexuel(ElementTextuel $element$)}   
+	
+		\STATE String $result \gets$ "\textless"+element.nom"\textgreater\textless/"+element.nom+"\textgreater"
+		\RETURN	result	
+		\COMMENT l'afffichage normale de l'élément mais sans attribut
+		\COMMENT \textlessnom l="eng"\textgreater Diakite\textless /nom\textgreater --\textgreater \textlessnom \textgreater Diakite\textless /nom \textgreater	
+	
+	\end{algorithmic}
+    \end{algorithm}	
+	
+	\begin{algorithm}
+	\caption{transformElementXMLComplexe(ElementComplexe $element$)}  
+		\STATE String $result \gets$ "\textless"+element.nom"\textgreater"
+		\FOR{$fils$ d'element}
+			\STATE $result \gets$ $result$+"\textlessfils.nom\textgreater\textless/fils.nom\textgreater"
+		\ENDFOR
+		\STATE $result \gets$ "\textless /"+element.nom"\textgreater"	
+		\RETURN $result$		
+	\end{algorithmic}
+    \end{algorithm}	
+	
+	\begin{algorithm}
+	\caption{transformDTDElement(Element $element$, DTD $dtd$)}   
+		\STATE ElementDeclaration $eleDec \gets$ dtd.chercherDeclaration($eleDec$)
+		\IF ($eleDec$ complexe)
+			\RETURN transformDTDComplexe($eleDec$)
+		\ELSE
+			\RETURN transformDTDTextuel($eleDec$)
+		\ENDIF			
+	\end{algorithmic}
+    \end{algorithm}	
+	
+	\begin{algorithm}
+	\caption{transformDTDComplexe(DeclarationTextuel $element$)}		
+		
+		\STATE String $result \gets$ "\textless"+element.nom"\textgreater"
+		\FOR{$fils$ d'element}
+			\STATE $result \gets$ $result$+"\textlessfils.nom\textgreater\textless/fils.nom\textgreater"
+		\ENDFOR
+		\STATE $result \gets$ "\textless /"+element.nom"\textgreater"	
+		\RETURN $result$	
+		\COMMENT alors \textless !ELEMENT book title (author)?\textgreater
+		\COMMENT \textless book\textgreater \textless title(/)*\textgreater (\textless /title\textgreater )*(\textless author(/)*\textgreater (\textless /author\textgreater )*)?\textless /book\textgreater 
+		\COMMENT(supprimer le contenu de fils (validera apres)) 
+		\COMMENT et attribut (deja valide)
+	\end{algorithmic}
+    \end{algorithm}	
+	
+	\begin{algorithm}
+	\caption{transformDTDTexuel(DeclarationTextuel $dec$)}		
+		
+	\RETURN = "\textless"+dec.nom+">([^\textless]\textless/"+dec.nom+"\textgreater)*"
+	\COMMENT l'afffichage normale de l'élément mais sans attribut+cardinalite
+	\COMMENT \textless !ELEMENT book #PCDATA\textgreater --> \textlessnom(/)*\textgreater([^\textless]*\textless/nom\textgreater)* 
+	\COMMENT on sait pas pour l'instant s'il est vide ou non, alors on s'en fous le contenue et la 2e fermeture
 	\end{algorithmic}
     \end{algorithm}
         
@@ -72,8 +201,13 @@
  
 	\paragraph{Explication}
 	    Il s'agit de parcourir les arbres XML et XSLT de haut en bas de façon indépendante.
-	    On commence par pointer sur la racine de l'arbre XML (/). On recherche dans l'arbre XSLT l'élément "template" dont l'attribut "match" est égal à "/".
-	    On recopie l'ensemble de ces fils dans l'arbre HTML. Lorsque l'on tombe sur la feuille "apply\_templates", on retourne sur l'arbre XML et on vérifie que l'élément actuellement pointé à des fils. Si c'est le cas on pointe sur le premier fils, et on recommence la même opération. Si l'élément pointé n'a pas de fils alors on inscrit dans l'arbre HTML le contenu de l'élément XML. On remonte ensuite dans l'arbre XML et on passe à l'élément suivant jusqu'à la fin du parcours de l'arbre XML.
+	    On commence par pointer sur la racine de l'arbre XML (/). On recherche dans l'arbre XSLT l'élément "template
+" dont l'attribut "match" est égal à "/".
+	    On recopie l'ensemble de ces fils dans l'arbre HTML. Lorsque l'on tombe sur la feuille "apply\_templates", 
+on retourne sur l'arbre XML et on vérifie que l'élément actuellement pointé à des fils. Si c'est le cas on 
+pointe sur le premier fils, et on recommence la même opération. Si l'élément pointé n'a pas de fils alors 
+on inscrit dans l'arbre HTML le contenu de l'élément XML. On remonte ensuite dans l'arbre XML et on passe à 
+l'élément suivant jusqu'à la fin du parcours de l'arbre XML.
 
 	\paragraph{Exemple}
         \begin{center}
@@ -86,7 +220,8 @@
 	        On recopie les éléments fils de cette élément
 	        \includegraphics[width=0.7\textwidth]{img/HTMLa.png}\\
 	        
-	        On remarque que cette arbre à une feuille "apply-templates". On retourne donc sur l'arbre XML et on pointe sur le premier fils de "rapport" soit "titre"
+	        On remarque que cette arbre à une feuille "apply-templates". On retourne donc sur l'arbre XML et on 
+pointe sur le premier fils de "rapport" soit "titre"
 	        \includegraphics[width=0.7\textwidth]{img/XMLb.png}\\
 	        
 	        On recherche dans l'arbre XSLT l'élément "template" dont l'attribut "match" vaut "titre"

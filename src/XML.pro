@@ -31,7 +31,11 @@ SOURCES += main.cpp \
     Declaration.cpp \
     contenuchoix.cpp \
     contenusequence.cpp \
-    contenusimple.cpp
+    contenusimple.cpp \
+    lex.xml.cpp \
+    xml.tab.cpp \
+    lex.dtd.cpp \
+    dtd.tab.cpp
 
 HEADERS += \
     commun.h \
@@ -52,4 +56,6 @@ HEADERS += \
     Declaration.h \
     contenuchoix.h \
     contenusequence.h \
-    contenusimple.h
+    contenusimple.h \
+    dtd.tab.h \
+    xml.tab.h

@@ -1,4 +1,5 @@
 tmp/
+src/build-desktop/
 *.aux
 *.glo
 *.idx
@@ -23,3 +24,4 @@ tmp/
 *.out
 *.synctex.gz
 *~
+*.o

@@ -1,13 +1,21 @@
 #include<cstdlib>
 #include<cstdio>
 #include "commun.h"
+#include "../src/DTD.h"
+#include "../src/XMLDocument.h"
+
+#include <regex.h>
+
 /*#include "xml.tab.h"
-#include "dtd.tab.h"
-*/
+#include "dtd.tab.h"*/
 
 //#include<iostream>
 int xmlparse(void);
 int dtdparse(void);
+
+extern XMLDocument *docXML;
+extern DTD *docDTD;
+
 extern FILE * xmlin;
 extern FILE * dtdin;
 
@@ -41,9 +49,10 @@ int main(int argc, char **argv)
   if (errDTD != 0) printf("Parse DTD ended with %d error(s)\n", errDTD);
   	else  printf("Parse DTD ended with sucess\n", errDTD);
 
-	//docXML;
-	//docDTD;
 
+
+
+  printf("\n%s\n\n",docDTD->getRoot()->getElementName().c_str());
   return 0;
 
 }

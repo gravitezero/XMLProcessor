@@ -7,18 +7,18 @@ using namespace std;
 #include <cstdlib>
 
 
-#include "../src/DTD.h"
-#include "../src/contenusequence.h"
-#include "../src/contenuchoix.h"
-#include "../src/contenusimple.h"
-#include "../src/DeclarationElement.h"
-#include "../src/DeclarationAttribut.h"
+#include "DTD.h"
+#include "contenusequence.h"
+#include "contenuchoix.h"
+#include "contenusimple.h"
+#include "DeclarationElement.h"
+#include "DeclarationAttribut.h"
 
 void dtderror(char *msg);
 int dtdwrap(void);
 int dtdlex(void);
 
-DTD *doc;
+DTD *docDTD;
 
 %}
 
@@ -49,9 +49,9 @@ DTD *doc;
 
 
 main
- : main attlist { doc->addDeclarationAttributs($2); $$ = doc;}
- | main element { doc->addDeclarationElement($2); $$ = doc;}
- |/* empty */ {   printf("new DTD\n"); doc = new DTD(); $$ = doc;}
+ : main attlist { docDTD->addDeclarationAttributs($2); $$ = docDTD;}
+ | main element { docDTD->addDeclarationElement($2); $$ = docDTD;}
+ |/* empty */ {   printf("new DTD\n"); docDTD = new DTD(); $$ = docDTD;}
  ;
 
 attlist
@@ -91,7 +91,7 @@ list_sequence
  ;
 
 item /*on renvoie un contenu*/
- : NAME cardinality {$$ = new ContenuSimple($1,doc); $$->setCardinality($2);}
+ : NAME cardinality {$$ = new ContenuSimple($1,docDTD); $$->setCardinality($2);}
  | PCDATA {$$ = new ContenuSimple("#PCDATA",0);}
  | choice_or_sequence cardinality {$1->setCardinality($2); $$ = $1;}
  ;
@@ -152,7 +152,7 @@ int dtdparse(void);
 
 extern FILE * dtdin;
 
-int main(int argc, char **argv)
+/*int main(int argc, char **argv)
 {
  // Analyse DTD
   int err = -1;
@@ -170,11 +170,11 @@ int main(int argc, char **argv)
   if (errDTD != 0) printf("Parse DTD ended with %d error(s)\n", errDTD);
   	else  printf("Parse DTD ended with sucess\n", errDTD);
 
-  printf("%s\n", doc->getRoot().c_str());
+  printf("%s\n", docDTD->getRoot().c_str());
 
-  delete doc;
+  delete docDTD;
   return 0;
-}
+}*/
 
 
 int dtdwrap(void)

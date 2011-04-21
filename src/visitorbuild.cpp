@@ -16,7 +16,7 @@ VisitorBuild::VisitorBuild()
 
 std::string VisitorBuild::build(ElementTextuel* elementTextuel)
 {
-    return "Data";
+    return "DATA";
 }
 
  std::string VisitorBuild::build(ElementComplexe* elementComplexe)
@@ -73,7 +73,12 @@ void VisitorBuild::visit(ElementComplexe* elementComplex)
 std::string VisitorBuild::build(ContenuChoix* c)
 {
     std::string result;
+    string card = c->getCardinality();
+    if (card != "")
+    {
     result += "(";
+    }
+
     //boucle fils
     list<Contenu*> * contenus = new list<Contenu*>;
     contenus = c->getContents();
@@ -89,8 +94,13 @@ std::string VisitorBuild::build(ContenuChoix* c)
     }
 
     result+= (*it)->accept(this);
-    result+= ")";
+    if (card != "")
+    {
+    result += ")";
     result+= c->getCardinality();
+    }
+
+
 
 
     return result;
@@ -100,7 +110,11 @@ std::string VisitorBuild::build(ContenuSequence* c)
 {
 
     std::string result;
+    string card = c->getCardinality();
+    if (card != "")
+    {
     result += "(";
+    }
     //boucle fils
     list<Contenu*> * contenus = new list<Contenu*>;
     contenus = c->getContents();
@@ -112,9 +126,11 @@ std::string VisitorBuild::build(ContenuSequence* c)
 
 
     }
-    result+= ")";
-
-    result+=c->getCardinality();
+    if (card != "")
+    {
+    result += ")";
+    result+= c->getCardinality();
+    }
 
     return result;
 }
@@ -122,8 +138,10 @@ std::string VisitorBuild::build(ContenuSequence* c)
 std::string VisitorBuild::build(ContenuSimple* contenuSimple)
 {
     string name = contenuSimple->getName();
-    if (name.compare("#PCDATA") == 0)
-        return "(DATA)"+contenuSimple->getCardinality();
+
+
+    if (name.compare("#PCDATA") == 0)     
+        return "DATA";
     //Sinon faut chercher dans data !!!
     DeclarationElement* elt = contenuSimple->getElementByName(name);
 
@@ -138,7 +156,11 @@ std::string VisitorBuild::build(DeclarationElement* declarationElement)
     //Debut de regex
     result+= "<";
     result+=declarationElement->getElementName();
-    result+= " ([a-zA-Z]+=[^\\\"]+(\\s)*)*";
+    //result+="(\\s*[^\\s=]+)\\s*=\\s*(\\'[^<\\']*\\'|\"[^<\"]*\")*"; //Internet
+    result+="((\\s)*[a-zA-Z]+(\\s)*=(\\s)*\"[^\"]*\")*";
+
+    //result+= "((\\s)*[a-zA-Z]+(\\s)*=\\\"[a-zA-Z]+\\\")*";
+    //[:space:]*\\\"[^\\\"]+\\\"[:space:]*
     result+=">";
     result+= declarationElement->getContents()->accept(this);
 

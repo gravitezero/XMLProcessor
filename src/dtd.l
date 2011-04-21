@@ -6,12 +6,12 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../src/DTD.h"
-#include "../src/contenusequence.h"
-#include "../src/contenuchoix.h"
-#include "../src/contenusimple.h"
-#include "../src/DeclarationElement.h"
-#include "../src/DeclarationAttribut.h"
+#include "DTD.h"
+#include "contenusequence.h"
+#include "contenuchoix.h"
+#include "contenusimple.h"
+#include "DeclarationElement.h"
+#include "DeclarationAttribut.h"
 
 
 #include "dtd.tab.h"

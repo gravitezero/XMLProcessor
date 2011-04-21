@@ -83,12 +83,12 @@
 #include <cstdio>
 #include <cstdlib>
 
-#include "../src/commun.h"
-#include "../src/XMLDocument.h"
-#include "../src/Doctype.h"
-#include "../src/ElementComplexe.h"
-#include "../src/ElementTextuel.h"
-#include "../src/VisitorDisplay.h"
+#include "commun.h"
+#include "XMLDocument.h"
+#include "Doctype.h"
+#include "ElementComplexe.h"
+#include "ElementTextuel.h"
+#include "VisitorDisplay.h"
 
 using namespace std;
 
@@ -96,7 +96,7 @@ int xmlwrap(void);
 void xmlerror(char *msg);
 int xmllex(void);
 
-XMLDocument *doc;
+XMLDocument *docXML;
 
 
 
@@ -1398,7 +1398,7 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 62 "xml.y"
-    { doc->setElement((yyvsp[(2) - (3)].el)); (yyval.xdoc) = doc;;}
+    { docXML->setElement((yyvsp[(2) - (3)].el)); (yyval.xdoc) = docXML;;}
     break;
 
   case 3:
@@ -1440,7 +1440,7 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 77 "xml.y"
-    {doc = new XMLDocument(); (yyval.ld) = new list<Declaration *>; doc->setHeader((yyval.ld));;}
+    {docXML = new XMLDocument(); (yyval.ld) = new list<Declaration *>; docXML->setHeader((yyval.ld));;}
     break;
 
   case 9:
@@ -1783,7 +1783,7 @@ int xmlparse(void);
 extern FILE * xmlin;
 
 
-int main(int argc, char **argv)
+/*int main(int argc, char **argv)
 {
 
   int err = -1;
@@ -1810,11 +1810,11 @@ int main(int argc, char **argv)
   {
 	printf("Parse XML ended with sucess\n", errXML);
 	
-	doc->accept(new VisitorDisplay());
+	docXML->accept(new VisitorDisplay());
   }
 
   return 0;
-}
+}*/
 
 int xmlwrap(void)
 {
@@ -1825,5 +1825,4 @@ void xmlerror(char *msg)
 {
   fprintf(stderr, "%s\n", msg);
 }
-
 

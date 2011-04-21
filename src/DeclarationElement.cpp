@@ -23,7 +23,7 @@ DeclarationElement::~DeclarationElement()
 
 string DeclarationElement::accept(VisitorInterface * visitor)
 {
-    cout<<"declarationElement accept"<<endl;
+
     return visitor->build(this);
 }
 

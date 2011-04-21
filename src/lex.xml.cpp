@@ -620,12 +620,12 @@ char *xmltext;
 #include <list>
 #include "commun.h"
 
-#include "../src/commun.h"
-#include "../src/XMLDocument.h"
-#include "../src/Doctype.h"
-#include "../src/ElementComplexe.h"
-#include "../src/ElementTextuel.h"
-#include "../src/VisitorDisplay.h"
+#include "commun.h"
+#include "XMLDocument.h"
+#include "Doctype.h"
+#include "ElementComplexe.h"
+#include "ElementTextuel.h"
+#include "VisitorDisplay.h"
 
 #include "xml.tab.h"
 
