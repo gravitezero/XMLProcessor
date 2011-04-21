@@ -1,6 +1,5 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.12.3)  17 JAN 2011 08:36
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.4.5)  20 APR 2011 18:45
 entering extended mode
- restricted \write18 enabled.
  %&-line parsing enabled.
 **main.tex
 (./main.tex
@@ -520,6 +519,64 @@ Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 324.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 325.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 326.
 )
+(/usr/share/texmf-texlive/tex/latex/algorithms/algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@ALC@unique=\count103
+\c@ALC@line=\count104
+\c@ALC@rem=\count105
+\c@ALC@depth=\count106
+\ALC@tlm=\skip55
+\algorithmicindent=\skip56
+)
+(/usr/share/texmf-texlive/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+(/usr/share/texmf-texlive/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count107
+\float@exts=\toks22
+\float@box=\box28
+\@float@everytoks=\toks23
+\@floatcapt=\box29
+)
+\@float@every@algorithm=\toks24
+\c@algorithm=\count108
+)
+(/usr/share/texmf-texlive/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2009/02/07 v0.4g Insert pages of external PDF documents (AM)
+
+(/usr/share/texmf-texlive/tex/latex/tools/calc.sty
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count109
+\calc@Bcount=\count110
+\calc@Adimen=\dimen117
+\calc@Bdimen=\dimen118
+\calc@Askip=\skip57
+\calc@Bskip=\skip58
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count111
+\calc@Cskip=\skip59
+)
+(/usr/share/texmf-texlive/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2006/07/14 v1.1d eso-pic (RN)
+
+(/usr/share/texmf-texlive/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/usr/share/texmf-texlive/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2009/02/07 v0.4g Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box30
+\AM@toc@title=\toks25
+\c@AM@survey=\count112
+\AM@templatesizebox=\box31
+)
 (/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2009/10/09 v6.79a Hypertext links for LaTeX
 
@@ -541,9 +598,9 @@ O)
 (/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty
 Package: xcolor-patch 2009/10/02 xcolor patch
 ))
-\@linkdim=\dimen117
-\Hy@linkcounter=\count103
-\Hy@pagecounter=\count104
+\@linkdim=\dimen119
+\Hy@linkcounter=\count113
+\Hy@pagecounter=\count114
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
@@ -571,6 +628,7 @@ Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
 Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
 t (HO)
 ))
+Package hyperref Info: Option `hypertexnames' set `false' on input line 2864.
 Package hyperref Info: Hyper figures OFF on input line 2975.
 Package hyperref Info: Link nesting OFF on input line 2980.
 Package hyperref Info: Hyper index ON on input line 2983.
@@ -610,10 +668,10 @@ Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 )))
-\Fld@menulength=\count105
-\Field@Width=\dimen118
-\Fld@charsize=\dimen119
-\Field@toks=\toks22
+\Fld@menulength=\count115
+\Field@Width=\dimen120
+\Fld@charsize=\dimen121
+\Field@toks=\toks26
 Package hyperref Info: Hyper figures OFF on input line 4377.
 Package hyperref Info: Link nesting OFF on input line 4382.
 Package hyperref Info: Hyper index ON on input line 4385.
@@ -625,25 +683,27 @@ Package hyperref Info: PDF/A mode OFF on input line 4407.
 (/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty
 Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
 )
-\Hy@abspage=\count106
-\c@Item=\count107
-\c@Hfootnote=\count108
+\Hy@abspage=\count116
+\c@Item=\count117
+\c@Hfootnote=\count118
 )
-*hyperref using default driver hpdftex*
+*hyperref using driver hpdftex*
 (/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
-\Fld@listcount=\count109
+\Fld@listcount=\count119
 )
+Package hyperref Info: Option `colorlinks' set `true' on input line 17.
+
 (/usr/share/texmf-texlive/tex/latex/geometry/geometry.sty
 Package: geometry 2008/12/21 v4.2 Page Geometry
-\Gm@cnth=\count110
-\Gm@cntv=\count111
-\c@Gm@tempcnt=\count112
-\Gm@bindingoffset=\dimen120
-\Gm@wd@mp=\dimen121
-\Gm@odd@mp=\dimen122
-\Gm@even@mp=\dimen123
-\Gm@dimlist=\toks23
+\Gm@cnth=\count120
+\Gm@cntv=\count121
+\c@Gm@tempcnt=\count122
+\Gm@bindingoffset=\dimen122
+\Gm@wd@mp=\dimen123
+\Gm@odd@mp=\dimen124
+\Gm@even@mp=\dimen125
+\Gm@dimlist=\toks27
 
 (/usr/share/texmf-texlive/tex/xelatex/xetexconfig/geometry.cfg))
 (/usr/share/texmf-texlive/tex/latex/psnfss/helvet.sty
@@ -658,8 +718,8 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
 )
 (/usr/share/texmf-texlive/tex/latex/tools/verbatim.sty
 Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks24
-\verbatim@line=\toks25
+\every@verbatim=\toks28
+\verbatim@line=\toks29
 \verbatim@in@stream=\read1
 )
 (/usr/share/texmf/tex/latex/xcolor/xcolor.sty
@@ -675,16 +735,16 @@ Package: colortbl 2001/02/13 v0.1j Color table columns (DPC)
 
 (/usr/share/texmf-texlive/tex/latex/tools/array.sty
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
-\col@sep=\dimen124
-\extrarowheight=\dimen125
-\NC@list=\toks26
-\extratabsurround=\skip55
-\backup@length=\skip56
+\col@sep=\dimen126
+\extrarowheight=\dimen127
+\NC@list=\toks30
+\extratabsurround=\skip60
+\backup@length=\skip61
 )
-\everycr=\toks27
-\minrowclearance=\skip57
+\everycr=\toks31
+\minrowclearance=\skip62
 )
-\rownum=\count113
+\rownum=\count123
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
 Package xcolor Info: Model `RGB' extended on input line 1353.
@@ -696,24 +756,24 @@ Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 )
 (/usr/share/texmf-texlive/tex/latex/listings/listings.sty
-\lst@mode=\count114
-\lst@gtempboxa=\box28
-\lst@token=\toks28
-\lst@length=\count115
-\lst@currlwidth=\dimen126
-\lst@column=\count116
-\lst@pos=\count117
-\lst@lostspace=\dimen127
-\lst@width=\dimen128
-\lst@newlines=\count118
-\lst@lineno=\count119
-\lst@maxwidth=\dimen129
+\lst@mode=\count124
+\lst@gtempboxa=\box32
+\lst@token=\toks32
+\lst@length=\count125
+\lst@currlwidth=\dimen128
+\lst@column=\count126
+\lst@pos=\count127
+\lst@lostspace=\dimen129
+\lst@width=\dimen130
+\lst@newlines=\count128
+\lst@lineno=\count129
+\lst@maxwidth=\dimen131
 
 (/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-\c@lstnumber=\count120
-\lst@skipnumbers=\count121
-\lst@framebox=\box29
+\c@lstnumber=\count130
+\lst@skipnumbers=\count131
+\lst@framebox=\box33
 )
 (/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
 File: listings.cfg 2007/02/22 1.4 listings configuration
@@ -754,25 +814,26 @@ Package frenchb.ldf Warning: OT1 encoding should not be used for French.
 
 (/usr/share/texmf/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count122
-\scratchdimen=\dimen130
-\scratchbox=\box30
-\nofMPsegments=\count123
-\nofMParguments=\count124
-\everyMPshowfont=\toks29
-\MPscratchCnt=\count125
-\MPscratchDim=\dimen131
-\MPnumerator=\count126
-\everyMPtoPDFconversion=\toks30
-)
-Package hyperref Info: Link coloring OFF on input line 9.
- (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+\scratchcounter=\count132
+\scratchdimen=\dimen132
+\scratchbox=\box34
+\nofMPsegments=\count133
+\nofMParguments=\count134
+\everyMPshowfont=\toks33
+\MPscratchCnt=\count135
+\MPscratchDim=\dimen133
+\MPnumerator=\count136
+\everyMPtoPDFconversion=\toks34
+) ABD: EveryShipout initializing macros
+Package hyperref Info: Link coloring ON on input line 9.
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
 Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
-\c@section@level=\count127
+\c@section@level=\count137
 )
 LaTeX Info: Redefining \ref on input line 9.
 LaTeX Info: Redefining \pageref on input line 9.
@@ -781,7 +842,7 @@ LaTeX Info: Redefining \pageref on input line 9.
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-\AtBeginShipoutBox=\box31
+\AtBeginShipoutBox=\box35
 
 *geometry auto-detecting driver*
 *geometry detected driver: pdftex*
@@ -824,7 +885,7 @@ driver: pdftex
 
 (1in=72.27pt, 1cm=28.45pt)
 -----------------------
-\c@lstlisting=\count128
+\c@lstlisting=\count138
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./main.toc)
@@ -832,43 +893,108 @@ driver: pdftex
 \openout4 = `main.toc'.
 
 
-(./satellite.tex
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 13.
 
- (/usr/share/texmf-texlive/tex/latex/base/ts1cmtt.fd
-File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+Package Fancyhdr Warning: \headheight is too small (14.0pt): 
+ Make it at least 14.4521pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[2] (./satellite.tex <img/ClassesXML.pdf, id=52, 597.23125pt x 845.1575pt>
+File: img/ClassesXML.pdf Graphic file (type pdf)
+
+<use img/ClassesXML.pdf>
+Overfull \hbox (17.0pt too wide) in paragraph at lines 4--6
+[][] 
+ []
+
+<img/ClassesDTD.pdf, id=53, 597.23125pt x 845.1575pt>
+File: img/ClassesDTD.pdf Graphic file (type pdf)
+ <use img/ClassesDTD.pdf>
+Overfull \hbox (17.0pt too wide) in paragraph at lines 8--10
+[][] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (14.0pt): 
+ Make it at least 14.4521pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[3 <./img/ClassesXML.pdf>]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 18.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 20.
+ (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 11--17
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
 
+
+Package Fancyhdr Warning: \headheight is too small (14.0pt): 
+ Make it at least 14.4521pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4 <./img/ClassesDTD.pdf>]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 38.
+ (/usr/share/texmf-texlive/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 38.
+
+Overfull \hbox (8.66093pt too wide) in paragraph at lines 74--77
+ \OT1/cmr/bx/n/10.95 Ex-pli-ca-tion[] \OT1/cmr/m/n/10.95 Il s'agit de par-cou-r
+ir les arbres XML et XSLT de haut en bas de fa^^Xcon ind^^Sependante.
  []
 
+<img/XMLa.png, id=76, 722.7pt x 542.025pt>
+File: img/XMLa.png Graphic file (type png)
+ <use img/XMLa.png> [5]
+<img/XSLTa.png, id=107, 722.7pt x 542.025pt>
+File: img/XSLTa.png Graphic file (type png)
+ <use img/XSLTa.png>
+<img/HTMLa.png, id=108, 722.7pt x 542.025pt>
+File: img/HTMLa.png Graphic file (type png)
+ <use img/HTMLa.png> [6 <./img/XMLa.png> <./img/XSLTa.png>] <img/XMLb.png, id=1
+24, 722.7pt x 542.025pt>
+File: img/XMLb.png Graphic file (type png)
 
-Underfull \hbox (badness 10000) in paragraph at lines 21--25
+<use img/XMLb.png> <img/XSLTb.png, id=125, 722.7pt x 542.025pt>
+File: img/XSLTb.png Graphic file (type png)
 
- []
+<use img/XSLTb.png> [7 <./img/HTMLa.png> <./img/XMLb.png>]
+<img/HTMLb.png, id=134, 722.7pt x 542.025pt>
+File: img/HTMLb.png Graphic file (type png)
+ <use img/HTMLb.png>
+File: img/XSLTa.png Graphic file (type png)
 
-) AED: lastpage setting LastPage [2] (./main.aux) ) 
+<use img/XSLTa.png> [8 <./img/XSLTb.png> <./img/HTMLb.png>]
+<img/ArbreHTML.png, id=142, 722.7pt x 542.025pt>
+File: img/ArbreHTML.png Graphic file (type png)
+ <use img/ArbreHTML.png>)
+AED: lastpage setting LastPage [9 <./img/ArbreHTML.png>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 8527 strings out of 493848
- 118597 string characters out of 1152823
- 208576 words of memory out of 3000000
- 11634 multiletter control sequences out of 15000+50000
- 10874 words of font info for 39 fonts, out of 3000000 for 9000
+ 9531 strings out of 493848
+ 133206 string characters out of 1152824
+ 232626 words of memory out of 3000000
+ 12556 multiletter control sequences out of 15000+50000
+ 10363 words of font info for 37 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 43i,11n,43p,264b,349s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/
-dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/te
-xmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/
-fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texmf-texlive/fonts/type1
-/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb>
-
-Output written on main.pdf (2 pages, 107345 bytes).
+ 43i,12n,43p,557b,686s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-texlive/fonts/type1/pu
+blic/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.
+pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on main.pdf (9 pages, 328554 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 10 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 190 PDF objects out of 1000 (max. 8388607)
+ 47 named destinations out of 1000 (max. 500000)
+ 94 words of extra memory for PDF output out of 10000 (max. 10000000)
 
